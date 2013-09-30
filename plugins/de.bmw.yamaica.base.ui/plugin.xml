@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension-point id="yamaicaImportWizards" name="yamaica Import Wizards" schema="schema/yamaicaImportWizards.exsd"/>
+   <extension-point id="yamaicaExportWizards" name="yamaica Export Wizards" schema="schema/yamaicaExportWizards.exsd"/>
+   <extension-point id="yamaicaNewWizards" name="yamaica New Wizards" schema="schema/yamaicaNewWizards.exsd"/>
+   <extension-point id="yamaicaLaunchConfigurationTypes" name="yamaica Launch Configuration Types" schema="schema/yamaicaLaunchConfigurationTypes.exsd"/>
+
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="de.bmw.yamaica.base.ui.internal.preferences.Preferences"
+            id="de.bmw.yamaica.base.ui.preferences"
+            name="yamaica Settings">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.ui.ide.projectNatureImages">
+      <image
+            icon="icons/yamaica_nature.gif"
+            id="de.bmw.yamaica.base.core.projectNatureImage"
+            natureId="de.bmw.yamaica.base.core.yamaicanature">
+      </image>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="de.bmw.yamaica.base.ui.fileToolbarExtensionsActive">
+         <with
+               variable="activeWorkbenchWindow.activePerspective">
+            <equals
+                  value="de.bmw.yamaica.ide.ui.mainPerspective">
+            </equals>
+         </with>
+      </definition>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="de.bmw.yamaica.base.ui.internal.preferences.DefaultPreferences">
+      </initializer>
+   </extension>
+   <extension
+         point="de.bmw.yamaica.base.ui.yamaicaImportWizards">
+      <wizard
+            importWizardId="org.eclipse.ui.wizards.import.FileSystem">
+      </wizard>
+   </extension>
+   <extension
+         point="de.bmw.yamaica.base.ui.yamaicaExportWizards">
+      <wizard
+            exportWizardId="org.eclipse.ui.wizards.export.FileSystem">
+      </wizard>
+   </extension>
+
+</plugin>
