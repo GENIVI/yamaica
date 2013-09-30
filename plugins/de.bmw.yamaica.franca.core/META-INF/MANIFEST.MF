@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: yamaica Franca Core Components
+Bundle-SymbolicName: de.bmw.yamaica.franca.core;singleton:=true
+Bundle-Version: 0.8.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: BMW AG
+Require-Bundle: org.eclipse.core.filebuffers,
+ org.eclipse.core.runtime,
+ org.eclipse.xtend2.lib;bundle-version="2.4.1",
+ org.franca.core;bundle-version="0.8.8",
+ org.franca.core.dsl;bundle-version="0.8.8",
+ org.franca.deploymodel.dsl;bundle-version="0.8.8",
+ de.bmw.yamaica.franca.base.core;bundle-version="0.8.0"
+Export-Package: de.bmw.yamaica.franca.core
