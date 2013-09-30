@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: yamaica IDE UI Components
+Bundle-SymbolicName: de.bmw.yamaica.ide.ui;singleton:=true
+Bundle-Version: 0.8.0.qualifier
+Bundle-Activator: de.bmw.yamaica.ide.ui.internal.Activator
+Bundle-Vendor: BMW AG
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui,
+ org.eclipse.ui.editors;bundle-version="3.8.0",
+ org.eclipse.ui.forms;bundle-version="3.5.200",
+ de.bmw.yamaica.base.ui;bundle-version="0.8.0",
+ org.eclipse.jface.text;bundle-version="3.8.2"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Export-Package: de.bmw.yamaica.ide.ui.internal;x-internal:=true
