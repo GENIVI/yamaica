@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: yamaica Base Core Components
+Bundle-SymbolicName: de.bmw.yamaica.base.core;singleton:=true
+Bundle-Version: 0.8.0.qualifier
+Bundle-Vendor: BMW AG
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: de.bmw.yamaica.base.core,
+ de.bmw.yamaica.base.core.internal;x-internal:=true,
+ de.bmw.yamaica.base.core.internal.resourceproperties;x-internal:=true,
+ de.bmw.yamaica.base.core.launching,
+ de.bmw.yamaica.base.core.resourceproperties,
+ de.bmw.yamaica.base.core.utils
+Require-Bundle: org.eclipse.core.runtime;bundle-version="3.8.0";visibility:=reexport,
+ org.eclipse.core.resources;bundle-version="3.8.1";visibility:=reexport,
+ org.eclipse.core.variables;bundle-version="3.2.600";visibility:=reexport,
+ org.eclipse.debug.core;bundle-version="3.7.100";visibility:=reexport,
+ org.eclipse.jface;bundle-version="3.8.102";visibility:=reexport
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: de.bmw.yamaica.base.core.internal.Activator
