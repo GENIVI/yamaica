@@ -3,7 +3,7 @@
       id="de.bmw.yamaica.base"
       label="yamaica Base Components"
       version="0.8.0.qualifier"
-      provider-name="BMW AG">
+      provider-name="BMW Group">
 
    <description url="http://www.example.com/description">
       This feature consolidates all yamaica base plug-ins.

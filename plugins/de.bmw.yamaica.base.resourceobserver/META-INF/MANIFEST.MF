@@ -4,7 +4,7 @@ Bundle-Name: yamaica Resource Observer
 Bundle-SymbolicName: de.bmw.yamaica.base.resourceobserver
 Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: de.bmw.yamaica.base.internal.resourceobserver.Activator
-Bundle-Vendor: BMW AG
+Bundle-Vendor: BMW Group
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;bundle-version="3.8.1",
  de.bmw.yamaica.base.core;bundle-version="0.8.0"

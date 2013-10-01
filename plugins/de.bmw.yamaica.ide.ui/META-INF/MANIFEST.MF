@@ -4,7 +4,7 @@ Bundle-Name: yamaica IDE UI Components
 Bundle-SymbolicName: de.bmw.yamaica.ide.ui;singleton:=true
 Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: de.bmw.yamaica.ide.ui.internal.Activator
-Bundle-Vendor: BMW AG
+Bundle-Vendor: BMW Group
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
  org.eclipse.ui.editors;bundle-version="3.8.0",

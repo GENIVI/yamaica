@@ -3,7 +3,7 @@
       id="de.bmw.yamaica.ide"
       label="yamaica IDE Components"
       version="0.8.0.qualifier"
-      provider-name="BMW AG"
+      provider-name="BMW Group"
       license-feature="de.bmw.yamaica.base"
       license-feature-version="0.8.0.qualifier">
 

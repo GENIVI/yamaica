@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: yamaica Base UI Components
 Bundle-SymbolicName: de.bmw.yamaica.base.ui;singleton:=true
 Bundle-Version: 0.8.0.qualifier
-Bundle-Vendor: BMW AG
+Bundle-Vendor: BMW Group
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: de.bmw.yamaica.base.ui.dialogs,
  de.bmw.yamaica.base.ui.internal;x-friends:="de.bmw.yamaica.ide.ui",

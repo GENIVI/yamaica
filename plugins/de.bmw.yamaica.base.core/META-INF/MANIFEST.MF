@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: yamaica Base Core Components
 Bundle-SymbolicName: de.bmw.yamaica.base.core;singleton:=true
 Bundle-Version: 0.8.0.qualifier
-Bundle-Vendor: BMW AG
+Bundle-Vendor: BMW Group
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: de.bmw.yamaica.base.core,
  de.bmw.yamaica.base.core.internal;x-internal:=true,
