@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pde version="3.5"?>
+
+<product name="yamaica" uid="de.bmw.yamaica.eclipse.product" id="org.eclipse.platform.ide" application="org.eclipse.ui.ide.workbench" version="0.8.0.qualifier" useFeatures="true" includeLaunchers="true">
+
+   <configIni use="default">
+   </configIni>
+
+   <launcherArgs>
+      <vmArgs>-Xms512m -Xmx512m -XX:PermSize=128m</vmArgs>
+      <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts</vmArgsMac>
+   </launcherArgs>
+
+   <windowImages/>
+
+   <launcher name="yamaica">
+      <solaris/>
+      <win useIco="true">
+         <bmp/>
+      </win>
+   </launcher>
+
+   <vm>
+   </vm>
+
+   <plugins>
+   </plugins>
+
+   <features>
+      <feature id="de.bmw.yamaica.franca" version="0.8.0.qualifier"/>
+      <feature id="de.bmw.yamaica.base"/>
+      <feature id="org.eclipse.xtext.ui.source"/>
+      <feature id="org.eclipse.xtend"/>
+      <feature id="org.eclipse.equinox.p2.core.feature"/>
+      <feature id="org.eclipse.emf.ecore.editor"/>
+      <feature id="org.eclipse.xtend.ui"/>
+      <feature id="org.eclipse.xtend.dependencies"/>
+      <feature id="org.eclipse.platform"/>
+      <feature id="org.eclipse.xtext.xtext.ui.source"/>
+      <feature id="org.eclipse.xtext.xbase.lib"/>
+      <feature id="org.eclipse.emf.mwe.ui"/>
+      <feature id="org.eclipse.help"/>
+      <feature id="org.eclipse.emf.ecore"/>
+      <feature id="org.eclipse.xtend.typesystem.emf"/>
+      <feature id="org.eclipse.emf.codegen.ecore"/>
+      <feature id="org.eclipse.xpand"/>
+      <feature id="org.eclipse.xtext.xbase.lib.source"/>
+      <feature id="org.eclipse.xtend.sdk"/>
+      <feature id="org.eclipse.equinox.p2.rcp.feature"/>
+      <feature id="org.eclipse.xtext.sdk"/>
+      <feature id="org.eclipse.emf.mwe2.language.sdk.source"/>
+      <feature id="org.eclipse.equinox.p2.user.ui"/>
+      <feature id="org.eclipse.emf.mwe2.runtime.sdk"/>
+      <feature id="org.franca.feature"/>
+      <feature id="org.eclipse.emf.edit"/>
+      <feature id="org.eclipse.emf.mwe2.runtime.sdk.source"/>
+      <feature id="org.eclipse.emf.converter"/>
+      <feature id="org.eclipse.xtext.ui"/>
+      <feature id="org.eclipse.draw2d"/>
+      <feature id="org.eclipse.xtext.docs"/>
+      <feature id="org.eclipse.rcp"/>
+      <feature id="org.eclipse.xtext.examples.source"/>
+      <feature id="org.eclipse.jdt"/>
+      <feature id="org.eclipse.xtext.xbase"/>
+      <feature id="org.eclipse.emf.edit.ui"/>
+      <feature id="org.eclipse.xtext.xbase.source"/>
+      <feature id="org.eclipse.xtext.runtime.source"/>
+      <feature id="org.eclipse.emf.mwe2.language.sdk"/>
+      <feature id="org.eclipse.emf.mwe.core"/>
+      <feature id="org.eclipse.e4.rcp"/>
+      <feature id="org.eclipse.xtext.xtext.ui"/>
+      <feature id="org.eclipse.emf.common"/>
+      <feature id="org.eclipse.xtext.examples"/>
+      <feature id="org.eclipse.xtext.runtime"/>
+      <feature id="org.eclipse.emf.codegen"/>
+      <feature id="org.eclipse.equinox.p2.extras.feature"/>
+      <feature id="org.eclipse.emf.common.ui"/>
+      <feature id="org.eclipse.emf.ecore.edit"/>
+      <feature id="de.bmw.yamaica.ea" version="0.8.0.qualifier"/>
+   </features>
+
+   <configurations>
+      <plugin id="de.bmw.yamaica.base.resourceobserver" autoStart="true" startLevel="0" />
+      <plugin id="de.bmw.yamaica.base.ui.workbenchobserver" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.ds" autoStart="true" startLevel="1" />
+      <property name="eclipse.p2.data.area" value="@config.dir/../p2/" />
+      <property name="eclipse.p2.profile" value="SDKProfile" />
+      <property name="osgi.instance.area.default" value="@user.home/.yamaica" />
+   </configurations>
+
+</product>
