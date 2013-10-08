@@ -9,6 +9,7 @@ Export-Package: de.bmw.yamaica.base.ui.dialogs,
  de.bmw.yamaica.base.ui.internal;x-friends:="de.bmw.yamaica.ide.ui",
  de.bmw.yamaica.base.ui.internal.dialogs;x-friends:="de.bmw.yamaica.ide.ui",
  de.bmw.yamaica.base.ui.internal.preferences;x-friends:="de.bmw.yamaica.ide.ui",
+ de.bmw.yamaica.base.ui.launch,
  de.bmw.yamaica.base.ui.utils
 Require-Bundle: org.eclipse.core.filebuffers;bundle-version="3.5.200";visibility:=reexport,
  org.eclipse.debug.ui;bundle-version="3.8.2";visibility:=reexport,

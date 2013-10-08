@@ -8,7 +8,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: de.bmw.yamaica.base.core,
  de.bmw.yamaica.base.core.internal;x-internal:=true,
  de.bmw.yamaica.base.core.internal.resourceproperties;x-internal:=true,
- de.bmw.yamaica.base.core.launching,
+ de.bmw.yamaica.base.core.launch,
  de.bmw.yamaica.base.core.resourceproperties,
  de.bmw.yamaica.base.core.utils
 Require-Bundle: org.eclipse.core.runtime;bundle-version="3.8.0";visibility:=reexport,

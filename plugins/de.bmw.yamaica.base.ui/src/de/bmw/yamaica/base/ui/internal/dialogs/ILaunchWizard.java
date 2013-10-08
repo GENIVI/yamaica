@@ -6,7 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 package de.bmw.yamaica.base.ui.internal.dialogs;
 
-import de.bmw.yamaica.base.core.launching.ILaunchConfigurationPreparer;
+import de.bmw.yamaica.base.core.launch.ILaunchConfigurationPreparer;
 
 import org.eclipse.debug.core.ILaunchConfigurationType;
 
