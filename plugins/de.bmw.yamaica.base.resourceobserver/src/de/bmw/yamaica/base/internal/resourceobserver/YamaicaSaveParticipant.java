@@ -30,7 +30,7 @@ public class YamaicaSaveParticipant implements ISaveParticipant
         }
 
         lastState.processResourceChangeEvents(YamaicaResourceUpdater.getInstance());
-        IPath location = lastState.lookup(new Path("save"));
+        IPath location = lastState.lookup(new Path(ResourceObserverConstants.SAVE));
 
         if (null == location)
         {
