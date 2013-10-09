@@ -46,6 +46,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import de.bmw.yamaica.base.core.YamaicaConstants;
 import de.bmw.yamaica.base.core.internal.Activator;
 import de.bmw.yamaica.base.core.internal.resourceproperties.YamaicaResource;
 import de.bmw.yamaica.base.core.internal.resourceproperties.YamaicaXmlConstants;
@@ -54,6 +55,8 @@ import de.bmw.yamaica.base.core.utils.AbstractPropertyChangeSupport;
 public class YamaicaXmlModel extends AbstractPropertyChangeSupport implements IResourceChangeListener
 {
     private static HashMap<IPath, YamaicaXmlModel> instances;
+
+    private final String                           VERSION_NUMBER = "1.0";
 
     public static synchronized YamaicaXmlModel acquireInstance(IResource resource, Object reference)
     {
@@ -159,7 +162,7 @@ public class YamaicaXmlModel extends AbstractPropertyChangeSupport implements IR
                 IFolder projectSettingsFolder = project.getFolder(new ProjectScope(project).getLocation().makeRelativeTo(
                         resource.getLocation()));
 
-                return projectSettingsFolder.getFile(Activator.PLUGIN_ID + ".xml");
+                return projectSettingsFolder.getFile(Activator.PLUGIN_ID + YamaicaConstants.XML_FILE_EXTENSION);
             }
         }
 
@@ -564,7 +567,7 @@ public class YamaicaXmlModel extends AbstractPropertyChangeSupport implements IR
             document.appendChild(document.createComment("––––––––––––––––––––––––––––––––––––––––––––––"));
 
             Element rootElement = document.createElement(YamaicaXmlConstants.ROOT_TAG_NAME);
-            rootElement.setAttribute("version", "1.0");
+            rootElement.setAttribute("version", VERSION_NUMBER);
             document.appendChild(rootElement);
 
             needsSaving = true;

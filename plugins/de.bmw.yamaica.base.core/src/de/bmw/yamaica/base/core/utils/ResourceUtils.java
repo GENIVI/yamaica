@@ -23,6 +23,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.variables.IStringVariableManager;
 import org.eclipse.core.variables.VariablesPlugin;
 
+import de.bmw.yamaica.base.core.YamaicaConstants;
 import de.bmw.yamaica.base.core.internal.Activator;
 
 public class ResourceUtils
@@ -34,7 +35,7 @@ public class ResourceUtils
 
         try
         {
-            URL resourceURL = new URL("platform:/plugin/" + pluginId + "/" + resourcePath);
+            URL resourceURL = new URL(YamaicaConstants.PLATFORM_PLUGIN_PATH + pluginId + "/" + resourcePath);
 
             return resourceURL.openConnection().getInputStream();
         }
@@ -52,7 +53,8 @@ public class ResourceUtils
 
         try
         {
-            URL resourceURL = new URL("platform:/plugin/" + Activator.RESOURCES_PLUGIN_ID + "/resources/" + resourcePath);
+            URL resourceURL = new URL(YamaicaConstants.PLATFORM_PLUGIN_PATH + Activator.RESOURCES_PLUGIN_ID + "/"
+                    + YamaicaConstants.RESOURCES + "/" + resourcePath);
 
             return resourceURL.openConnection().getInputStream();
         }
@@ -73,7 +75,7 @@ public class ResourceUtils
         try
         {
             File file = FileLocator.getBundleFile(Platform.getBundle(Activator.RESOURCES_PLUGIN_ID));
-            path = new Path(file.getPath()).append("resources").append(resourcePath);
+            path = new Path(file.getPath()).append(YamaicaConstants.RESOURCES).append(resourcePath);
         }
         catch (IOException e)
         {
@@ -124,7 +126,7 @@ public class ResourceUtils
             }
         }
 
-        return new Path("platform:/resource").append(resource.getFullPath());
+        return new Path(YamaicaConstants.PLATFORM_RESOURCE_PATH).append(resource.getFullPath());
     }
 
     public static IResource getResourceForLocation(String pathAsString)

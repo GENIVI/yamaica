@@ -6,6 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 package de.bmw.yamaica.base.core.launch;
 
+import de.bmw.yamaica.base.core.YamaicaConstants;
 import de.bmw.yamaica.base.core.resourceproperties.IResourcePropertyStore;
 import de.bmw.yamaica.base.core.resourceproperties.YamaicaXmlModel;
 
@@ -34,8 +35,8 @@ public abstract class AbstractLaunchConfigurationPreparer implements ILaunchConf
         IProject project = importedFile.getProject();
         YamaicaXmlModel model = YamaicaXmlModel.acquireInstance(project, this);
         IResourcePropertyStore store = model.getResourcePropertyStore(project);
-        String importFolder = store.getProperty("IMPORT_FOLDER"); // TODO use variable instead of string
-        String targetFolder = store.getProperty("TARGET_FOLDER"); // TODO use variable instead of string
+        String importFolder = store.getProperty(YamaicaConstants.IMPORT_FOLDER);
+        String targetFolder = store.getProperty(YamaicaConstants.TARGET_FOLDER);
         YamaicaXmlModel.releaseInstance(project, this);
 
         IPath inputPath = importedFile.getFullPath();
@@ -66,7 +67,7 @@ public abstract class AbstractLaunchConfigurationPreparer implements ILaunchConf
 
             if (filename.equals(targetFilename))
             {
-                outputPath = outputPath.append(targetFilenameWithoutExtension + ".gen");
+                outputPath = outputPath.append(targetFilenameWithoutExtension + YamaicaConstants.GEN_FILE_EXTENSION);
             }
             else
             {
@@ -108,14 +109,15 @@ public abstract class AbstractLaunchConfigurationPreparer implements ILaunchConf
         if (inline)
         {
             // Generate something like ${workspace_loc:project_name/folder_name/file_name}
-            pathAsVariableExpression = variableManager.generateVariableExpression("workspace_loc", resource.getFullPath().makeRelative()
-                    .toString());
+            pathAsVariableExpression = variableManager.generateVariableExpression(YamaicaConstants.WORKSPACE_LOC, resource.getFullPath()
+                    .makeRelative().toString());
         }
         else
         {
             // Generate something like ${workspace_loc:project_name}/folder_name/file_name
             // This is needed if file does not exist in workspace!
-            pathAsVariableExpression = variableManager.generateVariableExpression("workspace_loc", resource.getProject().getName())
+            pathAsVariableExpression = variableManager.generateVariableExpression(YamaicaConstants.WORKSPACE_LOC, resource.getProject()
+                    .getName())
                     + resource.getProjectRelativePath().makeAbsolute().toString();
         }
 
