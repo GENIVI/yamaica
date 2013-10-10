@@ -50,12 +50,28 @@ import org.eclipse.ui.part.FileEditorInput;
 
 import de.bmw.yamaica.base.core.resourceproperties.IResourcePropertyStore;
 import de.bmw.yamaica.base.core.resourceproperties.YamaicaXmlModel;
+import de.bmw.yamaica.base.ui.utils.YamaicaUIConstants;
 
 public abstract class YamaicaWizardNewFilePage extends WizardPage implements Listener
 {
+    private static final String    ERROR_OCCURRED_DURING_OPERATION_0                           = "Error occurred during operation: {0}";
+    private static final String    INTERNAL_ERROR                                              = "Internal error";
+    private static final String    A_RESOURCE_AT_THE_SPECIFIED_PATH_ALREADY_EXISTS             = "A resource at the specified path already exists.";
+    private static final String    THE_FILENAME_EXTENSION_MUST_BE                              = "The filename extension must be ";
+    private static final String    THE_FILENAME_MAY_NOT_CONSIST_OF_THE_FILENAME_EXTENSION_ONLY = "The filename may not consist of the filename extension only.";
+    private static final String    THE_FILENAME_IS_NOT_VALID                                   = "The filename is not valid.";
+    private static final String    IS_NOT_OPENED                                               = "\" is not opened.";
+    private static final String    DOES_NOT_EXIST                                              = "\" does not exist.";
+    private static final String    THE_SPECIFIED_PROJECT                                       = "The specified project \"";
+    private static final String    THE_TARGET_FOLDER_PATH_IS_NOT_VALID                         = "The target folder path is not valid.";
+    private static final String    ADD_DEMO_CONTENT                                            = "Add demo &content";
+    private static final String    OPTIONS                                                     = "Options";
+    private static final String    FILENAME                                                    = "Fi&lename:";
+    private static final String    BROWSE                                                      = "B&rowse...";
+    private static final String    TARGET_FOLDER                                               = "Target fol&der:";
     protected IWorkbench           workbench;
     protected IStructuredSelection structuredSelection;
-    protected boolean              restrictWizardPage = false;
+    protected boolean              restrictWizardPage                                          = false;
 
     protected IContainer           rootContainer;
     protected IContainer           targetContainer;
@@ -147,7 +163,7 @@ public abstract class YamaicaWizardNewFilePage extends WizardPage implements Lis
         composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 
         Label targetFolderLabel = new Label(composite, SWT.NONE);
-        targetFolderLabel.setText("Target fol&der:");
+        targetFolderLabel.setText(TARGET_FOLDER);
         targetFolderLabel.setLayoutData(new GridData(SWT.LEAD, SWT.CENTER, false, false));
         targetFolderLabel.setFont(font);
 
@@ -157,14 +173,14 @@ public abstract class YamaicaWizardNewFilePage extends WizardPage implements Lis
         targetFolderText.setFont(font);
 
         browseButton = new Button(composite, SWT.PUSH);
-        browseButton.setText("B&rowse...");
+        browseButton.setText(BROWSE);
         browseButton.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
         browseButton.setFont(font);
         browseButton.addListener(SWT.Selection, this);
         setButtonLayoutData(browseButton);
 
         Label filenameLabel = new Label(composite, SWT.NONE);
-        filenameLabel.setText("Fi&lename:");
+        filenameLabel.setText(FILENAME);
         filenameLabel.setLayoutData(new GridData(SWT.LEAD, SWT.CENTER, false, false));
         filenameLabel.setFont(font);
 
@@ -207,7 +223,7 @@ public abstract class YamaicaWizardNewFilePage extends WizardPage implements Lis
         Group optionsGroup = new Group(parent, SWT.NONE);
         optionsGroup.setLayout(new GridLayout());
         optionsGroup.setLayoutData(optionsGroupGridData);
-        optionsGroup.setText("Options");
+        optionsGroup.setText(OPTIONS);
         optionsGroup.setFont(parent.getFont());
 
         createOptionsGroupContent(optionsGroup);
@@ -216,7 +232,7 @@ public abstract class YamaicaWizardNewFilePage extends WizardPage implements Lis
     protected void createOptionsGroupContent(Group optionsGroup)
     {
         demoContentCheckbox = new Button(optionsGroup, SWT.CHECK);
-        demoContentCheckbox.setText("Add demo &content");
+        demoContentCheckbox.setText(ADD_DEMO_CONTENT);
     }
 
     @Override
@@ -225,7 +241,7 @@ public abstract class YamaicaWizardNewFilePage extends WizardPage implements Lis
         if (event.widget == browseButton)
         {
             YamaicaResourceSelectionDialog dialog = new YamaicaResourceSelectionDialog(browseButton.getShell(), rootContainer,
-                    getSpecifiedContainer(), true, "Select a folder to import into.");
+                    getSpecifiedContainer(), true, YamaicaUIConstants.SELECT_A_FOLDER_TO_IMPORT_INTO);
 
             if (dialog.open() == YamaicaResourceSelectionDialog.OK && null != targetFolderText)
             {
@@ -308,7 +324,7 @@ public abstract class YamaicaWizardNewFilePage extends WizardPage implements Lis
 
         if (null == containerFullPath)
         {
-            setErrorMessage("The target folder path is not valid.");
+            setErrorMessage(THE_TARGET_FOLDER_PATH_IS_NOT_VALID);
 
             return false;
         }
@@ -319,14 +335,14 @@ public abstract class YamaicaWizardNewFilePage extends WizardPage implements Lis
 
         if (!project.exists())
         {
-            setErrorMessage("The specified project \"" + project.getName() + "\" does not exist.");
+            setErrorMessage(THE_SPECIFIED_PROJECT + project.getName() + DOES_NOT_EXIST);
 
             return false;
         }
 
         if (!project.isOpen())
         {
-            setErrorMessage("The specified project \"" + project.getName() + "\" is not opened.");
+            setErrorMessage(THE_SPECIFIED_PROJECT + project.getName() + IS_NOT_OPENED);
 
             return false;
         }
@@ -336,7 +352,7 @@ public abstract class YamaicaWizardNewFilePage extends WizardPage implements Lis
 
         if (null == fileFullPath)
         {
-            setErrorMessage("The filename is not valid.");
+            setErrorMessage(THE_FILENAME_IS_NOT_VALID);
 
             return false;
         }
@@ -359,7 +375,7 @@ public abstract class YamaicaWizardNewFilePage extends WizardPage implements Lis
         // Error if filename equals extension
         if (hasValidFileExtension && fileFullPath.lastSegment().equals("." + currentFileExtension))
         {
-            setErrorMessage("The filename may not consist of the filename extension only.");
+            setErrorMessage(THE_FILENAME_MAY_NOT_CONSIST_OF_THE_FILENAME_EXTENSION_ONLY);
 
             return false;
         }
@@ -379,7 +395,7 @@ public abstract class YamaicaWizardNewFilePage extends WizardPage implements Lis
                 combinedFileExtensions += " or " + "\"" + validFileExtensions[validFileExtensions.length - 1] + "\"";
             }
 
-            setErrorMessage("The filename extension must be " + combinedFileExtensions + ".");
+            setErrorMessage(THE_FILENAME_EXTENSION_MUST_BE + combinedFileExtensions + ".");
 
             return false;
         }
@@ -393,7 +409,7 @@ public abstract class YamaicaWizardNewFilePage extends WizardPage implements Lis
 
         if (null != resource || (null != fileUri && new File(fileUri).exists()))
         {
-            setErrorMessage("A resource at the specified path already exists.");
+            setErrorMessage(A_RESOURCE_AT_THE_SPECIFIED_PATH_ALREADY_EXISTS);
 
             return false;
         }
@@ -542,7 +558,7 @@ public abstract class YamaicaWizardNewFilePage extends WizardPage implements Lis
      */
     protected void displayErrorDialog(String message)
     {
-        MessageDialog.open(MessageDialog.ERROR, getContainer().getShell(), "Internal error", message, SWT.SHEET);
+        MessageDialog.open(MessageDialog.ERROR, getContainer().getShell(), INTERNAL_ERROR, message, SWT.SHEET);
     }
 
     /**
@@ -559,7 +575,7 @@ public abstract class YamaicaWizardNewFilePage extends WizardPage implements Lis
         // Some system exceptions have no message
         if (null == message)
         {
-            message = NLS.bind("Error occurred during operation: {0}", exception);
+            message = NLS.bind(ERROR_OCCURRED_DURING_OPERATION_0, exception);
         }
 
         displayErrorDialog(message);

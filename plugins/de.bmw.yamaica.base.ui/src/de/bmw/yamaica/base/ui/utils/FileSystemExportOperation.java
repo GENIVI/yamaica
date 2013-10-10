@@ -52,7 +52,7 @@ public class FileSystemExportOperation implements IRunnableWithProgress
         int work = null != resources ? resources.size() : 0;
         IPath sourceContainerSystemPath = source.getLocation();
 
-        monitor.beginTask("Exporting resources...", work);
+        monitor.beginTask(YamaicaUIConstants.EXPORTING_RESOURCES, work);
 
         for (IResource resource : resources)
         {

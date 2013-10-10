@@ -11,6 +11,7 @@ import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 
 import de.bmw.yamaica.base.ui.internal.Activator;
+import de.bmw.yamaica.base.ui.utils.YamaicaUIConstants;
 
 public abstract class YamaicaNewFileWizard extends YamaicaWizard implements INewWizard
 {
@@ -20,7 +21,7 @@ public abstract class YamaicaNewFileWizard extends YamaicaWizard implements INew
     {
         super(name);
 
-        setWindowTitle("New");
+        setWindowTitle(YamaicaUIConstants.NEW);
     }
 
     @Override
@@ -29,7 +30,8 @@ public abstract class YamaicaNewFileWizard extends YamaicaWizard implements INew
         super.init(workbench, structuredSelection);
 
         // setDefaultPageImageDescriptor(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "/icons/newfile_wiz.png"));
-        setDefaultPageImageDescriptor(Activator.imageDescriptorFromPlugin("org.eclipse.ui.ide", "icons/full/wizban/newfile_wiz.png"));
+        setDefaultPageImageDescriptor(Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_IDE_PLUGIN_ID,
+                YamaicaUIConstants.NEWFILE_ICON_PATH));
 
     }
 

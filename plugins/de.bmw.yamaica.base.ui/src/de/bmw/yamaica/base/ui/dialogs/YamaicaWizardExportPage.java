@@ -51,6 +51,7 @@ import de.bmw.yamaica.base.ui.utils.ActionRunListener;
 import de.bmw.yamaica.base.ui.utils.ResourceComparator;
 import de.bmw.yamaica.base.ui.utils.ResourceExtensionFilter;
 import de.bmw.yamaica.base.ui.utils.ViewerToolBar;
+import de.bmw.yamaica.base.ui.utils.YamaicaUIConstants;
 
 public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage implements ICheckStateListener, ActionRunListener
 {
@@ -69,9 +70,21 @@ public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage 
     protected ResourceExtensionFilter  extensionFilter;
 
     // dialog store id constants
-    protected static final String      STORE_DESTINATION_NAMES_ID        = "YamaicaWizardExportPage.STORE_DESTINATION_NAMES_ID";       //$NON-NLS-1$
-    protected static final String      STORE_OVERWRITE_EXISTING_FILES_ID = "YamaicaWizardExportPage.STORE_OVERWRITE_EXISTING_FILES_ID"; //$NON-NLS-1$
-    protected static final String      STORE_SHOW_ALL_FILES_ID           = "YamaicaWizardImportPage.STORE_SHOW_ALL_FILES_ID";          //$NON-NLS-1$
+    protected static final String      STORE_DESTINATION_NAMES_ID        = "YamaicaWizardExportPage.STORE_DESTINATION_NAMES_ID";            //$NON-NLS-1$
+    protected static final String      STORE_OVERWRITE_EXISTING_FILES_ID = "YamaicaWizardExportPage.STORE_OVERWRITE_EXISTING_FILES_ID";     //$NON-NLS-1$
+    protected static final String      STORE_SHOW_ALL_FILES_ID           = "YamaicaWizardImportPage.STORE_SHOW_ALL_FILES_ID";               //$NON-NLS-1$
+
+    private static final String        TO_DIRECTORY                      = "To director&y:";
+    private static final String        BROWSE                            = "Bro&wse...";
+    private static final String        DIRECTORY_SELECTION_MESSAGE       = "Select a directory to export to.";
+    private static final String        EXPORT_TO_DIRECTORY               = "Export to Directory";
+    private static final String        RESOURCE_SELECTION_ERROR_MESSAGE  = "There are no resources currently selected for export.";
+    private static final String        ENTER_DESTINATION_MESSAGE         = "Please enter a destination directory.";
+    private static final String        COULD_NOT_CREATE_MESSAGE          = "Target directory could not be created.";
+    private static final String        ALREADY_EXISTS_MESSAGE            = "Target directory already exists as a file.";
+    private static final String        DIRECTORY_CREATE_QUESTION         = "Target directory does not exist.  Would you like to create it?";
+    private static final String        LOCATION_CONFLICT_ERROR_MESSAGE   = "Destination directory conflicts with location of {0}.";
+    private static final String        PROJECT_DAMAGED_WARNING           = "The project {0} may be damaged after this operation";
 
     public YamaicaWizardExportPage(IWorkbench workbench, IStructuredSelection structuredSelection, String name)
     {
@@ -130,7 +143,7 @@ public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage 
 
         viewerToolBar = new ViewerToolBar(parent, SWT.BORDER, ViewerToolBar.DRILL_DOWN | ViewerToolBar.SELECT | ViewerToolBar.FILTER);
         viewerToolBar.setLayoutData(data);
-        viewerToolBar.setFilterText("Filter File Extensions");
+        viewerToolBar.setFilterText(YamaicaUIConstants.FILTER_FILE_EXTENSIONS);
 
         resourceSelectionTreeViewer = new YamaicaCheckedTreeViewer(viewerToolBar, SWT.NONE);
         resourceSelectionTreeViewer.setContentProvider(new WorkbenchContentProvider());
@@ -170,8 +183,8 @@ public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage 
                 IResource importContainer = project.findMember(importFolder);
                 IResource targetContainer = project.findMember(targetFolder);
 
-                IPath importPath = null != importContainer ? importContainer.getFullPath() : new Path("");
-                IPath targetPath = null != targetContainer ? targetContainer.getFullPath() : new Path("");
+                IPath importPath = null != importContainer ? importContainer.getFullPath() : new Path(YamaicaUIConstants.EMPTY_STRING);
+                IPath targetPath = null != targetContainer ? targetContainer.getFullPath() : new Path(YamaicaUIConstants.EMPTY_STRING);
 
                 boolean allFilesInsideImportFolder = true;
                 boolean allFilesInsideTargetFolder = true;
@@ -230,7 +243,7 @@ public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage 
         destinationSelectionGroup.setFont(font);
 
         Label destinationLabel = new Label(destinationSelectionGroup, SWT.NONE);
-        destinationLabel.setText("To director&y:");
+        destinationLabel.setText(TO_DIRECTORY);
         destinationLabel.setFont(font);
 
         // destination name entry field
@@ -244,7 +257,7 @@ public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage 
 
         // destination browse button
         destinationBrowseButton = new Button(destinationSelectionGroup, SWT.PUSH);
-        destinationBrowseButton.setText("Bro&wse...");
+        destinationBrowseButton.setText(BROWSE);
         destinationBrowseButton.addListener(SWT.Selection, this);
         destinationBrowseButton.setFont(font);
         setButtonLayoutData(destinationBrowseButton);
@@ -263,7 +276,7 @@ public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage 
 
         // overwrite... checkbox
         overwriteExistingFilesCheckbox = new Button(optionsGroup, SWT.CHECK | SWT.LEFT);
-        overwriteExistingFilesCheckbox.setText("&Overwrite existing files without warning");
+        overwriteExistingFilesCheckbox.setText(YamaicaUIConstants.OVERWRITE_EXISTING_FILES_WITHOUT_WARNING);
         overwriteExistingFilesCheckbox.setFont(font);
     }
 
@@ -348,8 +361,8 @@ public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage 
         if (event.widget == destinationBrowseButton)
         {
             DirectoryDialog dialog = new DirectoryDialog(getContainer().getShell(), SWT.SAVE | SWT.SHEET);
-            dialog.setMessage("Select a directory to export to.");
-            dialog.setText("Export to Directory");
+            dialog.setMessage(DIRECTORY_SELECTION_MESSAGE);
+            dialog.setText(EXPORT_TO_DIRECTORY);
             dialog.setFilterPath(getDestinationValue());
             String selectedDirectoryName = dialog.open();
 
@@ -469,7 +482,7 @@ public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage 
 
         if (getSelectedResources().size() == 0)
         {
-            setErrorMessage("There are no resources currently selected for export.");
+            setErrorMessage(RESOURCE_SELECTION_ERROR_MESSAGE);
 
             isValid = false;
         }
@@ -488,7 +501,7 @@ public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage 
 
         if (destinationValue.length() == 0)
         {
-            setMessage("Please enter a destination directory.");
+            setMessage(ENTER_DESTINATION_MESSAGE);
 
             return false;
         }
@@ -506,13 +519,13 @@ public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage 
             }
             else
             {
-                setMessage(NLS.bind("The project {0} may be damaged after this operation", threatenedContainer), WARNING);
+                setMessage(NLS.bind(PROJECT_DAMAGED_WARNING, threatenedContainer), WARNING);
             }
 
         }
         else
         {
-            setErrorMessage(NLS.bind("Destination directory conflicts with location of {0}.", conflictingContainer));
+            setErrorMessage(NLS.bind(LOCATION_CONFLICT_ERROR_MESSAGE, conflictingContainer));
             destinationNameField.setFocus();
 
             return false;
@@ -531,14 +544,14 @@ public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage 
     {
         if (!directory.exists())
         {
-            if (!queryYesNoQuestion("Target directory does not exist.  Would you like to create it?"))
+            if (!queryYesNoQuestion(DIRECTORY_CREATE_QUESTION))
             {
                 return false;
             }
 
             if (!directory.mkdirs())
             {
-                displayErrorDialog("Target directory could not be created.");
+                displayErrorDialog(COULD_NOT_CREATE_MESSAGE);
                 destinationNameField.setFocus();
 
                 return false;
@@ -552,7 +565,7 @@ public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage 
     {
         if (targetDirectory.exists() && !targetDirectory.isDirectory())
         {
-            displayErrorDialog("Target directory already exists as a file.");
+            displayErrorDialog(ALREADY_EXISTS_MESSAGE);
             destinationNameField.setFocus();
 
             return false;

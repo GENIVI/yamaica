@@ -7,6 +7,7 @@
 package de.bmw.yamaica.base.ui.internal.dialogs;
 
 import de.bmw.yamaica.base.ui.internal.Activator;
+import de.bmw.yamaica.base.ui.utils.YamaicaUIConstants;
 
 import java.util.LinkedList;
 
@@ -21,12 +22,18 @@ import org.eclipse.ui.wizards.IWizardRegistry;
 
 public class ImportPage extends YamaicaWizardSelectionPage
 {
+    private static final String YAMAICA_IMPORT_SELECTION_DIALOG = ".yamaica_import_selection_dialog";
+    private static final String IMPORT_WIZARD_ID                = "importWizardId";
+    private static final String YAMAICA_IMPORT_WIZARDS          = ".yamaicaImportWizards";
+    private static final String CHOOSE_IMPORT_SOURCE            = "Choose import source.";
+    private static final String YAMAICA_IMPORT_PAGE             = "yamaicaImportPage";
+
     ImportPage(IWorkbench workbench, IStructuredSelection structuredSelection)
     {
-        super(workbench, structuredSelection, "yamaicaImportPage");
+        super(workbench, structuredSelection, YAMAICA_IMPORT_PAGE);
 
-        setTitle("Select");
-        setMessage("Choose import source.");
+        setTitle(YamaicaUIConstants.SELECT);
+        setMessage(CHOOSE_IMPORT_SOURCE);
     }
 
     @Override
@@ -36,9 +43,9 @@ public class ImportPage extends YamaicaWizardSelectionPage
         IWizardRegistry wizardRegistry = PlatformUI.getWorkbench().getImportWizardRegistry();
 
         for (IConfigurationElement e : Platform.getExtensionRegistry().getConfigurationElementsFor(
-                Activator.PLUGIN_ID + ".yamaicaImportWizards"))
+                Activator.PLUGIN_ID + YAMAICA_IMPORT_WIZARDS))
         {
-            IWizardDescriptor descriptor = wizardRegistry.findWizard(e.getAttribute("importWizardId"));
+            IWizardDescriptor descriptor = wizardRegistry.findWizard(e.getAttribute(IMPORT_WIZARD_ID));
 
             if (null != descriptor && !yamaicaWizards.contains(descriptor))
             {
@@ -54,7 +61,7 @@ public class ImportPage extends YamaicaWizardSelectionPage
     {
         super.createControl(parent);
 
-        PlatformUI.getWorkbench().getHelpSystem().setHelp(parent, Activator.PLUGIN_ID + ".yamaica_import_selection_dialog");
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(parent, Activator.PLUGIN_ID + YAMAICA_IMPORT_SELECTION_DIALOG);
     }
 
 }

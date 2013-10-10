@@ -9,6 +9,7 @@ package de.bmw.yamaica.base.ui.internal.dialogs;
 import de.bmw.yamaica.base.core.launch.ILaunchConfigurationPreparer;
 import de.bmw.yamaica.base.ui.dialogs.YamaicaWizard;
 import de.bmw.yamaica.base.ui.internal.Activator;
+import de.bmw.yamaica.base.ui.utils.YamaicaUIConstants;
 
 import org.eclipse.debug.core.ILaunchConfigurationType;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -16,17 +17,19 @@ import org.eclipse.ui.IWorkbench;
 
 public class TransformWizard extends YamaicaWizard implements ILaunchWizard
 {
+    private static final String                    TRANSFORM                          = "Transform";
+    private static final String                    YAMAICA_TRANSFORM_SELECTION_WIZARD = "YamaicaTransformSelectionWizard";
     protected LaunchConfigurationTypeSelectionPage launchConfigurationTypeSelectionPage;
     protected LaunchConfigurationSelectionPage     launchConfigurationSelectionPage;
 
     public TransformWizard()
     {
-        super("YamaicaTransformSelectionWizard");
+        super(YAMAICA_TRANSFORM_SELECTION_WIZARD);
     }
 
     public String getDefaultWindowTitle()
     {
-        return "Transform";
+        return TRANSFORM;
     }
 
     @Override
@@ -35,7 +38,8 @@ public class TransformWizard extends YamaicaWizard implements ILaunchWizard
         super.init(workbench, structuredSelection);
 
         setWindowTitle(getDefaultWindowTitle());
-        setDefaultPageImageDescriptor(Activator.imageDescriptorFromPlugin("org.eclipse.debug.ui", "/icons/full/wizban/run_wiz.png"));
+        setDefaultPageImageDescriptor(Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_PLUGIN_ID,
+                YamaicaUIConstants.RUN_ICON_PATH));
         setForcePreviousAndNextButtons(true);
         setNeedsProgressMonitor(true);
     }

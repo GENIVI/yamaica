@@ -11,6 +11,7 @@ import org.eclipse.ui.IImportWizard;
 import org.eclipse.ui.IWorkbench;
 
 import de.bmw.yamaica.base.ui.internal.Activator;
+import de.bmw.yamaica.base.ui.utils.YamaicaUIConstants;
 
 public abstract class YamaicaImportWizard extends YamaicaWizard implements IImportWizard
 {
@@ -20,7 +21,7 @@ public abstract class YamaicaImportWizard extends YamaicaWizard implements IImpo
     {
         super(name);
 
-        setWindowTitle("Import");
+        setWindowTitle(YamaicaUIConstants.IMPORT);
     }
 
     @Override
@@ -30,7 +31,8 @@ public abstract class YamaicaImportWizard extends YamaicaWizard implements IImpo
 
         setNeedsProgressMonitor(true);
         // setDefaultPageImageDescriptor(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "/icons/importdir_wiz.png"));
-        setDefaultPageImageDescriptor(Activator.imageDescriptorFromPlugin("org.eclipse.ui.ide", "icons/full/wizban/importdir_wiz.png"));
+        setDefaultPageImageDescriptor(Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_IDE_PLUGIN_ID,
+                YamaicaUIConstants.IMPORT_DIR_ICON_PATH));
 
     }
 

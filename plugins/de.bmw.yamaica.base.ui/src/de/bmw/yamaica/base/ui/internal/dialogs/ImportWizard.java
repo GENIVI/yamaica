@@ -8,15 +8,18 @@ package de.bmw.yamaica.base.ui.internal.dialogs;
 
 import de.bmw.yamaica.base.ui.dialogs.YamaicaWizard;
 import de.bmw.yamaica.base.ui.internal.Activator;
+import de.bmw.yamaica.base.ui.utils.YamaicaUIConstants;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbench;
 
 public class ImportWizard extends YamaicaWizard
 {
+    private static final String YAMAICA_IMPORT_SELECTION_WIZARD = "YamaicaImportSelectionWizard";
+
     public ImportWizard()
     {
-        super("YamaicaImportSelectionWizard");
+        super(YAMAICA_IMPORT_SELECTION_WIZARD);
     }
 
     @Override
@@ -24,8 +27,9 @@ public class ImportWizard extends YamaicaWizard
     {
         super.init(workbench, structuredSelection);
 
-        setWindowTitle("Import");
-        setDefaultPageImageDescriptor(Activator.imageDescriptorFromPlugin("org.eclipse.ui", "/icons/full/wizban/import_wiz.png"));
+        setWindowTitle(YamaicaUIConstants.IMPORT);
+        setDefaultPageImageDescriptor(Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_PLUGIN_ID,
+                YamaicaUIConstants.IMPORT_ICON_PATH));
         setForcePreviousAndNextButtons(true);
         setNeedsProgressMonitor(true);
     }

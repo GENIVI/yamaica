@@ -9,6 +9,7 @@ package de.bmw.yamaica.base.ui.internal.dialogs;
 import de.bmw.yamaica.base.core.launch.ILaunchConfigurationPreparer;
 import de.bmw.yamaica.base.ui.internal.Activator;
 import de.bmw.yamaica.base.ui.utils.ViewerToolBar;
+import de.bmw.yamaica.base.ui.utils.YamaicaUIConstants;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
@@ -68,7 +69,13 @@ import org.eclipse.ui.model.WorkbenchViewerComparator;
 
 public class LaunchConfigurationSelectionPage extends WizardPage implements ILaunchConfigurationListener
 {
-    protected final static String          STORE_SHOW_ALL_LAUNCH_CONFIGURATIONS_ID = "yamaicaLaunchConfigurationSelectionPage.STORE_SHOW_ALL_LAUNCH_CONFIGURATIONS_ID"; //$NON-NLS-1$
+    private static final String            FILTER_LAUNCH_CONFIGURATIONS                = "Filter Launch Configurations";
+
+    private static final String            SELECT_A_LAUNCH_CONFIGURATION               = "Select a launch configuration.";
+
+    private static final String            YAMAICA_LAUNCH_CONFIGURATION_SELECTION_PAGE = "yamaicaLaunchConfigurationSelectionPage";
+
+    protected final static String          STORE_SHOW_ALL_LAUNCH_CONFIGURATIONS_ID     = "yamaicaLaunchConfigurationSelectionPage.STORE_SHOW_ALL_LAUNCH_CONFIGURATIONS_ID"; //$NON-NLS-1$
 
     protected Action                       newAction;
     protected Action                       duplicateAction;
@@ -85,9 +92,9 @@ public class LaunchConfigurationSelectionPage extends WizardPage implements ILau
 
     public LaunchConfigurationSelectionPage(IWorkbench workbench, IStructuredSelection structuredSelection)
     {
-        super("yamaicaLaunchConfigurationSelectionPage");
+        super(YAMAICA_LAUNCH_CONFIGURATION_SELECTION_PAGE);
 
-        setMessage("Select a launch configuration.");
+        setMessage(SELECT_A_LAUNCH_CONFIGURATION);
 
         selection = structuredSelection;
         launchManager = DebugPlugin.getDefault().getLaunchManager();
@@ -164,7 +171,7 @@ public class LaunchConfigurationSelectionPage extends WizardPage implements ILau
             }
         };
         viewerToolBar.setLayoutData(new GridData(GridData.FILL_BOTH));
-        viewerToolBar.setFilterText("Filter Launch Configurations");
+        viewerToolBar.setFilterText(FILTER_LAUNCH_CONFIGURATIONS);
 
         Table table = new Table(viewerToolBar, SWT.MULTI | SWT.FULL_SELECTION);
         table.setLayoutData(new GridData(GridData.FILL_BOTH));
@@ -242,7 +249,7 @@ public class LaunchConfigurationSelectionPage extends WizardPage implements ILau
 
         restoreWidgetValues();
 
-        PlatformUI.getWorkbench().getHelpSystem().setHelp(parent, Activator.PLUGIN_ID + ".yamaica_transform_type_selection");
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(parent, Activator.PLUGIN_ID + YamaicaUIConstants.YAMAICA_TRANSFORM_TYPE_SELECTION);
     }
 
     protected IContentProvider getContentProvider()
@@ -415,16 +422,20 @@ public class LaunchConfigurationSelectionPage extends WizardPage implements ILau
 
     protected class NewAction extends Action
     {
+        private static final String NEW_CONFIGURATION               = "New_configuration";
+        private static final String CREATE_NEW_LAUNCH_CONFIGURATION = "Create new launch configuration";
+
         @Override
         public ImageDescriptor getImageDescriptor()
         {
-            return Activator.imageDescriptorFromPlugin("org.eclipse.ui.ide", "icons/full/etool16/newfile_wiz.gif");
+            return Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_IDE_PLUGIN_ID,
+                    YamaicaUIConstants.NEWFILE_ICON_GIF_PATH);
         }
 
         @Override
         public String getText()
         {
-            return "Create new launch configuration";
+            return CREATE_NEW_LAUNCH_CONFIGURATION;
         }
 
         @Override
@@ -448,7 +459,7 @@ public class LaunchConfigurationSelectionPage extends WizardPage implements ILau
                     }
                     else
                     {
-                        name = launchManager.generateLaunchConfigurationName("New_configuration");
+                        name = launchManager.generateLaunchConfigurationName(NEW_CONFIGURATION);
                     }
 
                     launchConfiguration = launchConfigurationType.newInstance(null, name);
@@ -465,22 +476,24 @@ public class LaunchConfigurationSelectionPage extends WizardPage implements ILau
 
     protected class DuplicateAction extends Action
     {
+        private static final String DUPLICATE_LAUNCH_CONFIGURATION = "Duplicate launch configuration";
+
         @Override
         public ImageDescriptor getImageDescriptor()
         {
-            return Activator.imageDescriptorFromPlugin("org.eclipse.ui", "icons/full/etool16/copy_edit.gif");
+            return Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_PLUGIN_ID, YamaicaUIConstants.COPY_EDIT_ICON_GIF_PATH);
         }
 
         @Override
         public ImageDescriptor getDisabledImageDescriptor()
         {
-            return Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/copy_disabled.gif");
+            return Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, YamaicaUIConstants.COPY_DISABLED_ICON_GIF_PATH);
         }
 
         @Override
         public String getText()
         {
-            return "Duplicate launch configuration";
+            return DUPLICATE_LAUNCH_CONFIGURATION;
         }
 
         @Override
@@ -502,22 +515,25 @@ public class LaunchConfigurationSelectionPage extends WizardPage implements ILau
 
     protected class DeleteAction extends Action
     {
+        private static final String DELETE_LAUNCH_CONFIGURATION_S = "Delete launch configuration(s)";
+
         @Override
         public ImageDescriptor getImageDescriptor()
         {
-            return Activator.imageDescriptorFromPlugin("org.eclipse.ui", "icons/full/etool16/delete_edit.gif");
+            return Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_PLUGIN_ID,
+                    YamaicaUIConstants.DELETE_EDIT_ICON_GIF_PATH);
         }
 
         @Override
         public ImageDescriptor getDisabledImageDescriptor()
         {
-            return Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/delete_disabled.gif");
+            return Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, YamaicaUIConstants.DELETE_DISABLED_GIF_PATH);
         }
 
         @Override
         public String getText()
         {
-            return "Delete launch configuration(s)";
+            return DELETE_LAUNCH_CONFIGURATION_S;
         }
 
         @Override
@@ -540,6 +556,8 @@ public class LaunchConfigurationSelectionPage extends WizardPage implements ILau
     // TODO ICONS
     protected class EditAction extends Action
     {
+        private static final String EDIT_LAUNCH_CONFIGURATION = "Edit launch configuration";
+
         @Override
         public ImageDescriptor getImageDescriptor()
         {
@@ -555,7 +573,7 @@ public class LaunchConfigurationSelectionPage extends WizardPage implements ILau
         @Override
         public String getText()
         {
-            return "Edit launch configuration";
+            return EDIT_LAUNCH_CONFIGURATION;
         }
 
         @Override
@@ -575,6 +593,9 @@ public class LaunchConfigurationSelectionPage extends WizardPage implements ILau
     // started by the default run menu.
     protected class LaunchJobExecuter implements IRunnableWithProgress
     {
+        private static final String EXECUTING_LAUNCH_JOB_DID_NOT_FINISH_NORMALLY = "Executing launch job did not finish normally.";
+        private static final String EXECUTING_LAUNCH_JOB_WAS_CANCELED = "Executing launch job was canceled.";
+        private static final String EXECUTING_LAUNCH_JOB = "Executing launch job";
         protected final ILaunchConfiguration launchConfiguration;
 
         public LaunchJobExecuter(ILaunchConfiguration launchConfiguration)
@@ -585,18 +606,18 @@ public class LaunchConfigurationSelectionPage extends WizardPage implements ILau
         @Override
         public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException
         {
-            monitor.beginTask("Executing launch job", IProgressMonitor.UNKNOWN);
+            monitor.beginTask(EXECUTING_LAUNCH_JOB, IProgressMonitor.UNKNOWN);
 
             if (null != launchConfiguration)
             {
-                Job job = new Job("Launching " + launchConfiguration.getName())
+                Job job = new Job(YamaicaUIConstants.LAUNCHING + launchConfiguration.getName())
                 {
                     @Override
                     public IStatus run(IProgressMonitor monitor)
                     {
                         try
                         {
-                            launchConfiguration.launch("run", monitor);
+                            launchConfiguration.launch(YamaicaUIConstants.RUN, monitor);
 
                             return Status.OK_STATUS;
                         }
@@ -619,13 +640,13 @@ public class LaunchConfigurationSelectionPage extends WizardPage implements ILau
                     {
                         job.cancel();
 
-                        throw new InterruptedException("Executing launch job was canceled.");
+                        throw new InterruptedException(EXECUTING_LAUNCH_JOB_WAS_CANCELED);
                     }
                 }
 
                 if (!job.getResult().equals(Status.OK_STATUS))
                 {
-                    throw new InterruptedException("Executing launch job did not finish normally.");
+                    throw new InterruptedException(EXECUTING_LAUNCH_JOB_DID_NOT_FINISH_NORMALLY);
                 }
             }
 

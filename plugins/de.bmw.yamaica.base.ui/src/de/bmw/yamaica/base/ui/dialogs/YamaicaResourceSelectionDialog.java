@@ -39,15 +39,18 @@ import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.eclipse.ui.part.DrillDownComposite;
 
 import de.bmw.yamaica.base.ui.utils.ResourceContentProvider;
+import de.bmw.yamaica.base.ui.utils.YamaicaUIConstants;
 
 public class YamaicaResourceSelectionDialog extends SelectionDialog
 {
-    private static final String EMPTY_STRING          = "";  //$NON-NLS-1$
+    private static final String EMPTY_STRING               = "";                                                     //$NON-NLS-1$
+    private static final String RESOURCE_SELECTION_MESSAGE = "Enter or select the parent folder:";
+    private static final String HELP_SYSTEM_CONTEXT_ID     = "org.eclipse.ui.ide.container_selection_dialog_context";
 
     private IContainer          rootContainer;
     private IContainer          initialSelection;
-    private boolean             allowNewContainerName = true;
-    private boolean             showClosedProjects    = true;
+    private boolean             allowNewContainerName      = true;
+    private boolean             showClosedProjects         = true;
     private Label               statusMessage;
     private ISelectionValidator validator;
     private Text                containerNameField;
@@ -58,7 +61,7 @@ public class YamaicaResourceSelectionDialog extends SelectionDialog
     {
         super(parentShell);
 
-        setTitle("Folder Selection");
+        setTitle(YamaicaUIConstants.FOLDER_SELECTION);
 
         this.initialSelection = initialSelection;
         this.rootContainer = null != rootContainer ? rootContainer : ResourcesPlugin.getWorkspace().getRoot();
@@ -70,7 +73,7 @@ public class YamaicaResourceSelectionDialog extends SelectionDialog
         }
         else
         {
-            setMessage("Enter or select the parent folder:");
+            setMessage(RESOURCE_SELECTION_MESSAGE);
         }
 
         setShellStyle(getShellStyle() | SWT.SHEET);
@@ -80,7 +83,7 @@ public class YamaicaResourceSelectionDialog extends SelectionDialog
     {
         super.configureShell(shell);
 
-        PlatformUI.getWorkbench().getHelpSystem().setHelp(shell, "org.eclipse.ui.ide.container_selection_dialog_context");
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(shell, HELP_SYSTEM_CONTEXT_ID);
     }
 
     protected Control createDialogArea(Composite parent)
@@ -155,7 +158,7 @@ public class YamaicaResourceSelectionDialog extends SelectionDialog
                 {
                     if (null == container)
                     {
-                        containerNameField.setText("");//$NON-NLS-1$
+                        containerNameField.setText(EMPTY_STRING);//$NON-NLS-1$
                     }
                     else
                     {

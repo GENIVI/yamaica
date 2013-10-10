@@ -8,6 +8,7 @@ package de.bmw.yamaica.base.ui.internal.dialogs;
 
 import de.bmw.yamaica.base.core.launch.ILaunchConfigurationPreparer;
 import de.bmw.yamaica.base.ui.internal.Activator;
+import de.bmw.yamaica.base.ui.utils.YamaicaUIConstants;
 
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -47,14 +48,19 @@ import org.eclipse.ui.PlatformUI;
 
 public class LaunchConfigurationTypeSelectionPage extends WizardPage
 {
-    protected TableViewer tableViewer;
+    private static final String WIZARD_TITLE = "wizardTitle";
+    private static final String LAUNCH_CONFIGURATION_TYPE_ID = "launchConfigurationTypeId";
+    private static final String YAMAICA_LAUNCH_CONFIGURATION_TYPES = ".yamaicaLaunchConfigurationTypes";
+    private static final String CHOOSE_A_TRANSFORM_LAUNCH_CONFIGURATION_TYPE     = "Choose a transform launch configuration type.";
+    private static final String YAMAICA_LAUNCH_CONFIGURATION_TYPE_SELECTION_PAGE = "yamaicaLaunchConfigurationTypeSelectionPage";
+    protected TableViewer       tableViewer;
 
     public LaunchConfigurationTypeSelectionPage(IWorkbench workbench, IStructuredSelection structuredSelection)
     {
-        super("yamaicaLaunchConfigurationTypeSelectionPage");
+        super(YAMAICA_LAUNCH_CONFIGURATION_TYPE_SELECTION_PAGE);
 
-        setTitle("Select");
-        setMessage("Choose a transform launch configuration type.");
+        setTitle(YamaicaUIConstants.SELECT);
+        setMessage(CHOOSE_A_TRANSFORM_LAUNCH_CONFIGURATION_TYPE);
     }
 
     @Override
@@ -111,7 +117,7 @@ public class LaunchConfigurationTypeSelectionPage extends WizardPage
                     try
                     {
                         Set<String> modes = new HashSet<String>();
-                        modes.add("run");
+                        modes.add(YamaicaUIConstants.RUN);
 
                         ILaunchDelegate[] launchDelegates = launchConfigurationType.getDelegates(modes);
 
@@ -145,7 +151,8 @@ public class LaunchConfigurationTypeSelectionPage extends WizardPage
 
         tableViewer.setInput(getViewerInput());
 
-        PlatformUI.getWorkbench().getHelpSystem().setHelp(parent, Activator.PLUGIN_ID + ".yamaica_transform_type_selection");
+        PlatformUI.getWorkbench().getHelpSystem()
+                .setHelp(parent, Activator.PLUGIN_ID + YamaicaUIConstants.YAMAICA_TRANSFORM_TYPE_SELECTION);
     }
 
     protected IContentProvider getContentProvider()
@@ -174,10 +181,10 @@ public class LaunchConfigurationTypeSelectionPage extends WizardPage
         List<LaunchConfigurationTypeData> yamaicaLaunchConfigurationTypeData = new LinkedList<LaunchConfigurationTypeData>();
 
         for (IConfigurationElement configurationElement : Platform.getExtensionRegistry().getConfigurationElementsFor(
-                Activator.PLUGIN_ID + ".yamaicaLaunchConfigurationTypes"))
+                Activator.PLUGIN_ID + YAMAICA_LAUNCH_CONFIGURATION_TYPES))
         {
             ILaunchConfigurationType yamaicaLaunchConfigurationType = launchManager.getLaunchConfigurationType(configurationElement
-                    .getAttribute("launchConfigurationTypeId"));
+                    .getAttribute(LAUNCH_CONFIGURATION_TYPE_ID));
 
             if (null != yamaicaLaunchConfigurationType)
             {
@@ -193,7 +200,7 @@ public class LaunchConfigurationTypeSelectionPage extends WizardPage
                 }
                 finally
                 {
-                    String wizardTitle = configurationElement.getAttribute("wizardTitle");
+                    String wizardTitle = configurationElement.getAttribute(WIZARD_TITLE);
 
                     yamaicaLaunchConfigurationTypeData.add(new LaunchConfigurationTypeData(yamaicaLaunchConfigurationType,
                             launchConfigurationPreparer, wizardTitle));

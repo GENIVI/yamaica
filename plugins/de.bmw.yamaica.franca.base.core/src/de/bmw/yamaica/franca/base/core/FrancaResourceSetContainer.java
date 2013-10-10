@@ -22,6 +22,8 @@ import org.eclipse.emf.ecore.resource.URIConverter;
 import org.franca.core.franca.FModel;
 import org.franca.deploymodel.dsl.fDeploy.FDModel;
 
+import de.bmw.yamaica.base.core.YamaicaConstants;
+
 public class FrancaResourceSetContainer
 {
     protected final Map<FModel, Resource>  fModels       = new HashMap<FModel, Resource>();
@@ -194,7 +196,7 @@ public class FrancaResourceSetContainer
             return;
         }
 
-        final String newLineString = System.getProperty("line.separator");
+        final String newLineString = System.getProperty(YamaicaConstants.LINE_SEPARATOR);
 
         OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
 

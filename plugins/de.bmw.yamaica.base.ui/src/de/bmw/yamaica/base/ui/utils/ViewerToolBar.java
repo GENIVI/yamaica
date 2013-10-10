@@ -454,6 +454,8 @@ public class ViewerToolBar extends Composite implements ICheckStateListener, Pai
 
     protected class SelectAllAction extends Action implements Runnable
     {
+        private static final String SELECT_ALL = "Select All";
+
         public SelectAllAction()
         {
 
@@ -462,7 +464,8 @@ public class ViewerToolBar extends Composite implements ICheckStateListener, Pai
         @Override
         public ImageDescriptor getImageDescriptor()
         {
-            return Activator.imageDescriptorFromPlugin("org.eclipse.ui", "icons/full/elcl16/expandall.gif");
+            return Activator
+                    .imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_PLUGIN_ID, YamaicaUIConstants.EXPAND_ALL_ICON_GIF_PATH);
         }
 
         @Override
@@ -474,7 +477,7 @@ public class ViewerToolBar extends Composite implements ICheckStateListener, Pai
         @Override
         public String getText()
         {
-            return "Select All";
+            return SELECT_ALL;
         }
 
         @Override
@@ -512,6 +515,8 @@ public class ViewerToolBar extends Composite implements ICheckStateListener, Pai
 
     protected class DeselectAllAction extends Action implements Runnable
     {
+        private static final String DESELECT_ALL = "Deselect All";
+
         public DeselectAllAction()
         {
 
@@ -520,7 +525,8 @@ public class ViewerToolBar extends Composite implements ICheckStateListener, Pai
         @Override
         public ImageDescriptor getImageDescriptor()
         {
-            return Activator.imageDescriptorFromPlugin("org.eclipse.ui", "icons/full/elcl16/collapseall.gif");
+            return Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_PLUGIN_ID,
+                    YamaicaUIConstants.COLLAPSE_ALL_ICON_GIF_PATH);
         }
 
         @Override
@@ -532,7 +538,7 @@ public class ViewerToolBar extends Composite implements ICheckStateListener, Pai
         @Override
         public String getText()
         {
-            return "Deselect All";
+            return DESELECT_ALL;
         }
 
         @Override
@@ -566,7 +572,8 @@ public class ViewerToolBar extends Composite implements ICheckStateListener, Pai
         @Override
         public ImageDescriptor getImageDescriptor()
         {
-            return Activator.imageDescriptorFromPlugin("org.eclipse.ui.ide", "icons/full/elcl16/filter_ps.gif");
+            return Activator
+                    .imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_IDE_PLUGIN_ID, YamaicaUIConstants.FILTER_ICON_GIF_PATH);
         }
 
         @Override
@@ -608,10 +615,13 @@ public class ViewerToolBar extends Composite implements ICheckStateListener, Pai
 
     protected class RefreshAction extends Action implements Runnable
     {
+        private static final String REFRESH_TEXT = "Refresh";
+
         @Override
         public ImageDescriptor getImageDescriptor()
         {
-            return Activator.imageDescriptorFromPlugin("org.eclipse.ui.browser", "icons/elcl16/nav_refresh.gif");
+            return Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_BROWSER_PLUGIN_ID,
+                    YamaicaUIConstants.REFRESH_ICON_GIF_PATH);
         }
 
         @Override
@@ -623,7 +633,7 @@ public class ViewerToolBar extends Composite implements ICheckStateListener, Pai
         @Override
         public String getText()
         {
-            return "Refresh";
+            return REFRESH_TEXT;
         }
 
         @Override

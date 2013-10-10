@@ -27,9 +27,12 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 
 import de.bmw.yamaica.base.core.launch.AbstractLaunchConfigurationPreparer;
+import de.bmw.yamaica.base.ui.utils.YamaicaUIConstants;
 
 public abstract class AbstractLaunchShortcut extends AbstractLaunchConfigurationPreparer implements ILaunchShortcut
 {
+    private static final String SELECT = "Select ";
+    private static final String SELECT_EXISTING_CONFIGURATION = "Select existing configuration:";
     protected ILaunchConfiguration selectedLaunchConfiguration = null;
 
     @Override
@@ -81,8 +84,8 @@ public abstract class AbstractLaunchShortcut extends AbstractLaunchConfiguration
                 Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
                 ILabelProvider labelProvider = DebugUITools.newDebugModelPresentation();
                 ElementListSelectionDialog dialog = new ElementListSelectionDialog(shell, labelProvider);
-                dialog.setTitle("Select " + launchConfigurationTypeName);
-                dialog.setMessage("Select existing configuration:");
+                dialog.setTitle(SELECT + launchConfigurationTypeName);
+                dialog.setMessage(SELECT_EXISTING_CONFIGURATION);
                 dialog.setElements(launchConfigurations);
 
                 if (dialog.open() == ElementListSelectionDialog.OK)
@@ -95,7 +98,7 @@ public abstract class AbstractLaunchShortcut extends AbstractLaunchConfiguration
 
         if (null != selectedLaunchConfiguration)
         {
-            Job job = new Job("Launching " + selectedLaunchConfiguration.getName())
+            Job job = new Job(YamaicaUIConstants.LAUNCHING + selectedLaunchConfiguration.getName())
             {
                 @Override
                 protected IStatus run(IProgressMonitor monitor)

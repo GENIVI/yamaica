@@ -9,6 +9,7 @@ package de.bmw.yamaica.base.ui.internal;
 import de.bmw.yamaica.base.ui.internal.preferences.Preferences;
 import de.bmw.yamaica.base.ui.utils.ConsoleManager;
 import de.bmw.yamaica.base.ui.utils.ConsoleStream;
+import de.bmw.yamaica.base.ui.utils.YamaicaUIConstants;
 
 import java.io.PrintStream;
 
@@ -29,13 +30,17 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator extends AbstractUIPlugin
 {
+    private static final String        SYSTEM_ERROR  = "System Error";
+
+    private static final String        SYSTEM_OUT    = "System Out";
+
     // The plug-in ID
     public static final String         PLUGIN_ID     = "de.bmw.yamaica.base.ui";                           //$NON-NLS-1$
 
     // The shared instance
     private static Activator           plugin;
 
-    private static final ConsoleStream consoleStream = ConsoleStream.getOrCreateConsoleStream("yamaica Default",
+    private static final ConsoleStream consoleStream = ConsoleStream.getOrCreateConsoleStream(YamaicaUIConstants.YAMAICA_DEFAULT,
                                                              new Color(Display.getCurrent(), 204, 102, 0));
     public static final PrintStream    out           = consoleStream.getPrintStream();
 
@@ -70,7 +75,7 @@ public class Activator extends AbstractUIPlugin
         plugin = this;
 
         // Load workbench observer plug-in (it should be loaded already, since it is auto started)
-        if (null != Platform.getBundle("de.bmw.yamaica.base.ui.workbenchobserver"))
+        if (null != Platform.getBundle(YamaicaUIConstants.WORKBENCHOBSERVER_PLUGIN_ID))
         {
             de.bmw.yamaica.base.ui.internal.Activator.getDefault();
         }
@@ -169,8 +174,8 @@ public class Activator extends AbstractUIPlugin
             });
 
             // Assign our own PrintStream instances to System.out and System.err
-            System.setOut(ConsoleStream.getOrCreateConsoleStream("System Out", outStreamColor).getPrintStream());
-            System.setErr(ConsoleStream.getOrCreateConsoleStream("System Error", errStreamColor).getPrintStream());
+            System.setOut(ConsoleStream.getOrCreateConsoleStream(SYSTEM_OUT, outStreamColor).getPrintStream());
+            System.setErr(ConsoleStream.getOrCreateConsoleStream(SYSTEM_ERROR, errStreamColor).getPrintStream());
         }
         else
         {

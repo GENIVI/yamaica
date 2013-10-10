@@ -9,6 +9,7 @@ package de.bmw.yamaica.base.ui.internal.preferences;
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
 
+import de.bmw.yamaica.base.core.YamaicaConstants;
 import de.bmw.yamaica.base.ui.internal.Activator;
 
 /**
@@ -32,9 +33,9 @@ public class DefaultPreferences extends AbstractPreferenceInitializer
         store.setDefault(Preferences.LIMIT_CONSOLE_OUTPUT, true);
         store.setDefault(Preferences.REDIRECT_SYSTEM_STREAMS, true);
 
-        store.setDefault(Preferences.IMPORT_FOLDER, "work");
-        store.setDefault(Preferences.TARGET_FOLDER, "gen");
+        store.setDefault(Preferences.IMPORT_FOLDER, YamaicaConstants.WORK);
+        store.setDefault(Preferences.TARGET_FOLDER, YamaicaConstants.GEN);
         store.setDefault(Preferences.CREATE_YAMAICA_EDITOR_LINK, true);
-        store.setDefault(Preferences.YAMAICA_EDITOR_LINK_NAME, "yamaica.xml");
+        store.setDefault(Preferences.YAMAICA_EDITOR_LINK_NAME, YamaicaConstants.YAMAICA_XML);
     }
 }

@@ -20,6 +20,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.console.IOConsole;
 import org.eclipse.ui.console.IOConsoleOutputStream;
 
+import de.bmw.yamaica.base.core.YamaicaConstants;
+
 /**
  * This class must be used to create ConsoleStream instances. One or more IOConsoles (which were
  * created by the ConsoleManager) can then be attached to the ConsoleStream instance. The stream
@@ -80,7 +82,7 @@ public class ConsoleStream
     private String                                    name;
     private PrintStream                               printStream;
     private HashMap<IOConsole, IOConsoleOutputStream> attachedConsoles = new HashMap<IOConsole, IOConsoleOutputStream>();
-    private String                                    newLine          = System.getProperty("line.separator");
+    private String                                    newLine          = System.getProperty(YamaicaConstants.LINE_SEPARATOR);
 
     private ConsoleStream(String name)
     {

@@ -7,6 +7,7 @@
 package de.bmw.yamaica.base.ui.internal.dialogs;
 
 import de.bmw.yamaica.base.ui.internal.Activator;
+import de.bmw.yamaica.base.ui.utils.YamaicaUIConstants;
 
 import java.util.LinkedList;
 
@@ -21,11 +22,16 @@ import org.eclipse.ui.wizards.IWizardRegistry;
 
 public class NewPage extends YamaicaWizardSelectionPage
 {
+    private static final String YAMAICA_NEW_PAGE_SELECTION_DIALOG = ".yamaica_new_page_selection_dialog";
+    private static final String NEW_WIZARD_ID                     = "newWizardId";
+    private static final String YAMAICA_NEW_WIZARDS               = ".yamaicaNewWizards";
+    private static final String YAMAICA_NEW_PAGE                  = "yamaicaNewPage";
+
     NewPage(IWorkbench workbench, IStructuredSelection structuredSelection)
     {
-        super(workbench, structuredSelection, "yamaicaNewPage");
+        super(workbench, structuredSelection, YAMAICA_NEW_PAGE);
 
-        setTitle("Select");
+        setTitle(YamaicaUIConstants.SELECT);
         // setMessage("Choose import source.");
     }
 
@@ -36,9 +42,9 @@ public class NewPage extends YamaicaWizardSelectionPage
         IWizardRegistry wizardRegistry = PlatformUI.getWorkbench().getNewWizardRegistry();
 
         for (IConfigurationElement e : Platform.getExtensionRegistry().getConfigurationElementsFor(
-                Activator.PLUGIN_ID + ".yamaicaNewWizards"))
+                Activator.PLUGIN_ID + YAMAICA_NEW_WIZARDS))
         {
-            IWizardDescriptor descriptor = wizardRegistry.findWizard(e.getAttribute("newWizardId"));
+            IWizardDescriptor descriptor = wizardRegistry.findWizard(e.getAttribute(NEW_WIZARD_ID));
 
             if (null != descriptor && !yamaicaWizards.contains(descriptor))
             {
@@ -54,7 +60,7 @@ public class NewPage extends YamaicaWizardSelectionPage
     {
         super.createControl(parent);
 
-        PlatformUI.getWorkbench().getHelpSystem().setHelp(parent, Activator.PLUGIN_ID + ".yamaica_new_page_selection_dialog");
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(parent, Activator.PLUGIN_ID + YAMAICA_NEW_PAGE_SELECTION_DIALOG);
     }
 
 }

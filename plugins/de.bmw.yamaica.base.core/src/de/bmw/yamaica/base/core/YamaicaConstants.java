@@ -13,9 +13,13 @@ public interface YamaicaConstants
     String TARGET_FOLDER          = "TARGET_FOLDER";
     String GEN_FILE_EXTENSION     = ".gen";
     String XML_FILE_EXTENSION     = ".xml";
+    String WORK                   = "work";
+    String GEN                    = "gen";
+    String YAMAICA_XML            = "yamaica.xml";
     String WORKSPACE_LOC          = "workspace_loc";
     String PLATFORM_PLUGIN_PATH   = "platform:/plugin/";
     String PLATFORM_RESOURCE_PATH = "platform:/resource";
     String RESOURCES              = "resources";
+    String LINE_SEPARATOR         = "line.separator";
 
 }

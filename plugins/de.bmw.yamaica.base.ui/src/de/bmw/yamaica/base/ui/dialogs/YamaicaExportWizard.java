@@ -11,6 +11,7 @@ import org.eclipse.ui.IExportWizard;
 import org.eclipse.ui.IWorkbench;
 
 import de.bmw.yamaica.base.ui.internal.Activator;
+import de.bmw.yamaica.base.ui.utils.YamaicaUIConstants;
 
 public abstract class YamaicaExportWizard extends YamaicaWizard implements IExportWizard
 {
@@ -20,7 +21,7 @@ public abstract class YamaicaExportWizard extends YamaicaWizard implements IExpo
     {
         super(name);
 
-        setWindowTitle("Export");
+        setWindowTitle(YamaicaUIConstants.EXPORT);
     }
 
     @Override
@@ -29,7 +30,8 @@ public abstract class YamaicaExportWizard extends YamaicaWizard implements IExpo
         super.init(workbench, structuredSelection);
 
         setNeedsProgressMonitor(true);
-        setDefaultPageImageDescriptor(Activator.imageDescriptorFromPlugin("org.eclipse.ui.ide", "icons/full/wizban/exportdir_wiz.png"));
+        setDefaultPageImageDescriptor(Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_IDE_PLUGIN_ID,
+                YamaicaUIConstants.EXPORT_DIR_ICON_PATH));
         // setDefaultPageImageDescriptor(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "/icons/exportdir_wiz.png"));
     }
 

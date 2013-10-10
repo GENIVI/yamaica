@@ -62,12 +62,30 @@ import de.bmw.yamaica.base.ui.utils.FileSystemComparator;
 import de.bmw.yamaica.base.ui.utils.FileSystemContentProvider;
 import de.bmw.yamaica.base.ui.utils.FileSystemLabelProvider;
 import de.bmw.yamaica.base.ui.utils.ViewerToolBar;
+import de.bmw.yamaica.base.ui.utils.YamaicaUIConstants;
 
 public abstract class YamaicaWizardImportPage extends WizardResourceImportPage implements ICheckStateListener, ActionRunListener
 {
+    private static final String        CANNOT_IMPORT_INTO_A_WORKSPACE                                     = "Cannot import into a workspace with no open projects. Please create a project before importing.";
+    private static final String        SPECIFY_A_PROJECT                                                  = "Specify a project";
+    private static final String        DESTINATION_FOLDER_DOES_NOT_EXIST                                  = "Destination folder does not exist.";
+    private static final String        DESTINATION_FOLDER_LOCATION_IS_BASED_ON_AN_UNDEFINED_PATH_VARIABLE = "Destination folder location is based on an undefined path variable.";
+    private static final String        FOLDER_MUST_BE_ACCESSIBLE                                          = "Folder must be accessible.";
+    private static final String        DESTINATION_PROJECT_DOES_NOT_EXIST                                 = "Destination project does not exist.";
+    private static final String        PLEASE_SPECIFY_FOLDER                                              = "Please specify folder";
+    private static final String        CANNOT_IMPORT_A_FILE_INTO_A_VIRTUAL_FOLDER                         = "Cannot import a file into a virtual folder.";
+    private static final String        THERE_ARE_NO_RESOURCES_CURRENTLY_SELECTED_FOR_IMPORT               = "There are no resources currently selected for import.";
+    private static final String        SOURCE_MUST_NOT_BE_EMPTY                                           = "Source must not be empty.";
+    private static final String        SOURCE_DIRECTORY_IS_NOT_VALID_OR_HAS_NOT_BEEN_SPECIFIED            = "Source directory is not valid or has not been specified.";
+    private static final String        SELECT_A_DIRECTORY_TO_IMPORT_FROM                                  = "Select a directory to import from.";
+    private static final String        IMPORT_FROM_DIRECTORY                                              = "Import from directory";
+    private static final String        INTO_FOLDER                                                        = "Into fo&lder:";
+    private static final String        BROWSE                                                             = "B&rowse...";
+    private static final String        FROM_DIRECTORY                                                     = "From director&y:";
+
     protected IWorkbench               workbench;
     protected IStructuredSelection     structuredSelection;
-    protected boolean                  restrictWizardPage                    = false;
+    protected boolean                  restrictWizardPage                                                 = false;
 
     protected Combo                    sourceNameField;
     protected Button                   sourceBrowseButton;
@@ -77,19 +95,20 @@ public abstract class YamaicaWizardImportPage extends WizardResourceImportPage i
     protected Button                   containerBrowseButton;
     protected Button                   overwriteExistingResourcesCheckbox;
 
-    protected File                     sourceDirectory                       = new File("");
+    protected File                     sourceDirectory                                                    = new File(
+                                                                                                                  YamaicaUIConstants.EMPTY_STRING);
     protected IContainer               rootContainer;
     protected IContainer               targetContainer;
-    protected String[]                 fileExtensions                        = new String[0];
+    protected String[]                 fileExtensions                                                     = new String[0];
     protected FileExtensionFilter      extensionFilter;
 
     // A boolean to indicate if the user has typed anything
-    protected boolean                  entryChanged                          = false;
+    protected boolean                  entryChanged                                                       = false;
 
     // dialog store id constants
-    protected final static String      STORE_SOURCE_NAMES_ID                 = "YamaicaWizardImportPage.STORE_SOURCE_NAMES_ID";                //$NON-NLS-1$
-    protected final static String      STORE_OVERWRITE_EXISTING_RESOURCES_ID = "YamaicaWizardImportPage.STORE_OVERWRITE_EXISTING_RESOURCES_ID"; //$NON-NLS-1$
-    protected final static String      STORE_SHOW_ALL_FILES_ID               = "YamaicaWizardImportPage.STORE_SHOW_ALL_FILES_ID";              //$NON-NLS-1$
+    protected final static String      STORE_SOURCE_NAMES_ID                                              = "YamaicaWizardImportPage.STORE_SOURCE_NAMES_ID";                                                  //$NON-NLS-1$
+    protected final static String      STORE_OVERWRITE_EXISTING_RESOURCES_ID                              = "YamaicaWizardImportPage.STORE_OVERWRITE_EXISTING_RESOURCES_ID";                                  //$NON-NLS-1$
+    protected final static String      STORE_SHOW_ALL_FILES_ID                                            = "YamaicaWizardImportPage.STORE_SHOW_ALL_FILES_ID";                                                //$NON-NLS-1$
 
     public YamaicaWizardImportPage(IWorkbench workbench, IStructuredSelection structuredSelection, String name)
     {
@@ -199,7 +218,7 @@ public abstract class YamaicaWizardImportPage extends WizardResourceImportPage i
         sourceContainerGroup.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL | GridData.GRAB_HORIZONTAL));
 
         Label groupLabel = new Label(sourceContainerGroup, SWT.NONE);
-        groupLabel.setText("From director&y:");
+        groupLabel.setText(FROM_DIRECTORY);
         groupLabel.setFont(font);
 
         // source name entry field
@@ -257,7 +276,7 @@ public abstract class YamaicaWizardImportPage extends WizardResourceImportPage i
 
         // source browse button
         sourceBrowseButton = new Button(sourceContainerGroup, SWT.PUSH);
-        sourceBrowseButton.setText("B&rowse...");
+        sourceBrowseButton.setText(BROWSE);
         sourceBrowseButton.addListener(SWT.Selection, this);
         sourceBrowseButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL));
         sourceBrowseButton.setFont(font);
@@ -272,7 +291,7 @@ public abstract class YamaicaWizardImportPage extends WizardResourceImportPage i
 
         viewerToolBar = new ViewerToolBar(parent, SWT.BORDER, ViewerToolBar.SELECT | ViewerToolBar.FILTER | ViewerToolBar.REFRESH);
         viewerToolBar.setLayoutData(data);
-        viewerToolBar.setFilterText("Filter File Extensions");
+        viewerToolBar.setFilterText(YamaicaUIConstants.FILTER_FILE_EXTENSIONS);
 
         sourceSelectionTreeViewer = new YamaicaCheckedTreeViewer(viewerToolBar, SWT.NONE);
         sourceSelectionTreeViewer.setContentProvider(new FileSystemContentProvider());
@@ -302,7 +321,7 @@ public abstract class YamaicaWizardImportPage extends WizardResourceImportPage i
 
         // container label
         Label resourcesLabel = new Label(containerGroup, SWT.NONE);
-        resourcesLabel.setText("Into fo&lder:");
+        resourcesLabel.setText(INTO_FOLDER);
         resourcesLabel.setFont(font);
 
         // container name entry field
@@ -339,7 +358,7 @@ public abstract class YamaicaWizardImportPage extends WizardResourceImportPage i
         // overwrite... checkbox
         overwriteExistingResourcesCheckbox = new Button(optionsGroup, SWT.CHECK);
         overwriteExistingResourcesCheckbox.setFont(optionsGroup.getFont());
-        overwriteExistingResourcesCheckbox.setText("&Overwrite existing resources without warning");
+        overwriteExistingResourcesCheckbox.setText(YamaicaUIConstants.OVERWRITE_EXISTING_FILES_WITHOUT_WARNING);
         overwriteExistingResourcesCheckbox.addListener(SWT.Selection, this);
 
         updateWidgetEnablements();
@@ -435,8 +454,8 @@ public abstract class YamaicaWizardImportPage extends WizardResourceImportPage i
         if (event.widget == sourceBrowseButton)
         {
             DirectoryDialog dialog = new DirectoryDialog(sourceBrowseButton.getShell(), SWT.SAVE | SWT.SHEET);
-            dialog.setText("Import from directory");
-            dialog.setMessage("Select a directory to import from.");
+            dialog.setText(IMPORT_FROM_DIRECTORY);
+            dialog.setMessage(SELECT_A_DIRECTORY_TO_IMPORT_FROM);
             dialog.setFilterPath(sourceDirectory.getPath());
 
             String selectedDirectory = dialog.open();
@@ -451,7 +470,7 @@ public abstract class YamaicaWizardImportPage extends WizardResourceImportPage i
         else if (event.widget == containerBrowseButton)
         {
             YamaicaResourceSelectionDialog dialog = new YamaicaResourceSelectionDialog(containerBrowseButton.getShell(), rootContainer,
-                    getSpecifiedContainer(), true, "Select a folder to import into.");
+                    getSpecifiedContainer(), true, YamaicaUIConstants.SELECT_A_FOLDER_TO_IMPORT_INTO);
 
             if (YamaicaResourceSelectionDialog.OK == dialog.open() && null != containerNameField)
             {
@@ -552,7 +571,7 @@ public abstract class YamaicaWizardImportPage extends WizardResourceImportPage i
             else
             {
                 sourceSelectionTreeViewer.setInput(null);
-                setErrorMessage("Source directory is not valid or has not been specified.");
+                setErrorMessage(SOURCE_DIRECTORY_IS_NOT_VALID_OR_HAS_NOT_BEEN_SPECIFIED);
             }
 
             sourceSelectionTreeViewer.getTree().setFocus();
@@ -641,7 +660,7 @@ public abstract class YamaicaWizardImportPage extends WizardResourceImportPage i
 
         if (!sourceDirectory.exists())
         {
-            setMessage("Source must not be empty.");
+            setMessage(SOURCE_MUST_NOT_BE_EMPTY);
 
             return false;
         }
@@ -657,7 +676,7 @@ public abstract class YamaicaWizardImportPage extends WizardResourceImportPage i
         if (getSelectedResources().size() == 0)
         {
             setMessage(null);
-            setErrorMessage("There are no resources currently selected for import.");
+            setErrorMessage(THERE_ARE_NO_RESOURCES_CURRENTLY_SELECTED_FOR_IMPORT);
 
             return false;
         }
@@ -674,7 +693,7 @@ public abstract class YamaicaWizardImportPage extends WizardResourceImportPage i
         if (container != null && container.isVirtual())
         {
             setMessage(null);
-            setErrorMessage("Cannot import a file into a virtual folder.");
+            setErrorMessage(CANNOT_IMPORT_A_FILE_INTO_A_VIRTUAL_FOLDER);
 
             return false;
         }
@@ -683,7 +702,7 @@ public abstract class YamaicaWizardImportPage extends WizardResourceImportPage i
 
         if (containerPath == null)
         {
-            setMessage("Please specify folder");
+            setMessage(PLEASE_SPECIFY_FOLDER);
 
             return false;
         }
@@ -706,14 +725,14 @@ public abstract class YamaicaWizardImportPage extends WizardResourceImportPage i
                 return true;
             }
 
-            setErrorMessage("Destination project does not exist.");
+            setErrorMessage(DESTINATION_PROJECT_DOES_NOT_EXIST);
 
             return false;
         }
 
         if (!container.isAccessible())
         {
-            setErrorMessage("Folder must be accessible.");
+            setErrorMessage(FOLDER_MUST_BE_ACCESSIBLE);
 
             return false;
         }
@@ -722,11 +741,11 @@ public abstract class YamaicaWizardImportPage extends WizardResourceImportPage i
         {
             if (container.isLinked())
             {
-                setErrorMessage("Destination folder location is based on an undefined path variable.");
+                setErrorMessage(DESTINATION_FOLDER_LOCATION_IS_BASED_ON_AN_UNDEFINED_PATH_VARIABLE);
             }
             else
             {
-                setErrorMessage("Destination folder does not exist.");
+                setErrorMessage(DESTINATION_FOLDER_DOES_NOT_EXIST);
             }
 
             return false;
@@ -741,7 +760,7 @@ public abstract class YamaicaWizardImportPage extends WizardResourceImportPage i
 
         if (container instanceof IWorkspaceRoot)
         {
-            setErrorMessage("Specify a project");
+            setErrorMessage(SPECIFY_A_PROJECT);
 
             return false;
         }
@@ -866,7 +885,7 @@ public abstract class YamaicaWizardImportPage extends WizardResourceImportPage i
 
         if (!openProjectAvailable)
         {
-            setErrorMessage("Cannot import into a workspace with no open projects. Please create a project before importing.");
+            setErrorMessage(CANNOT_IMPORT_INTO_A_WORKSPACE);
 
             return false;
         }

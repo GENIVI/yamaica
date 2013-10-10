@@ -7,6 +7,7 @@
 package de.bmw.yamaica.base.ui.internal.dialogs;
 
 import de.bmw.yamaica.base.ui.internal.Activator;
+import de.bmw.yamaica.base.ui.utils.YamaicaUIConstants;
 
 import java.util.LinkedList;
 
@@ -21,12 +22,18 @@ import org.eclipse.ui.wizards.IWizardRegistry;
 
 public class ExportPage extends YamaicaWizardSelectionPage
 {
+    private static final String YAMAICA_EXPORT_SELECTION_DIALOG = ".yamaica_export_selection_dialog";
+    private static final String EXPORT_WIZARD_ID                = "exportWizardId";
+    private static final String CHOOSE_EXPORT_DESTINATION       = "Choose export destination.";
+    private static final String YAMAICA_EXPORT_PAGE             = "yamaicaExportPage";
+    private static final String YAMAICA_EXPORT_WIZARDS          = ".yamaicaExportWizards";
+
     ExportPage(IWorkbench workbench, IStructuredSelection structuredSelection)
     {
-        super(workbench, structuredSelection, "yamaicaExportPage");
+        super(workbench, structuredSelection, YAMAICA_EXPORT_PAGE);
 
-        setTitle("Select");
-        setMessage("Choose export destination.");
+        setTitle(YamaicaUIConstants.SELECT);
+        setMessage(CHOOSE_EXPORT_DESTINATION);
     }
 
     @Override
@@ -36,9 +43,9 @@ public class ExportPage extends YamaicaWizardSelectionPage
         IWizardRegistry wizardRegistry = PlatformUI.getWorkbench().getExportWizardRegistry();
 
         for (IConfigurationElement e : Platform.getExtensionRegistry().getConfigurationElementsFor(
-                Activator.PLUGIN_ID + ".yamaicaExportWizards"))
+                Activator.PLUGIN_ID + YAMAICA_EXPORT_WIZARDS))
         {
-            IWizardDescriptor descriptor = wizardRegistry.findWizard(e.getAttribute("exportWizardId"));
+            IWizardDescriptor descriptor = wizardRegistry.findWizard(e.getAttribute(EXPORT_WIZARD_ID));
 
             if (null != descriptor && !yamaicaWizards.contains(descriptor))
             {
@@ -54,6 +61,6 @@ public class ExportPage extends YamaicaWizardSelectionPage
     {
         super.createControl(parent);
 
-        PlatformUI.getWorkbench().getHelpSystem().setHelp(parent, Activator.PLUGIN_ID + ".yamaica_export_selection_dialog");
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(parent, Activator.PLUGIN_ID + YAMAICA_EXPORT_SELECTION_DIALOG);
     }
 }

@@ -18,8 +18,9 @@ import org.eclipse.ui.console.MessageConsole;
  */
 public class ConsoleManager
 {
+    private static final String YAMAICA_CONSOLE = "yamaica Console";
     private static HashMap<String, MessageConsole> consoles = new HashMap<String, MessageConsole>();
-    public static final IOConsole                  console  = getOrCreateConsole("yamaica Console", null);
+    public static final IOConsole                  console  = getOrCreateConsole(YAMAICA_CONSOLE, null);
 
     synchronized public static IOConsole getOrCreateConsole(String name, ImageDescriptor image)
     {
