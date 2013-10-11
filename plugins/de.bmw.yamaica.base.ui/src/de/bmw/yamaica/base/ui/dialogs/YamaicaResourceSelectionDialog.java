@@ -38,8 +38,8 @@ import org.eclipse.ui.dialogs.SelectionDialog;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.eclipse.ui.part.DrillDownComposite;
 
+import de.bmw.yamaica.base.ui.YamaicaUIConstants;
 import de.bmw.yamaica.base.ui.utils.ResourceContentProvider;
-import de.bmw.yamaica.base.ui.utils.YamaicaUIConstants;
 
 public class YamaicaResourceSelectionDialog extends SelectionDialog
 {

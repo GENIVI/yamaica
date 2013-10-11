@@ -7,9 +7,9 @@
 package de.bmw.yamaica.base.ui.internal.preferences;
 
 import de.bmw.yamaica.base.core.resourceproperties.IResourcePropertyStore;
+import de.bmw.yamaica.base.ui.YamaicaUIConstants;
 import de.bmw.yamaica.base.ui.internal.Activator;
 import de.bmw.yamaica.base.ui.utils.ExtendedStringFieldEditor;
-import de.bmw.yamaica.base.ui.utils.YamaicaUIConstants;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.preference.BooleanFieldEditor;

@@ -10,11 +10,14 @@ import de.bmw.yamaica.base.ui.dialogs.YamaicaImportWizard;
 
 public class ImportWizard extends YamaicaImportWizard
 {
+    private static final String IMPORT_FRANCA_IDL_FILES = "Import Franca IDL Files";
+    private static final String YAMAICA_FRANCA_IMPORT_WIZARD = "YamaicaFrancaImportWizard";
+
     public ImportWizard()
     {
-        super("YamaicaFrancaImportWizard");
+        super(YAMAICA_FRANCA_IMPORT_WIZARD);
 
-        setWindowTitle("Import Franca IDL Files");
+        setWindowTitle(IMPORT_FRANCA_IDL_FILES);
     }
 
     @Override

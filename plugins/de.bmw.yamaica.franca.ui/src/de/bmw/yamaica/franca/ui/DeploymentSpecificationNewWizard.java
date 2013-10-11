@@ -10,11 +10,14 @@ import de.bmw.yamaica.base.ui.dialogs.YamaicaNewFileWizard;
 
 public class DeploymentSpecificationNewWizard extends YamaicaNewFileWizard
 {
+    private static final String NEW_FRANCA_DEPLOYMENT_SPECIFICATION_FILE           = "New Franca Deployment Specification File";
+    private static final String YAMAICA_FRANCA_NEW_DEPLOYMENT_SPECIFICATION_WIZARD = "YamaicaFrancaNewDeploymentSpecificationWizard";
+
     public DeploymentSpecificationNewWizard()
     {
-        super("YamaicaFrancaNewDeploymentSpecificationWizard");
+        super(YAMAICA_FRANCA_NEW_DEPLOYMENT_SPECIFICATION_WIZARD);
 
-        setWindowTitle("New Franca Deployment Specification File");
+        setWindowTitle(NEW_FRANCA_DEPLOYMENT_SPECIFICATION_FILE);
     }
 
     @Override

@@ -23,6 +23,8 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.ui.dialogs.IOverwriteQuery;
 
+import de.bmw.yamaica.base.ui.YamaicaUIConstants;
+
 public class FileSystemExportOperation implements IRunnableWithProgress
 {
     protected IPath           directoryPath;

@@ -33,16 +33,25 @@ import de.bmw.yamaica.franca.base.core.FrancaUtils;
 
 public class InterfaceDefinitionNewPage extends YamaicaWizardNewFilePage implements ISelectionChangedListener
 {
+    private static final String THE_DECLARED_PACKAGE_NAME_DOES_NOT_MATCH_TO_THE_FILE_PATH = "The declared package name does not match to the file path.";
+    private static final String INVALID_PACKAGE_DECLARATION = "Invalid package declaration. ";
+    private static final String INVALID_PACKAGE_NAME = "Invalid package name.";
+    private static final String ORG_EXAMPLE = "org.example";
+    private static final String PACKAGE = "&Package:";
+    private static final String PACKAGE_SUGGESTIONS = "Package &suggestions:";
+    private static final String CREATE_A_NEW_FRANCA_INTERFACE_DEFINITION_FILE = "Create a new Franca interface definition file.";
+    private static final String FRANCA_INTERFACE_DEFINITION = "Franca Interface Definition";
+    private static final String NEW_FRANCA_INTERFACE_DEFINITION = "New Franca Interface Definition";
     protected TableViewer packageSuggestionsTableViewer = null;
     protected Text        packageText                   = null;
     protected IPath       packagePath                   = new Path("");
 
     public InterfaceDefinitionNewPage(IWorkbench workbench, IStructuredSelection structuredSelection)
     {
-        super(workbench, structuredSelection, "New Franca Interface Definition");
+        super(workbench, structuredSelection, NEW_FRANCA_INTERFACE_DEFINITION);
 
-        setTitle("Franca Interface Definition");
-        setDescription("Create a new Franca interface definition file.");
+        setTitle(FRANCA_INTERFACE_DEFINITION);
+        setDescription(CREATE_A_NEW_FRANCA_INTERFACE_DEFINITION_FILE);
     }
 
     @Override
@@ -59,7 +68,7 @@ public class InterfaceDefinitionNewPage extends YamaicaWizardNewFilePage impleme
         Font font = parent.getFont();
 
         Label packageSuggestionLabel = new Label(parent, SWT.NONE);
-        packageSuggestionLabel.setText("Package &suggestions:");
+        packageSuggestionLabel.setText(PACKAGE_SUGGESTIONS);
         packageSuggestionLabel.setLayoutData(new GridData(SWT.LEAD, SWT.TOP, false, false));
         packageSuggestionLabel.setFont(font);
 
@@ -87,14 +96,14 @@ public class InterfaceDefinitionNewPage extends YamaicaWizardNewFilePage impleme
         packageNameViewerColumn.setLabelProvider(new FrancaPackageLabelProvider());
 
         Label packageLabel = new Label(parent, SWT.NONE);
-        packageLabel.setText("&Package:");
+        packageLabel.setText(PACKAGE);
         packageLabel.setLayoutData(new GridData(SWT.LEAD, SWT.CENTER, false, false));
         packageLabel.setFont(font);
 
         packageText = new Text(parent, SWT.SINGLE | SWT.BORDER);
         packageText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
         packageText.addListener(SWT.Modify, this);
-        packageText.setMessage("org.example");
+        packageText.setMessage(ORG_EXAMPLE);
         packageText.setFont(font);
     }
 
@@ -103,7 +112,7 @@ public class InterfaceDefinitionNewPage extends YamaicaWizardNewFilePage impleme
     {
         if (packagePath.segmentCount() == 0)
         {
-            setErrorMessage("Invalid package name.");
+            setErrorMessage(INVALID_PACKAGE_NAME);
 
             return false;
         }
@@ -117,7 +126,7 @@ public class InterfaceDefinitionNewPage extends YamaicaWizardNewFilePage impleme
         }
         catch (IllegalArgumentException e)
         {
-            setErrorMessage("Invalid package declaration. " + e.getMessage());
+            setErrorMessage(INVALID_PACKAGE_DECLARATION + e.getMessage());
 
             return false;
         }
@@ -132,7 +141,7 @@ public class InterfaceDefinitionNewPage extends YamaicaWizardNewFilePage impleme
 
         if (!filePath.equals(packagePath))
         {
-            setMessage("The declared package name does not match to the file path.", WARNING);
+            setMessage(THE_DECLARED_PACKAGE_NAME_DOES_NOT_MATCH_TO_THE_FILE_PATH, WARNING);
         }
         else
         {

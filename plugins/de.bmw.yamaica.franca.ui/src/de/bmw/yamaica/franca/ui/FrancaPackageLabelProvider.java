@@ -9,6 +9,7 @@ package de.bmw.yamaica.franca.ui;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.swt.graphics.Image;
 
+import de.bmw.yamaica.base.ui.YamaicaUIConstants;
 import de.bmw.yamaica.franca.base.core.FrancaUtils;
 import de.bmw.yamaica.franca.ui.internal.Activator;
 
@@ -22,9 +23,10 @@ public class FrancaPackageLabelProvider extends ColumnLabelProvider
     {
         // packageImage = Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/package.gif").createImage();
         // packageImage = Activator.imageDescriptorFromPlugin("org.eclipse.pde.ui", "icons/elcl16/package_obj.gif").createImage();
-        packageImage = Activator.imageDescriptorFromPlugin("org.eclipse.jdt.ui", "icons/full/obj16/package_obj.gif").createImage();
-        normalizedPackageImage = Activator.imageDescriptorFromPlugin("org.eclipse.jdt.ui", "icons/full/elcl16/th_showqualified.gif")
-                .createImage();
+        packageImage = Activator
+                .imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_JDT_UI_PLUGIN_ID, YamaicaUIConstants.PACKAGE_GIF_PATH).createImage();
+        normalizedPackageImage = Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_JDT_UI_PLUGIN_ID,
+                YamaicaUIConstants.SHOW_QUALIFIED_GIF_PATH).createImage();
         // normalizedPackageImage = Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/package_normalized.gif").createImage();
     }
 

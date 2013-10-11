@@ -55,6 +55,7 @@ import org.eclipse.ui.dialogs.WizardResourceImportPage;
 
 import de.bmw.yamaica.base.core.resourceproperties.IResourcePropertyStore;
 import de.bmw.yamaica.base.core.resourceproperties.YamaicaXmlModel;
+import de.bmw.yamaica.base.ui.YamaicaUIConstants;
 import de.bmw.yamaica.base.ui.utils.ActionRunEvent;
 import de.bmw.yamaica.base.ui.utils.ActionRunListener;
 import de.bmw.yamaica.base.ui.utils.FileExtensionFilter;
@@ -62,7 +63,6 @@ import de.bmw.yamaica.base.ui.utils.FileSystemComparator;
 import de.bmw.yamaica.base.ui.utils.FileSystemContentProvider;
 import de.bmw.yamaica.base.ui.utils.FileSystemLabelProvider;
 import de.bmw.yamaica.base.ui.utils.ViewerToolBar;
-import de.bmw.yamaica.base.ui.utils.YamaicaUIConstants;
 
 public abstract class YamaicaWizardImportPage extends WizardResourceImportPage implements ICheckStateListener, ActionRunListener
 {

@@ -16,12 +16,16 @@ import de.bmw.yamaica.franca.base.core.FrancaUtils;
 
 public class DeploymentDefinitionNewPage extends YamaicaWizardNewFilePage
 {
+    private static final String CREATE_A_NEW_FRANCA_DEPLOYMENT_DEFINITION_FILE = "Create a new Franca deployment definition file.";
+    private static final String FRANCA_DEPLOYMENT_DEFINITION = "Franca Deployment Definition";
+    private static final String NEW_FRANCA_DEPLOYMENT_DEFINITION = "New Franca Deployment Definition";
+
     public DeploymentDefinitionNewPage(IWorkbench workbench, IStructuredSelection structuredSelection)
     {
-        super(workbench, structuredSelection, "New Franca Deployment Definition");
+        super(workbench, structuredSelection, NEW_FRANCA_DEPLOYMENT_DEFINITION);
 
-        setTitle("Franca Deployment Definition");
-        setDescription("Create a new Franca deployment definition file.");
+        setTitle(FRANCA_DEPLOYMENT_DEFINITION);
+        setDescription(CREATE_A_NEW_FRANCA_DEPLOYMENT_DEFINITION_FILE);
     }
 
     @Override

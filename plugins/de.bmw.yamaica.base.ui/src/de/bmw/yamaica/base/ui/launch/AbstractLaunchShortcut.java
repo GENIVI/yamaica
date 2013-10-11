@@ -27,7 +27,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 
 import de.bmw.yamaica.base.core.launch.AbstractLaunchConfigurationPreparer;
-import de.bmw.yamaica.base.ui.utils.YamaicaUIConstants;
+import de.bmw.yamaica.base.ui.YamaicaUIConstants;
 
 public abstract class AbstractLaunchShortcut extends AbstractLaunchConfigurationPreparer implements ILaunchShortcut
 {

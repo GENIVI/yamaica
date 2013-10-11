@@ -16,15 +16,20 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbench;
 
 import de.bmw.yamaica.base.ui.dialogs.YamaicaWizardExportPage;
+import de.bmw.yamaica.franca.base.core.YamaicaFrancaConstants;
 
 public class HtmlExportPage extends YamaicaWizardExportPage
 {
+    private static final String EXPORT_FRANCA_INTERFACE_DOCUMENTATION_FILES_HTML = "Export Franca interface documentation files (HTML).";
+    private static final String FRANCA_INTERFACE_DOCUMENTATION_FILES_HTML_EXPORTER = "Franca Interface Documentation Files (HTML) Exporter";
+    private static final String FRANCA_INTERFACE_DOCUMENTATION_EXPORTER = "Franca Interface Documentation Exporter";
+
     public HtmlExportPage(IWorkbench workbench, IStructuredSelection structuredSelection)
     {
-        super(workbench, structuredSelection, "Franca Interface Documentation Exporter");
+        super(workbench, structuredSelection, FRANCA_INTERFACE_DOCUMENTATION_EXPORTER);
 
-        setTitle("Franca Interface Documentation Files (HTML) Exporter");
-        setDescription("Export Franca interface documentation files (HTML).");
+        setTitle(FRANCA_INTERFACE_DOCUMENTATION_FILES_HTML_EXPORTER);
+        setDescription(EXPORT_FRANCA_INTERFACE_DOCUMENTATION_FILES_HTML);
     }
 
     @Override
@@ -47,6 +52,6 @@ public class HtmlExportPage extends YamaicaWizardExportPage
     @Override
     protected String[] getFileExtensions()
     {
-        return new String[] { "fidl" };
+        return new String[] { YamaicaFrancaConstants.FIDL };
     }
 }

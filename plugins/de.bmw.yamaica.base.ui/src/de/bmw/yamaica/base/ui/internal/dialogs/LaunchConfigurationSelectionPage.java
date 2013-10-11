@@ -7,9 +7,9 @@
 package de.bmw.yamaica.base.ui.internal.dialogs;
 
 import de.bmw.yamaica.base.core.launch.ILaunchConfigurationPreparer;
+import de.bmw.yamaica.base.ui.YamaicaUIConstants;
 import de.bmw.yamaica.base.ui.internal.Activator;
 import de.bmw.yamaica.base.ui.utils.ViewerToolBar;
-import de.bmw.yamaica.base.ui.utils.YamaicaUIConstants;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;

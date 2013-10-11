@@ -43,6 +43,7 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.part.DrillDownAdapter;
 
+import de.bmw.yamaica.base.ui.YamaicaUIConstants;
 import de.bmw.yamaica.base.ui.internal.Activator;
 
 public class ViewerToolBar extends Composite implements ICheckStateListener, PaintListener

@@ -10,11 +10,14 @@ import de.bmw.yamaica.base.ui.dialogs.YamaicaExportWizard;
 
 public class ExportWizard extends YamaicaExportWizard
 {
+    private static final String EXPORT_FRANCA_IDL_FILES      = "Export Franca IDL Files";
+    private static final String YAMAICA_FRANCA_EXPORT_WIZARD = "YamaicaFrancaExportWizard";
+
     public ExportWizard()
     {
-        super("YamaicaFrancaExportWizard");
+        super(YAMAICA_FRANCA_EXPORT_WIZARD);
 
-        setWindowTitle("Export Franca IDL Files");
+        setWindowTitle(EXPORT_FRANCA_IDL_FILES);
     }
 
     @Override

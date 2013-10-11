@@ -10,11 +10,14 @@ import de.bmw.yamaica.base.ui.dialogs.YamaicaNewFileWizard;
 
 public class InterfaceDefinitionNewWizard extends YamaicaNewFileWizard
 {
+    private static final String NEW_FRANCA_INTERFACE_DEFINITION_FILE           = "New Franca Interface Definition File";
+    private static final String YAMAICA_FRANCA_NEW_INTERFACE_DEFINITION_WIZARD = "YamaicaFrancaNewInterfaceDefinitionWizard";
+
     public InterfaceDefinitionNewWizard()
     {
-        super("YamaicaFrancaNewInterfaceDefinitionWizard");
+        super(YAMAICA_FRANCA_NEW_INTERFACE_DEFINITION_WIZARD);
 
-        setWindowTitle("New Franca Interface Definition File");
+        setWindowTitle(NEW_FRANCA_INTERFACE_DEFINITION_FILE);
     }
 
     @Override

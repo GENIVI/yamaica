@@ -10,8 +10,8 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IExportWizard;
 import org.eclipse.ui.IWorkbench;
 
+import de.bmw.yamaica.base.ui.YamaicaUIConstants;
 import de.bmw.yamaica.base.ui.internal.Activator;
-import de.bmw.yamaica.base.ui.utils.YamaicaUIConstants;
 
 public abstract class YamaicaExportWizard extends YamaicaWizard implements IExportWizard
 {

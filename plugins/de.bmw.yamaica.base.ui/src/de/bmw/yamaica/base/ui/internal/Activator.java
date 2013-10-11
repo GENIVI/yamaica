@@ -6,10 +6,10 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 package de.bmw.yamaica.base.ui.internal;
 
+import de.bmw.yamaica.base.ui.YamaicaUIConstants;
 import de.bmw.yamaica.base.ui.internal.preferences.Preferences;
 import de.bmw.yamaica.base.ui.utils.ConsoleManager;
 import de.bmw.yamaica.base.ui.utils.ConsoleStream;
-import de.bmw.yamaica.base.ui.utils.YamaicaUIConstants;
 
 import java.io.PrintStream;
 

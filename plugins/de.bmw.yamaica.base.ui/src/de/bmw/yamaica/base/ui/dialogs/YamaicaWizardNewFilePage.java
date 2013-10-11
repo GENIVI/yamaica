@@ -50,7 +50,7 @@ import org.eclipse.ui.part.FileEditorInput;
 
 import de.bmw.yamaica.base.core.resourceproperties.IResourcePropertyStore;
 import de.bmw.yamaica.base.core.resourceproperties.YamaicaXmlModel;
-import de.bmw.yamaica.base.ui.utils.YamaicaUIConstants;
+import de.bmw.yamaica.base.ui.YamaicaUIConstants;
 
 public abstract class YamaicaWizardNewFilePage extends WizardPage implements Listener
 {

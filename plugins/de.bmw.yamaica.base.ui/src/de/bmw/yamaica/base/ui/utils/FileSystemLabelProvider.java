@@ -25,6 +25,7 @@ import org.eclipse.swt.program.Program;
 import org.eclipse.swt.widgets.Display;
 
 import sun.awt.image.ToolkitImage;
+import de.bmw.yamaica.base.ui.YamaicaUIConstants;
 import de.bmw.yamaica.base.ui.internal.Activator;
 
 public class FileSystemLabelProvider extends ColumnLabelProvider

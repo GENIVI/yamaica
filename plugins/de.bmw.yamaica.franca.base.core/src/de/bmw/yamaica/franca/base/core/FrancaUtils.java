@@ -25,9 +25,9 @@ public class FrancaUtils
     protected static final String   POINT_BEGIN_ERROR                       = "The string \"%s\" may not begin with a \".\"!";
     protected static final String   POINT_END_ERROR                         = "The string \"%s\" may not end with a \".\"!";
 
-    public static final String      INTERFACE_DEFINITION_FILE_EXTENSION     = "fidl";
-    public static final String      DEPLOYMENT_SPECIFICATION_FILE_EXTENSION = "fdepl";
-    public static final String      DEPLOYMENT_DEFINITION_FILE_EXTENSION    = "fdepl";
+    public static final String      INTERFACE_DEFINITION_FILE_EXTENSION     = YamaicaFrancaConstants.FIDL;
+    public static final String      DEPLOYMENT_SPECIFICATION_FILE_EXTENSION = YamaicaFrancaConstants.FDEPL;
+    public static final String      DEPLOYMENT_DEFINITION_FILE_EXTENSION    = YamaicaFrancaConstants.FDEPL;
     public static final String      PACKAGE_SEPARATOR                       = ".";
 
     public static final int         SPACES                                  = 0x01;

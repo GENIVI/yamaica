@@ -6,8 +6,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 package de.bmw.yamaica.base.ui.internal.dialogs;
 
+import de.bmw.yamaica.base.ui.YamaicaUIConstants;
 import de.bmw.yamaica.base.ui.internal.Activator;
-import de.bmw.yamaica.base.ui.utils.YamaicaUIConstants;
 
 import java.util.LinkedList;
 

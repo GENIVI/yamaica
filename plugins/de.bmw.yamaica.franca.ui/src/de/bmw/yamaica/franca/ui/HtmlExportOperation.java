@@ -27,10 +27,11 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 import de.bmw.yamaica.base.core.utils.ResourceUtils;
-import de.bmw.yamaica.base.ui.utils.YamaicaUIConstants;
+import de.bmw.yamaica.base.ui.YamaicaUIConstants;
 
 public class HtmlExportOperation implements IRunnableWithProgress
 {
+    private static final String HTML_FILE_EXTENSION = ".html";
     protected Injector                 injector;
     protected FrancaPersistenceManager francaPersistenceManager;
     protected IPath                    directoryPath;
@@ -68,7 +69,7 @@ public class HtmlExportOperation implements IRunnableWithProgress
 
             FModel francaModel = (FModel) francaPersistenceManager.loadModel(resourcePathUri, rootPathUri);
 
-            monitor.subTask(resourceName + " -> " + francaModel.getName() + ".html");
+            monitor.subTask(resourceName + " -> " + francaModel.getName() + HTML_FILE_EXTENSION);
 
             FrancaGenerators.instance().genHTML(francaModel, directoryPath.toOSString());
 

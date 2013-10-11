@@ -16,15 +16,19 @@ import org.eclipse.ui.IWorkbench;
 
 import de.bmw.yamaica.base.ui.dialogs.YamaicaWizardExportPage;
 import de.bmw.yamaica.base.ui.utils.FileSystemExportOperation;
+import de.bmw.yamaica.franca.base.core.YamaicaFrancaConstants;
 
 public class ExportPage extends YamaicaWizardExportPage
 {
+    private static final String EXPORT_FRANCA_IDL_FILES = "Export Franca IDL files.";
+    private static final String FRANCA_IDL_EXPORTER = "Franca IDL Exporter";
+
     public ExportPage(IWorkbench workbench, IStructuredSelection structuredSelection)
     {
-        super(workbench, structuredSelection, "Franca IDL Exporter");
+        super(workbench, structuredSelection, FRANCA_IDL_EXPORTER);
 
-        setTitle("Franca IDL Exporter");
-        setDescription("Export Franca IDL files.");
+        setTitle(FRANCA_IDL_EXPORTER);
+        setDescription(EXPORT_FRANCA_IDL_FILES);
     }
 
     @Override
@@ -46,6 +50,6 @@ public class ExportPage extends YamaicaWizardExportPage
     @Override
     protected String[] getFileExtensions()
     {
-        return new String[] { "fidl", "fdepl" };
+        return new String[] { YamaicaFrancaConstants.FIDL, YamaicaFrancaConstants.FDEPL };
     }
 }

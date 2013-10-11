@@ -13,28 +13,35 @@ import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.franca.deploymodel.dsl.fDeploy.FDPropertyHost;
 
+import de.bmw.yamaica.base.ui.YamaicaUIConstants;
 import de.bmw.yamaica.franca.ui.internal.Activator;
 
 class DeploymentSpecificationLabelProvider extends ColumnLabelProvider
 {
-    protected Map<Integer, String> propertyHostImageNames = new HashMap<Integer, String>();
+    private static final String    ICONS_FULL_EVIEW16_DEFAULTVIEW_MISC_GIF = "icons/full/eview16/defaultview_misc.gif";
+    private static final String    ORG_FRANCA_CORE_DSL_UI                  = "org.franca.core.dsl.ui";
+    private static final String    ICONS                                   = "icons/";
+    private static final String    ARRAYS_PNG                              = "arrays.png";
+    private static final String    NUMBERS_PNG                             = "numbers.png";
+    private static final String    STRINGS_PNG                             = "strings.png";
+    protected Map<Integer, String> propertyHostImageNames                  = new HashMap<Integer, String>();
 
     public DeploymentSpecificationLabelProvider()
     {
         propertyHostImageNames.put(FDPropertyHost.ARGUMENTS_VALUE, null);
-        propertyHostImageNames.put(FDPropertyHost.ARRAYS_VALUE, "arrays.png");
+        propertyHostImageNames.put(FDPropertyHost.ARRAYS_VALUE, ARRAYS_PNG);
         propertyHostImageNames.put(FDPropertyHost.ATTRIBUTES_VALUE, "attribute.gif");
         propertyHostImageNames.put(FDPropertyHost.BROADCASTS_VALUE, "event.png");
         propertyHostImageNames.put(FDPropertyHost.ENUMERATIONS_VALUE, "enum.gif");
         propertyHostImageNames.put(FDPropertyHost.ENUMERATORS_VALUE, "enumerator.gif");
-        propertyHostImageNames.put(FDPropertyHost.FLOATS_VALUE, "numbers.png");
+        propertyHostImageNames.put(FDPropertyHost.FLOATS_VALUE, NUMBERS_PNG);
         propertyHostImageNames.put(FDPropertyHost.INSTANCES_VALUE, null);
-        propertyHostImageNames.put(FDPropertyHost.INTEGERS_VALUE, "numbers.png");
+        propertyHostImageNames.put(FDPropertyHost.INTEGERS_VALUE, NUMBERS_PNG);
         propertyHostImageNames.put(FDPropertyHost.INTERFACES_VALUE, "interface.png");
         propertyHostImageNames.put(FDPropertyHost.METHODS_VALUE, "method.gif");
-        propertyHostImageNames.put(FDPropertyHost.NUMBERS_VALUE, "numbers.png");
+        propertyHostImageNames.put(FDPropertyHost.NUMBERS_VALUE, NUMBERS_PNG);
         propertyHostImageNames.put(FDPropertyHost.PROVIDERS_VALUE, null);
-        propertyHostImageNames.put(FDPropertyHost.STRINGS_VALUE, "strings.png");
+        propertyHostImageNames.put(FDPropertyHost.STRINGS_VALUE, STRINGS_PNG);
         propertyHostImageNames.put(FDPropertyHost.STRUCT_FIELDS_VALUE, "field.gif");
         propertyHostImageNames.put(FDPropertyHost.STRUCTS_VALUE, "struct.gif");
         propertyHostImageNames.put(FDPropertyHost.TYPE_COLLECTIONS_VALUE, "types.gif");
@@ -50,17 +57,18 @@ class DeploymentSpecificationLabelProvider extends ColumnLabelProvider
 
         if (null != imageName)
         {
-            if (imageName.equals("strings.png") || imageName.equals("numbers.png") || imageName.equals("arrays.png"))
+            if (imageName.equals(STRINGS_PNG) || imageName.equals(NUMBERS_PNG) || imageName.equals(ARRAYS_PNG))
             {
-                return Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/" + imageName).createImage();
+                return Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, ICONS + imageName).createImage();
             }
             else
             {
-                return Activator.imageDescriptorFromPlugin("org.franca.core.dsl.ui", "icons/" + imageName).createImage();
+                return Activator.imageDescriptorFromPlugin(ORG_FRANCA_CORE_DSL_UI, ICONS + imageName).createImage();
             }
         }
 
-        return Activator.imageDescriptorFromPlugin("org.eclipse.ui", "icons/full/eview16/defaultview_misc.gif").createImage();
+        return Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_PLUGIN_ID, ICONS_FULL_EVIEW16_DEFAULTVIEW_MISC_GIF)
+                .createImage();
     }
 
     @Override

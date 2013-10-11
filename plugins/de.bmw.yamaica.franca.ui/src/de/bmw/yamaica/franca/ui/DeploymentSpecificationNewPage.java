@@ -34,16 +34,22 @@ import de.bmw.yamaica.franca.base.core.FrancaUtils;
 
 public class DeploymentSpecificationNewPage extends YamaicaWizardNewFilePage
 {
-    protected Text                nameText                 = null;
-    protected boolean             nameTextWasModified      = false;
-    protected CheckboxTableViewer propertyHostsTableViewer = null;
+    private static final String   CREATE_A_NEW_FRANCA_DEPLOYMENT_SPECIFICATION_FILE = "Create a new Franca deployment specification file.";
+    private static final String   FRANCA_DEPLOYMENT_SPECIFICATION                   = "Franca Deployment Specification";
+    private static final String   NEW_FRANCA_DEPLOYMENT_SPECIFICATION               = "New Franca Deployment Specification";
+    private static final String   NA_ME                                             = "Na&me:";
+    private static final String   PROPERTY_HOSTS                                    = "&Property hosts:";
+    private static final String   INVALID_SPECIFICATION_NAME                        = "Invalid specification name. ";
+    protected Text                nameText                                          = null;
+    protected boolean             nameTextWasModified                               = false;
+    protected CheckboxTableViewer propertyHostsTableViewer                          = null;
 
     public DeploymentSpecificationNewPage(IWorkbench workbench, IStructuredSelection structuredSelection)
     {
-        super(workbench, structuredSelection, "New Franca Deployment Specification");
+        super(workbench, structuredSelection, NEW_FRANCA_DEPLOYMENT_SPECIFICATION);
 
-        setTitle("Franca Deployment Specification");
-        setDescription("Create a new Franca deployment specification file.");
+        setTitle(FRANCA_DEPLOYMENT_SPECIFICATION);
+        setDescription(CREATE_A_NEW_FRANCA_DEPLOYMENT_SPECIFICATION_FILE);
     }
 
     @Override
@@ -60,7 +66,7 @@ public class DeploymentSpecificationNewPage extends YamaicaWizardNewFilePage
         Font font = parent.getFont();
 
         Label packageLabel = new Label(parent, SWT.LEAD);
-        packageLabel.setText("Na&me:");
+        packageLabel.setText(NA_ME);
         packageLabel.setLayoutData(new GridData(SWT.LEAD, SWT.CENTER, false, false));
         packageLabel.setFont(font);
 
@@ -70,7 +76,7 @@ public class DeploymentSpecificationNewPage extends YamaicaWizardNewFilePage
         nameText.setFont(font);
 
         Label propertyHostsLabel = new Label(parent, SWT.LEAD);
-        propertyHostsLabel.setText("&Property hosts:");
+        propertyHostsLabel.setText(PROPERTY_HOSTS);
         propertyHostsLabel.setLayoutData(new GridData(SWT.LEAD, SWT.TOP, false, false));
         propertyHostsLabel.setFont(font);
 
@@ -112,7 +118,7 @@ public class DeploymentSpecificationNewPage extends YamaicaWizardNewFilePage
 
             if (name.length() == 0)
             {
-                setErrorMessage("Invalid specification name.");
+                setErrorMessage(INVALID_SPECIFICATION_NAME);
 
                 return false;
             }
@@ -123,7 +129,7 @@ public class DeploymentSpecificationNewPage extends YamaicaWizardNewFilePage
             }
             catch (IllegalArgumentException e)
             {
-                setErrorMessage("Invalid specification name. " + e.getMessage());
+                setErrorMessage(INVALID_SPECIFICATION_NAME + e.getMessage());
 
                 return false;
             }

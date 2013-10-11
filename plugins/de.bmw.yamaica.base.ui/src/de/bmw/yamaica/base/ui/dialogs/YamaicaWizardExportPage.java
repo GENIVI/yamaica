@@ -46,12 +46,12 @@ import org.eclipse.ui.model.WorkbenchLabelProvider;
 
 import de.bmw.yamaica.base.core.resourceproperties.IResourcePropertyStore;
 import de.bmw.yamaica.base.core.resourceproperties.YamaicaXmlModel;
+import de.bmw.yamaica.base.ui.YamaicaUIConstants;
 import de.bmw.yamaica.base.ui.utils.ActionRunEvent;
 import de.bmw.yamaica.base.ui.utils.ActionRunListener;
 import de.bmw.yamaica.base.ui.utils.ResourceComparator;
 import de.bmw.yamaica.base.ui.utils.ResourceExtensionFilter;
 import de.bmw.yamaica.base.ui.utils.ViewerToolBar;
-import de.bmw.yamaica.base.ui.utils.YamaicaUIConstants;
 
 public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage implements ICheckStateListener, ActionRunListener
 {

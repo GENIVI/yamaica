@@ -4,7 +4,7 @@
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
-package de.bmw.yamaica.base.ui.utils;
+package de.bmw.yamaica.base.ui;
 
 import de.bmw.yamaica.base.core.YamaicaConstants;
 
@@ -33,6 +33,8 @@ public interface YamaicaUIConstants extends YamaicaConstants
     String REFRESH_ICON_GIF_PATH                    = "icons/elcl16/nav_refresh.gif";
     String FILE_TYPE_ICON_GIF_PATH                  = "icons/full/obj16/fileType_filter.gif";
     String FOLDER_GIF_PATH                          = "icons/full/obj16/folder.gif";
+    String PACKAGE_GIF_PATH                         = "icons/full/obj16/package_obj.gif";
+    String SHOW_QUALIFIED_GIF_PATH                  = "icons/full/elcl16/th_showqualified.gif";
     String FILTER_FILE_EXTENSIONS                   = "Filter File Extensions";
     String OVERWRITE_EXISTING_FILES_WITHOUT_WARNING = "&Overwrite existing files without warning";
     String SELECT_A_FOLDER_TO_IMPORT_INTO           = "Select a folder to import into.";
@@ -47,4 +49,5 @@ public interface YamaicaUIConstants extends YamaicaConstants
     String LAUNCHING                                = "Launching ";
     String YAMAICA_DEFAULT                          = "yamaica Default";
     String EXPORTING_RESOURCES                      = "Exporting resources...";
+    String ECLIPSE_JDT_UI_PLUGIN_ID                 = "org.eclipse.jdt.ui";
 }

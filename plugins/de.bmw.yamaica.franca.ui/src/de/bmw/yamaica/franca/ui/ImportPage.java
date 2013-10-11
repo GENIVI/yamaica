@@ -16,15 +16,19 @@ import org.eclipse.ui.wizards.datatransfer.FileSystemStructureProvider;
 import org.eclipse.ui.wizards.datatransfer.ImportOperation;
 
 import de.bmw.yamaica.base.ui.dialogs.YamaicaWizardImportPage;
+import de.bmw.yamaica.franca.base.core.YamaicaFrancaConstants;
 
 public class ImportPage extends YamaicaWizardImportPage
 {
+    private static final String IMPORT_FRANCA_IDL_FILES = "Import Franca IDL files.";
+    private static final String FRANCA_IDL_IMPORTER = "Franca IDL Importer";
+
     public ImportPage(IWorkbench workbench, IStructuredSelection structuredSelection)
     {
-        super(workbench, structuredSelection, "Franca IDL Importer");
+        super(workbench, structuredSelection, FRANCA_IDL_IMPORTER);
 
-        setTitle("Franca IDL Importer");
-        setDescription("Import Franca IDL files.");
+        setTitle(FRANCA_IDL_IMPORTER);
+        setDescription(IMPORT_FRANCA_IDL_FILES);
     }
 
     @Override
@@ -47,6 +51,6 @@ public class ImportPage extends YamaicaWizardImportPage
     @Override
     protected String[] getFileExtensions()
     {
-        return new String[] { "fidl", "fdepl" };
+        return new String[] { YamaicaFrancaConstants.FIDL, YamaicaFrancaConstants.FDEPL };
     }
 }

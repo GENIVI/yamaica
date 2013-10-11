@@ -10,11 +10,14 @@ import de.bmw.yamaica.base.ui.dialogs.YamaicaExportWizard;
 
 public class HtmlExportWizard extends YamaicaExportWizard
 {
+    private static final String EXPORT_FRANCA_INTERFACE_DOCUMENTATION_FILES = "Export Franca Interface Documentation Files";
+    private static final String YAMAICA_FRANCA_HTML_EXPORT_WIZARD           = "YamaicaFrancaHtmlExportWizard";
+
     public HtmlExportWizard()
     {
-        super("YamaicaFrancaHtmlExportWizard");
+        super(YAMAICA_FRANCA_HTML_EXPORT_WIZARD);
 
-        setWindowTitle("Export Franca Interface Documentation Files");
+        setWindowTitle(EXPORT_FRANCA_INTERFACE_DOCUMENTATION_FILES);
     }
 
     @Override
