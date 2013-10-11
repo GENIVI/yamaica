@@ -33,6 +33,8 @@ import de.bmw.yamaica.base.ui.workbenchobserver.Preferences;
 
 public class MenuBarHandler implements IWindowListener, IPerspectiveListener3, Listener, IPropertyChangeListener
 {
+    private static final String DE_BMW_YAMAICA_IDE_UI_MAIN_PERSPECTIVE = "de.bmw.yamaica.ide.ui.mainPerspective";
+
     private static MenuBarHandler       instance          = null;
 
     private IWorkbench                  workbench         = null;
@@ -176,7 +178,7 @@ public class MenuBarHandler implements IWindowListener, IPerspectiveListener3, L
                 return true;
             }
 
-            if (perspectiveId.equals("de.bmw.yamaica.ide.ui.mainPerspective"))
+            if (perspectiveId.equals(DE_BMW_YAMAICA_IDE_UI_MAIN_PERSPECTIVE))
             {
                 return false;
             }
