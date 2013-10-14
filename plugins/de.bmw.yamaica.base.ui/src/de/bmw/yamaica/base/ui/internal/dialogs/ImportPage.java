@@ -63,5 +63,4 @@ public class ImportPage extends YamaicaWizardSelectionPage
 
         PlatformUI.getWorkbench().getHelpSystem().setHelp(parent, Activator.PLUGIN_ID + YAMAICA_IMPORT_SELECTION_DIALOG);
     }
-
 }

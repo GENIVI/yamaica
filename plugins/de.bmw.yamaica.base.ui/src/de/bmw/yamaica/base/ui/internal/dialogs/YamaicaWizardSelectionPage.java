@@ -6,8 +6,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 package de.bmw.yamaica.base.ui.internal.dialogs;
 
-import de.bmw.yamaica.base.ui.utils.WizardComparator;
-
 import org.eclipse.jface.layout.TableColumnLayout;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ArrayContentProvider;
@@ -24,6 +22,7 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.ViewerCell;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.wizard.IWizardNode;
 import org.eclipse.jface.wizard.WizardSelectionPage;
 import org.eclipse.swt.SWT;
@@ -32,6 +31,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.wizards.IWizardDescriptor;
+
+import de.bmw.yamaica.base.ui.utils.WizardComparator;
 
 public abstract class YamaicaWizardSelectionPage extends WizardSelectionPage
 {
@@ -64,6 +65,7 @@ public abstract class YamaicaWizardSelectionPage extends WizardSelectionPage
         tableViewer = new TableViewer(tableComposite, SWT.BORDER | SWT.SINGLE | SWT.FULL_SELECTION);
         tableViewer.setContentProvider(getContentProvider());
         tableViewer.setComparator(new WizardComparator());
+        tableViewer.setFilters(new ViewerFilter[] { new YamaicaWizardActivityFilter() });
         tableViewer.getTable().setHeaderVisible(false);
 
         TableViewerColumn filenameViewerColumn = new TableViewerColumn(tableViewer, SWT.LEAD);
