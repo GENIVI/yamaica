@@ -409,7 +409,7 @@ Exhibit B - &quot;Incompatible With Secondary Licenses&quot; Notice
          unpack="false"/>
 
    <plugin
-         id="de.bmw.yamaica.base.resourceobserver"
+         id="de.bmw.yamaica.base.core.resourceobserver"
          download-size="0"
          install-size="0"
          version="0.0.0"

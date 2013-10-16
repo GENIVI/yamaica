@@ -1,13 +1,13 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: yamaica Resource Observer
-Bundle-SymbolicName: de.bmw.yamaica.base.resourceobserver
+Bundle-SymbolicName: de.bmw.yamaica.base.core.resourceobserver
 Bundle-Version: 0.8.0.qualifier
-Bundle-Activator: de.bmw.yamaica.base.internal.resourceobserver.Activator
+Bundle-Activator: de.bmw.yamaica.base.core.internal.resourceobserver.Activator
 Bundle-Vendor: BMW Group
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;bundle-version="3.8.1",
  de.bmw.yamaica.base.core;bundle-version="0.8.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
-Export-Package: de.bmw.yamaica.base.internal.resourceobserver;x-internal:=true;uses:="org.eclipse.core.runtime,org.eclipse.core.resources,org.osgi.framework"
+Export-Package: de.bmw.yamaica.base.core.internal.resourceobserver;x-internal:=true;uses:="org.eclipse.core.runtime,org.eclipse.core.resources,org.osgi.framework"

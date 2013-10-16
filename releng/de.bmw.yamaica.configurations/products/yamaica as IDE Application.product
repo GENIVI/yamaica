@@ -419,8 +419,11 @@ Exhibit B - &amp;quot;Incompatible With Secondary Licenses&amp;quot; Notice
    </plugins>
 
    <features>
-      <feature id="de.bmw.yamaica.ide" version="0.8.0.qualifier"/>
+      <feature id="de.bmw.yamaica.ea" version="0.8.0.qualifier"/>
+      <feature id="de.bmw.yamaica.ea.proprietary" version="0.8.0.qualifier"/>
+      <feature id="de.bmw.yamaica.fibex" version="0.8.0.qualifier"/>
       <feature id="de.bmw.yamaica.franca" version="0.8.0.qualifier"/>
+      <feature id="de.bmw.yamaica.ide" version="0.8.0.qualifier"/>
       <feature id="org.eclipse.equinox.p2.core.feature"/>
       <feature id="org.eclipse.xtend"/>
       <feature id="org.eclipse.xtext.ui.source"/>
@@ -452,6 +455,7 @@ Exhibit B - &amp;quot;Incompatible With Secondary Licenses&amp;quot; Notice
       <feature id="org.eclipse.platform"/>
       <feature id="org.eclipse.emf.mwe.ui"/>
       <feature id="org.eclipse.help"/>
+      <feature id="model.emf.fibexxml.feature"/>
       <feature id="org.eclipse.emf.codegen.ecore"/>
       <feature id="org.eclipse.xtext.xbase.lib.source"/>
       <feature id="org.franca.feature"/>
@@ -469,11 +473,10 @@ Exhibit B - &amp;quot;Incompatible With Secondary Licenses&amp;quot; Notice
       <feature id="org.eclipse.xtext.xtext.ui"/>
       <feature id="org.eclipse.xtext.runtime"/>
       <feature id="org.eclipse.emf.codegen"/>
-      <feature id="de.bmw.yamaica.ea" version="0.8.0.qualifier"/>
    </features>
 
    <configurations>
-      <plugin id="de.bmw.yamaica.base.resourceobserver" autoStart="true" startLevel="0" />
+      <plugin id="de.bmw.yamaica.base.core.resourceobserver" autoStart="true" startLevel="0" />
       <plugin id="de.bmw.yamaica.base.ui.workbenchobserver" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
