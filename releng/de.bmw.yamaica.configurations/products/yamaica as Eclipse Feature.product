@@ -27,7 +27,6 @@
    </plugins>
 
    <features>
-      <feature id="de.bmw.yamaica.ea" version="0.8.0.qualifier"/>
       <feature id="de.bmw.yamaica.ea.proprietary" version="0.8.0.qualifier"/>
       <feature id="de.bmw.yamaica.fibex" version="0.8.0.qualifier"/>
       <feature id="de.bmw.yamaica.franca" version="0.8.0.qualifier"/>
@@ -66,6 +65,7 @@
       <feature id="model.emf.fibexxml.feature"/>
       <feature id="org.eclipse.emf.codegen.ecore"/>
       <feature id="org.eclipse.xtext.xbase.lib.source"/>
+      <feature id="de.bmw.yamaica.ea"/>
       <feature id="org.franca.feature"/>
       <feature id="org.eclipse.emf.mwe2.runtime.sdk"/>
       <feature id="org.eclipse.xtext.ui"/>

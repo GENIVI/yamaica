@@ -185,7 +185,7 @@
             locationURI="menu:org.eclipse.ui.help.helpContents">
          <command
                commandId="org.eclipse.ui.help.quickStartAction"
-               icon="platform:/plugin/org.eclipse.jdt.ui/icons/full/elcl16/help.gif"
+               icon="platform:/plugin/org.eclipse.ui.intro/icons/welcome16.gif"
                style="push">
          </command>
          <command
