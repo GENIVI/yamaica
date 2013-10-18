@@ -9,5 +9,5 @@ Require-Bundle: org.eclipse.ui,
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: BMW Group
-Export-Package: de.bmw.yamaica.base.ui.internal.workbenchobserver;x-friends:="ics.lipci.yamaica.ui",
+Export-Package: de.bmw.yamaica.base.ui.internal.workbenchobserver;x-internal:=true,
  de.bmw.yamaica.base.ui.workbenchobserver

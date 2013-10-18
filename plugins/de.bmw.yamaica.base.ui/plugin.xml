@@ -26,12 +26,23 @@
          point="org.eclipse.core.expressions.definitions">
       <definition
             id="de.bmw.yamaica.base.ui.fileToolbarExtensionsActive">
-         <with
-               variable="activeWorkbenchWindow.activePerspective">
-            <equals
-                  value="de.bmw.yamaica.ide.ui.mainPerspective">
-            </equals>
-         </with>
+         <and>
+            <with
+                  variable="activeWorkbenchWindow.activePerspective">
+               <equals
+                     value="de.bmw.yamaica.ide.ui.mainPerspective">
+               </equals>
+            </with>
+            <not>
+               <with
+                     variable="org.eclipse.ui.IWorkbench">
+                  <test
+                        args="de.bmw.yamaica.base.ui.disableFileToolbarExtensions"
+                        property="org.eclipse.ui.isActivityEnabled">
+                  </test>
+               </with>
+            </not>
+         </and>
       </definition>
    </extension>
    <extension
