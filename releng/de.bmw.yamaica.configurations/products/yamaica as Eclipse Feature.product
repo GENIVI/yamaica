@@ -30,7 +30,7 @@
       <feature id="de.bmw.yamaica.ea.proprietary" version="0.8.0.qualifier"/>
       <feature id="de.bmw.yamaica.fibex" version="0.8.0.qualifier"/>
       <feature id="de.bmw.yamaica.franca" version="0.8.0.qualifier"/>
-      <feature id="de.bmw.yamaica.ide" version="0.8.0.qualifier"/>
+      <feature id="de.bmw.yamaica.ide.proprietary" version="0.8.0.qualifier"/>
       <feature id="org.eclipse.equinox.p2.core.feature"/>
       <feature id="org.eclipse.xtend"/>
       <feature id="org.eclipse.xtext.ui.source"/>
@@ -64,6 +64,7 @@
       <feature id="org.eclipse.help"/>
       <feature id="model.emf.fibexxml.feature"/>
       <feature id="org.eclipse.emf.codegen.ecore"/>
+      <feature id="de.bmw.yamaica.ide"/>
       <feature id="org.eclipse.xtext.xbase.lib.source"/>
       <feature id="de.bmw.yamaica.ea"/>
       <feature id="org.franca.feature"/>
