@@ -171,17 +171,6 @@
       </menuContribution>
       <menuContribution
             allPopups="false"
-            locationURI="toolbar:de.bmw.yamaica.toolbar?after=yamaica.ext">
-         <command
-               commandId="de.bmw.yamaica.commands.newProject"
-               icon="icons/yamaica_new.png"
-               label="New yamaica Project"
-               style="push"
-               tooltip="New yamaica Project">
-         </command>
-      </menuContribution>
-      <menuContribution
-            allPopups="false"
             locationURI="menu:org.eclipse.ui.help.helpContents">
          <command
                commandId="org.eclipse.ui.help.quickStartAction"
@@ -268,7 +257,7 @@
             class="de.bmw.yamaica.ide.ui.internal.dialogs.ProjectWizard"
             finalPerspective="de.bmw.yamaica.ide.ui.mainPerspective"
             hasPages="true"
-            icon="icons/yamaica.png"
+            icon="icons/yamaica_new.png"
             id="de.bmw.yamaica.ui.projectWizard"
             name="yamaica Project"
             project="true">

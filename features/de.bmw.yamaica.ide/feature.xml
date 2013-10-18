@@ -21,13 +21,6 @@ All rights reserved.
    </license>
 
    <plugin
-         id="de.bmw.yamaica.ide.core"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="de.bmw.yamaica.ide.ui"
          download-size="0"
          install-size="0"
