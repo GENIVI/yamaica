@@ -8,7 +8,7 @@
       license-feature-version="0.8.0.qualifier">
 
    <description>
-      This feature consolidates all yamaica ide plug-ins.
+      This feature consolidates all yamaica IDE plug-ins.
    </description>
 
    <copyright>
@@ -19,6 +19,10 @@ All rights reserved.
    <license url="http://www.example.com/license">
       [Enter License Description here.]
    </license>
+
+   <requires>
+      <import feature="de.bmw.yamaica.base" version="0.8.0.qualifier" match="compatible"/>
+   </requires>
 
    <plugin
          id="de.bmw.yamaica.ide.ui"

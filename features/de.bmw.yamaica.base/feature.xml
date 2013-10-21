@@ -5,7 +5,7 @@
       version="0.8.0.qualifier"
       provider-name="BMW Group">
 
-   <description url="http://www.example.com/description">
+   <description>
       This feature consolidates all yamaica base plug-ins.
    </description>
 
@@ -391,7 +391,7 @@ Exhibit B - &quot;Incompatible With Secondary Licenses&quot; Notice
    </license>
 
    <requires>
-      <import feature="org.eclipse.platform" version="4.2.1.v20130118-173121-9MF7GHYdG0B5kx4E_SkfZV-1mNjVATf67ZAb7"/>
+      <import feature="org.eclipse.platform" version="4.2.1.v20130118-173121-9MF7GHYdG0B5kx4E_SkfZV-1mNjVATf67ZAb7" match="compatible"/>
    </requires>
 
    <plugin
@@ -421,5 +421,5 @@ Exhibit B - &quot;Incompatible With Secondary Licenses&quot; Notice
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-		 
+
 </feature>
