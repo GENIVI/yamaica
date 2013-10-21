@@ -11,7 +11,7 @@
       <page
             class="de.bmw.yamaica.base.ui.internal.preferences.Preferences"
             id="de.bmw.yamaica.base.ui.preferences"
-            name="yamaica Settings">
+            name="yamaica">
       </page>
    </extension>
    <extension
