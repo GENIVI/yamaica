@@ -11,10 +11,10 @@ Export-Package: de.bmw.yamaica.base.core,
  de.bmw.yamaica.base.core.launch,
  de.bmw.yamaica.base.core.resourceproperties,
  de.bmw.yamaica.base.core.utils
-Require-Bundle: org.eclipse.core.runtime;bundle-version="3.8.0";visibility:=reexport,
- org.eclipse.core.resources;bundle-version="3.8.1";visibility:=reexport,
- org.eclipse.core.variables;bundle-version="3.2.600";visibility:=reexport,
- org.eclipse.debug.core;bundle-version="3.7.100";visibility:=reexport,
- org.eclipse.jface;bundle-version="3.8.102";visibility:=reexport
+Require-Bundle: org.eclipse.core.runtime;visibility:=reexport,
+ org.eclipse.core.resources;visibility:=reexport,
+ org.eclipse.core.variables;visibility:=reexport,
+ org.eclipse.debug.core;visibility:=reexport,
+ org.eclipse.jface;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: de.bmw.yamaica.base.core.internal.Activator

@@ -12,13 +12,13 @@ Export-Package: de.bmw.yamaica.base.ui,
  de.bmw.yamaica.base.ui.internal.preferences;x-friends:="de.bmw.yamaica.ide.ui",
  de.bmw.yamaica.base.ui.launch,
  de.bmw.yamaica.base.ui.utils
-Require-Bundle: org.eclipse.core.filebuffers;bundle-version="3.5.200";visibility:=reexport,
- org.eclipse.debug.ui;bundle-version="3.8.2";visibility:=reexport,
- org.eclipse.ui;bundle-version="3.104.0";visibility:=reexport,
- org.eclipse.ui.ide;bundle-version="3.8.2";visibility:=reexport,
- org.eclipse.jface;bundle-version="3.8.102";visibility:=reexport,
- de.bmw.yamaica.base.core;bundle-version="0.8.0";visibility:=reexport,
- de.bmw.yamaica.base.ui.workbenchobserver;bundle-version="0.8.0";visibility:=reexport,
- org.eclipse.ui.console;bundle-version="3.5.100"
+Require-Bundle: org.eclipse.core.filebuffers;visibility:=reexport,
+ org.eclipse.debug.ui;visibility:=reexport,
+ org.eclipse.ui;visibility:=reexport,
+ org.eclipse.ui.ide;visibility:=reexport,
+ org.eclipse.jface;visibility:=reexport,
+ de.bmw.yamaica.base.core;visibility:=reexport,
+ de.bmw.yamaica.base.ui.workbenchobserver;visibility:=reexport,
+ org.eclipse.ui.console;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: de.bmw.yamaica.base.ui.internal.Activator
