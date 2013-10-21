@@ -5,17 +5,17 @@
          point="org.eclipse.ui.commands">
       <command
             defaultHandler="de.bmw.yamaica.ide.ui.commands.NewProject"
-            id="de.bmw.yamaica.commands.newProject"
+            id="de.bmw.yamaica.ide.ui.commands.newProject"
             name="New yamaica Project">
       </command>
       <command
             defaultHandler="de.bmw.yamaica.ide.ui.commands.AddYamaicaNature"
-            id="de.bmw.yamaica.commands.addYamaicaNature"
+            id="de.bmw.yamaica.ide.ui.commands.addYamaicaNature"
             name="Add yamaica Nature">
       </command>
       <command
             defaultHandler="de.bmw.yamaica.ide.ui.commands.RemoveYamaicaNature"
-            id="de.bmw.yamaica.commands.removeYamaicaNature"
+            id="de.bmw.yamaica.ide.ui.commands.removeYamaicaNature"
             name="Remove yamaica Nature">
       </command>
    </extension>
@@ -26,7 +26,7 @@
             default="true"
             filenames="yamaica.xml"
             icon="icons/yamaica.png"
-            id="de.bmw.yamaica.ui.editor"
+            id="de.bmw.yamaica.ide.ui.editor"
             name="yamaica Editor">
       </editor>
    </extension>
@@ -89,7 +89,7 @@
                id="org.eclipse.debug.ui.launchActionSet">
          </actionSet>
          <newWizardShortcut
-               id="de.bmw.yamaica.ui.projectWizard">
+               id="de.bmw.yamaica.ide.ui.projectWizard">
          </newWizardShortcut>
       </perspectiveExtension>
    </extension>
@@ -98,7 +98,7 @@
       <commonWizard
             menuGroupId="de.bmw.yamaica"
             type="new"
-            wizardId="de.bmw.yamaica.ui.projectWizard">
+            wizardId="de.bmw.yamaica.ide.ui.projectWizard">
          <enablement>
             <or>
                <with
@@ -135,7 +135,6 @@
                </reference>
             </visibleWhen>
          </command>
-         <!--icon="icons/wrench_orange.png" -->
          <command
                commandId="org.eclipse.ui.window.preferences"
                icon="platform:/plugin/org.eclipse.jdt.ui/icons/full/elcl16/smartmode_co.gif"
@@ -185,7 +184,7 @@
       <menuContribution
             locationURI="popup:org.eclipse.ui.projectConfigure?after=additions">
          <command
-               commandId="de.bmw.yamaica.commands.removeYamaicaNature"
+               commandId="de.bmw.yamaica.ide.ui.commands.removeYamaicaNature"
                style="push">
             <visibleWhen
                   checkEnabled="false">
@@ -208,7 +207,7 @@
       <menuContribution
             locationURI="popup:org.eclipse.ui.projectConfigure?after=additions">
          <command
-               commandId="de.bmw.yamaica.commands.addYamaicaNature"
+               commandId="de.bmw.yamaica.ide.ui.commands.addYamaicaNature"
                style="push">
             <visibleWhen
                   checkEnabled="false">
@@ -258,7 +257,7 @@
             finalPerspective="de.bmw.yamaica.ide.ui.mainPerspective"
             hasPages="true"
             icon="icons/yamaica_new.png"
-            id="de.bmw.yamaica.ui.projectWizard"
+            id="de.bmw.yamaica.ide.ui.projectWizard"
             name="yamaica Project"
             project="true">
          <description>

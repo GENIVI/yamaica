@@ -3,10 +3,14 @@
 <plugin>
 <extension
          point="org.eclipse.ui.exportWizards">
+   <category
+         id="de.bmw.yamaica.franca.ui.exportCategory"
+         name="Franca">
+   </category>
       <wizard
             category="de.bmw.yamaica.franca.ui.exportCategory"
             class="de.bmw.yamaica.franca.ui.ExportWizard"
-            icon="icons/yamaica.png"
+            icon="platform:/plugin/org.eclipse.ui.ide/icons/full/obj16/fileType_filter.gif"
             id="de.bmw.yamaica.franca.ui.exportWizard"
             name="Franca IDL Files">
          <description>
@@ -16,9 +20,9 @@
       <wizard
             category="de.bmw.yamaica.franca.ui.exportCategory"
             class="de.bmw.yamaica.franca.ui.HtmlExportWizard"
-            icon="icons/yamaica.png"
+            icon="platform:/plugin/org.eclipse.ui.ide/icons/full/obj16/fileType_filter.gif"
             id="de.bmw.yamaica.franca.ui.htmlExportWizard"
-            name="Franca IDL Documentation Files (HTML)">
+            name="Franca IDL Documentation (HTML)">
          <description>
             Generate Franca IDL documentation files (HTML) from fidl files.
          </description>
@@ -26,10 +30,14 @@
    </extension>
    <extension
          point="org.eclipse.ui.importWizards">
+      <category
+            id="de.bmw.yamaica.franca.ui.importCategory"
+            name="Franca">
+      </category>
       <wizard
             category="de.bmw.yamaica.franca.ui.importCategory"
             class="de.bmw.yamaica.franca.ui.ImportWizard"
-            icon="icons/yamaica.png"
+            icon="platform:/plugin/org.eclipse.ui.ide/icons/full/obj16/fileType_filter.gif"
             id="de.bmw.yamaica.franca.ui.importWizard"
             name="Franca IDL Files">
          <description>
@@ -39,13 +47,17 @@
    </extension>
    <extension
          point="org.eclipse.ui.newWizards">
+      <category
+            id="de.bmw.yamaica.franca.ui.newCategory"
+            name="Franca">
+      </category>
       <wizard
             canFinishEarly="false"
             category="de.bmw.yamaica.franca.ui.newCategory"
             class="de.bmw.yamaica.franca.ui.InterfaceDefinitionNewWizard"
-            icon="icons/yamaica.png"
+            icon="platform:/plugin/org.eclipse.ui.ide/icons/full/obj16/fileType_filter.gif"
             id="de.bmw.yamaica.franca.ui.interfaceDefinitionNewWizard"
-            name="Franca Interface Definition File"
+            name="Franca Interface Definition"
             project="false">
          <description>
             Create a new Franca interface definition file.
@@ -55,9 +67,9 @@
             canFinishEarly="false"
             category="de.bmw.yamaica.franca.ui.newCategory"
             class="de.bmw.yamaica.franca.ui.DeploymentSpecificationNewWizard"
-            icon="icons/yamaica.png"
+            icon="platform:/plugin/org.eclipse.ui.ide/icons/full/obj16/fileType_filter.gif"
             id="de.bmw.yamaica.franca.ui.deploymentSpecificationNewWizard"
-            name="Franca Deployment Specification File"
+            name="Franca Deployment Specification"
             project="false">
          <description>
             Create a new Franca deployment specification file.
@@ -67,9 +79,9 @@
             canFinishEarly="false"
             category="de.bmw.yamaica.franca.ui.newCategory"
             class="de.bmw.yamaica.franca.ui.DeploymentDefinitionNewWizard"
-            icon="icons/yamaica.png"
+            icon="platform:/plugin/org.eclipse.ui.ide/icons/full/obj16/fileType_filter.gif"
             id="de.bmw.yamaica.franca.ui.deploymentDefinitionNewWizard"
-            name="Franca Deployment Definition File"
+            name="Franca Deployment Definition"
             project="false">
          <description>
             Create a new Franca deployment definition file.
@@ -110,7 +122,7 @@
          </enablement>
       </commonWizard>
       <commonWizard
-            menuGroupId="de.bmw.yamaica.ui"
+            menuGroupId="de.bmw.yamaica.franca.ui"
             type="new"
             wizardId="de.bmw.yamaica.franca.ui.deploymentSpecificationNewWizard">
          <enablement>
