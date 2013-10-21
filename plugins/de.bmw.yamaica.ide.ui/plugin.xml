@@ -25,7 +25,7 @@
             class="de.bmw.yamaica.ide.ui.internal.editor.YamaicaEditor"
             default="true"
             filenames="yamaica.xml"
-            icon="icons/yamaica.png"
+            icon="platform:/plugin/de.bmw.yamaica.base.ui/icons/yamaica.png"
             id="de.bmw.yamaica.ide.ui.editor"
             name="yamaica Editor">
       </editor>
@@ -34,7 +34,7 @@
          point="org.eclipse.ui.perspectives">
       <perspective
             class="de.bmw.yamaica.ide.ui.internal.perspectives.MainPerspective"
-            icon="icons/yamaica.png"
+            icon="platform:/plugin/de.bmw.yamaica.base.ui/icons/yamaica.png"
             id="de.bmw.yamaica.ide.ui.mainPerspective"
             name="yamaica">
       </perspective>
@@ -231,28 +231,10 @@
       </menuContribution>
    </extension>
    <extension
-         point="org.eclipse.ui.importWizards">
-      <category
-            id="de.bmw.yamaica.ui.importCategory"
-            name="yamaica">
-      </category>
-   </extension>
-   <extension
-         point="org.eclipse.ui.exportWizards">
-      <category
-            id="de.bmw.yamaica.ui.exportCategory"
-            name="yamaica">
-      </category>
-   </extension>
-   <extension
          point="org.eclipse.ui.newWizards">
-      <category
-            id="de.bmw.yamaica.ui.newCategory"
-            name="yamaica">
-      </category>
       <wizard
             canFinishEarly="false"
-            category="de.bmw.yamaica.ui.newCategory"
+            category="de.bmw.yamaica.base.ui.newCategory"
             class="de.bmw.yamaica.ide.ui.internal.dialogs.ProjectWizard"
             finalPerspective="de.bmw.yamaica.ide.ui.mainPerspective"
             hasPages="true"

@@ -52,6 +52,27 @@
       </initializer>
    </extension>
    <extension
+         point="org.eclipse.ui.importWizards">
+      <category
+            id="de.bmw.yamaica.base.ui.importCategory"
+            name="yamaica">
+      </category>
+   </extension>
+   <extension
+         point="org.eclipse.ui.exportWizards">
+      <category
+            id="de.bmw.yamaica.base.ui.exportCategory"
+            name="yamaica">
+      </category>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="de.bmw.yamaica.base.ui.newCategory"
+            name="yamaica">
+      </category>
+   </extension>
+   <extension
          point="de.bmw.yamaica.base.ui.yamaicaImportWizards">
       <wizard
             importWizardId="org.eclipse.ui.wizards.import.FileSystem">
