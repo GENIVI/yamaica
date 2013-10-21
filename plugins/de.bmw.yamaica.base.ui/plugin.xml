@@ -18,7 +18,7 @@
          point="org.eclipse.ui.ide.projectNatureImages">
       <image
             icon="icons/yamaica_nature.gif"
-            id="de.bmw.yamaica.base.core.projectNatureImage"
+            id="de.bmw.yamaica.base.ui.projectNatureImage"
             natureId="de.bmw.yamaica.base.core.yamaicanature">
       </image>
    </extension>
