@@ -2,6 +2,43 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="de.bmw.yamaica.ide.ui.internal.preferences.DefaultPreferences">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.ide.projectNatureImages">
+      <image
+            icon="icons/yamaica_nature.gif"
+            id="de.bmw.yamaica.ide.ui.projectNatureImage"
+            natureId="de.bmw.yamaica.base.core.yamaicanature">
+      </image>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="de.bmw.yamaica.ide.ui.fileToolbarExtensionsActive">
+         <and>
+            <with
+                  variable="activeWorkbenchWindow.activePerspective">
+               <equals
+                     value="de.bmw.yamaica.ide.ui.mainPerspective">
+               </equals>
+            </with>
+            <not>
+               <with
+                     variable="org.eclipse.ui.IWorkbench">
+                  <test
+                        args="de.bmw.yamaica.ide.ui.disableFileToolbarExtensions"
+                        property="org.eclipse.ui.isActivityEnabled">
+                  </test>
+               </with>
+            </not>
+         </and>
+      </definition>
+   </extension>
+   <extension
          point="org.eclipse.ui.commands">
       <command
             defaultHandler="de.bmw.yamaica.ide.ui.commands.NewProject"
@@ -114,7 +151,7 @@
             <visibleWhen
                   checkEnabled="false">
                <reference
-                     definitionId="de.bmw.yamaica.base.ui.fileToolbarExtensionsActive">
+                     definitionId="de.bmw.yamaica.ide.ui.fileToolbarExtensionsActive">
                </reference>
             </visibleWhen>
          </command>
@@ -124,7 +161,7 @@
             <visibleWhen
                   checkEnabled="false">
                <reference
-                     definitionId="de.bmw.yamaica.base.ui.fileToolbarExtensionsActive">
+                     definitionId="de.bmw.yamaica.ide.ui.fileToolbarExtensionsActive">
                </reference>
             </visibleWhen>
          </command>
@@ -135,7 +172,7 @@
             <visibleWhen
                   checkEnabled="false">
                <reference
-                     definitionId="de.bmw.yamaica.base.ui.fileToolbarExtensionsActive">
+                     definitionId="de.bmw.yamaica.ide.ui.fileToolbarExtensionsActive">
                </reference>
             </visibleWhen>
          </command>
@@ -146,7 +183,7 @@
             <visibleWhen
                   checkEnabled="false">
                <reference
-                     definitionId="de.bmw.yamaica.base.ui.fileToolbarExtensionsActive">
+                     definitionId="de.bmw.yamaica.ide.ui.fileToolbarExtensionsActive">
                </reference>
             </visibleWhen>
          </command>
@@ -156,7 +193,7 @@
             <visibleWhen
                   checkEnabled="false">
                <reference
-                     definitionId="de.bmw.yamaica.base.ui.fileToolbarExtensionsActive">
+                     definitionId="de.bmw.yamaica.ide.ui.fileToolbarExtensionsActive">
                </reference>
             </visibleWhen>
          </command>
@@ -239,5 +276,13 @@
             Create a new yamaica project
          </description>
       </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="de.bmw.yamaica.ide.ui.internal.preferences.Preferences"
+            id="de.bmw.yamaica.ide.ui.preferences"
+            name="yamaica">
+      </page>
    </extension>
 </plugin>

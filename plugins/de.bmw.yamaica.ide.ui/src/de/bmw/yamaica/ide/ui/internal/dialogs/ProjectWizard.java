@@ -10,7 +10,6 @@ import de.bmw.yamaica.base.core.YamaicaNature;
 import de.bmw.yamaica.base.core.resourceproperties.IResourcePropertyStore;
 import de.bmw.yamaica.base.core.resourceproperties.YamaicaXmlModel;
 import de.bmw.yamaica.base.ui.dialogs.YamaicaWizard;
-import de.bmw.yamaica.base.ui.internal.preferences.Preferences;
 
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
@@ -41,6 +40,7 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 
 import de.bmw.yamaica.ide.ui.internal.Activator;
+import de.bmw.yamaica.ide.ui.internal.preferences.Preferences;
 
 public class ProjectWizard extends YamaicaWizard implements INewWizard
 {
@@ -200,22 +200,23 @@ public class ProjectWizard extends YamaicaWizard implements INewWizard
             projectDescription.setNatureIds(newNatureIds.toArray(new String[newNatureIds.size()]));
             project.setDescription(projectDescription, monitor);
 
-            IPreferenceStore store = de.bmw.yamaica.base.ui.internal.Activator.getDefault().getPreferenceStore();
+            IPreferenceStore baseStore = de.bmw.yamaica.base.ui.Preferences.getPreferenceStore();
+            IPreferenceStore store = Activator.getDefault().getPreferenceStore();
             YamaicaXmlModel model = YamaicaXmlModel.acquireInstance(project, project);
             IResourcePropertyStore resourcePropertyStore = model.getResourcePropertyStore(project);
-            String importFolderPathAsString = resourcePropertyStore.getProperty(Preferences.IMPORT_FOLDER);
-            String targetFolderPathAsString = resourcePropertyStore.getProperty(Preferences.TARGET_FOLDER);
+            String importFolderPathAsString = resourcePropertyStore.getProperty(IResourcePropertyStore.IMPORT_FOLDER);
+            String targetFolderPathAsString = resourcePropertyStore.getProperty(IResourcePropertyStore.TARGET_FOLDER);
 
             if (null == importFolderPathAsString)
             {
-                importFolderPathAsString = store.getString(Preferences.IMPORT_FOLDER);
-                resourcePropertyStore.setProperty(Preferences.IMPORT_FOLDER, importFolderPathAsString);
+                importFolderPathAsString = baseStore.getString(de.bmw.yamaica.base.ui.Preferences.IMPORT_FOLDER);
+                resourcePropertyStore.setProperty(IResourcePropertyStore.IMPORT_FOLDER, importFolderPathAsString);
             }
 
             if (null == targetFolderPathAsString)
             {
-                targetFolderPathAsString = store.getString(Preferences.TARGET_FOLDER);
-                resourcePropertyStore.setProperty(Preferences.TARGET_FOLDER, targetFolderPathAsString);
+                targetFolderPathAsString = baseStore.getString(de.bmw.yamaica.base.ui.Preferences.TARGET_FOLDER);
+                resourcePropertyStore.setProperty(IResourcePropertyStore.TARGET_FOLDER, targetFolderPathAsString);
             }
 
             IWorkspace workspace = ResourcesPlugin.getWorkspace();

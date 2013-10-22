@@ -4,7 +4,7 @@
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
-package de.bmw.yamaica.base.ui.internal.workbenchobserver;
+package de.bmw.yamaica.ide.ui.internal.workbenchobserver;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.swt.widgets.Display;
@@ -21,8 +21,8 @@ import org.osgi.framework.BundleListener;
 public class Activator extends AbstractUIPlugin implements BundleListener
 {
     // The plug-in ID
-    public static final String PLUGIN_ID           = "de.bmw.yamaica.base.ui.workbenchobserver"; //$NON-NLS-1$
-    public static final String IDE_PLUGIN_ID       = "org.eclipse.ui.ide";                      //$NON-NLS-1$
+    public static final String PLUGIN_ID           = "de.bmw.yamaica.ide.ui.workbenchobserver"; //$NON-NLS-1$
+    public static final String IDE_PLUGIN_ID       = "org.eclipse.ui.ide";                     //$NON-NLS-1$
     public static final String RESOURCES_PLUGIN_ID = "org.eclipse.core.resources";
 
     // The shared instance

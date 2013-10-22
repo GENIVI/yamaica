@@ -84,7 +84,7 @@
 
    <configurations>
       <plugin id="de.bmw.yamaica.base.core.resourceobserver" autoStart="true" startLevel="0" />
-      <plugin id="de.bmw.yamaica.base.ui.workbenchobserver" autoStart="true" startLevel="0" />
+      <plugin id="de.bmw.yamaica.ide.ui.workbenchobserver" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
       <plugin id="org.eclipse.equinox.ds" autoStart="true" startLevel="1" />

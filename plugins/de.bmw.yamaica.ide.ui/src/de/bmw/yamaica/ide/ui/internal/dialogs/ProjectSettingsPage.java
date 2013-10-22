@@ -6,9 +6,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 package de.bmw.yamaica.ide.ui.internal.dialogs;
 
-import de.bmw.yamaica.base.ui.internal.preferences.Preferences;
-import de.bmw.yamaica.base.ui.utils.ExtendedStringFieldEditor;
-
 import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.util.IPropertyChangeListener;
@@ -22,9 +19,14 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.ui.IWorkbench;
 
+import de.bmw.yamaica.base.ui.utils.ExtendedStringFieldEditor;
+import de.bmw.yamaica.ide.ui.internal.Activator;
+import de.bmw.yamaica.ide.ui.internal.preferences.Preferences;
+
 public class ProjectSettingsPage extends WizardPage
 {
-    private IPreferenceStore store = de.bmw.yamaica.base.ui.internal.Activator.getDefault().getPreferenceStore();
+    private IPreferenceStore baseStore = de.bmw.yamaica.base.ui.Preferences.getPreferenceStore();
+    private IPreferenceStore store     = Activator.getDefault().getPreferenceStore();
     private ExtendedStringFieldEditor importDirectoryFieldEditor, targetDirectoryFieldEditor;
     private BooleanFieldEditor        createEditorLinkFieldEditor;
 
@@ -48,8 +50,9 @@ public class ProjectSettingsPage extends WizardPage
         projectSettings.setText("Project settings");
         projectSettings.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
 
-        importDirectoryFieldEditor = new ExtendedStringFieldEditor(Preferences.IMPORT_FOLDER, "Import folder:", projectSettings);
-        importDirectoryFieldEditor.setPreferenceStore(store);
+        importDirectoryFieldEditor = new ExtendedStringFieldEditor(de.bmw.yamaica.base.ui.Preferences.IMPORT_FOLDER, "Import folder:",
+                projectSettings);
+        importDirectoryFieldEditor.setPreferenceStore(baseStore);
         importDirectoryFieldEditor.setPage(this);
         importDirectoryFieldEditor.setValidationPattern(ExtendedStringFieldEditor.getWorkbenchPathPattern());
         importDirectoryFieldEditor.setErrorMessage("String is not a valid workbench path.");
@@ -65,8 +68,9 @@ public class ProjectSettingsPage extends WizardPage
         importDirectoryFieldEditor.fillIntoGrid(projectSettings, 2);
         importDirectoryFieldEditor.load();
 
-        targetDirectoryFieldEditor = new ExtendedStringFieldEditor(Preferences.TARGET_FOLDER, "Target folder:", projectSettings);
-        targetDirectoryFieldEditor.setPreferenceStore(store);
+        targetDirectoryFieldEditor = new ExtendedStringFieldEditor(de.bmw.yamaica.base.ui.Preferences.TARGET_FOLDER, "Target folder:",
+                projectSettings);
+        targetDirectoryFieldEditor.setPreferenceStore(baseStore);
         targetDirectoryFieldEditor.setPage(this);
         targetDirectoryFieldEditor.setValidationPattern(ExtendedStringFieldEditor.getWorkbenchPathPattern());
         targetDirectoryFieldEditor.setErrorMessage("String is not a valid workbench path.");
@@ -101,7 +105,7 @@ public class ProjectSettingsPage extends WizardPage
             return importDirectoryFieldEditor.getStringValue();
         }
 
-        return store.getString(Preferences.IMPORT_FOLDER);
+        return baseStore.getString(de.bmw.yamaica.base.ui.Preferences.IMPORT_FOLDER);
     }
 
     String getTargetDirectoryPath()
@@ -111,7 +115,7 @@ public class ProjectSettingsPage extends WizardPage
             return targetDirectoryFieldEditor.getStringValue();
         }
 
-        return store.getString(Preferences.TARGET_FOLDER);
+        return baseStore.getString(de.bmw.yamaica.base.ui.Preferences.TARGET_FOLDER);
     }
 
     boolean getCreateEditorLink()

@@ -6,11 +6,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 package de.bmw.yamaica.base.ui.internal;
 
-import de.bmw.yamaica.base.ui.YamaicaUIConstants;
-import de.bmw.yamaica.base.ui.internal.preferences.Preferences;
-import de.bmw.yamaica.base.ui.utils.ConsoleManager;
-import de.bmw.yamaica.base.ui.utils.ConsoleStream;
-
 import java.io.PrintStream;
 
 import org.eclipse.core.runtime.Platform;
@@ -20,10 +15,15 @@ import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.ui.console.ConsolePlugin;
 import org.eclipse.ui.console.IConsole;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+
+import de.bmw.yamaica.base.ui.Preferences;
+import de.bmw.yamaica.base.ui.YamaicaUIConstants;
+import de.bmw.yamaica.base.ui.utils.ConsoleManager;
+import de.bmw.yamaica.base.ui.utils.ConsoleStream;
 
 /**
  * The activator class controls the plug-in life cycle

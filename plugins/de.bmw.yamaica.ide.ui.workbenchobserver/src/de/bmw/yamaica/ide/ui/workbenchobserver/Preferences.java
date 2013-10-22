@@ -4,11 +4,11 @@
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
-package de.bmw.yamaica.base.ui.workbenchobserver;
+package de.bmw.yamaica.ide.ui.workbenchobserver;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 
-import de.bmw.yamaica.base.ui.internal.workbenchobserver.Activator;
+import de.bmw.yamaica.ide.ui.internal.workbenchobserver.Activator;
 
 public class Preferences
 {

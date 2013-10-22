@@ -38,7 +38,7 @@ public interface YamaicaUIConstants extends YamaicaConstants
     String FILTER_FILE_EXTENSIONS                   = "Filter File Extensions";
     String OVERWRITE_EXISTING_FILES_WITHOUT_WARNING = "&Overwrite existing files without warning";
     String SELECT_A_FOLDER_TO_IMPORT_INTO           = "Select a folder to import into.";
-    String WORKBENCHOBSERVER_PLUGIN_ID              = "de.bmw.yamaica.base.ui.workbenchobserver";
+    String WORKBENCHOBSERVER_PLUGIN_ID              = "de.bmw.yamaica.ide.ui.workbenchobserver";
     String COPY_EDIT_ICON_GIF_PATH                  = "icons/full/etool16/copy_edit.gif";
     String COPY_DISABLED_ICON_GIF_PATH              = "icons/copy_disabled.gif";
     String DELETE_EDIT_ICON_GIF_PATH                = "icons/full/etool16/delete_edit.gif";

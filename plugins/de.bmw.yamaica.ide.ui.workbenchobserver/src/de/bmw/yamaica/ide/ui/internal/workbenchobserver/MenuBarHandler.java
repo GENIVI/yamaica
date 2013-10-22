@@ -4,7 +4,7 @@
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
-package de.bmw.yamaica.base.ui.internal.workbenchobserver;
+package de.bmw.yamaica.ide.ui.internal.workbenchobserver;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +29,7 @@ import org.eclipse.ui.IWorkbenchPartReference;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
-import de.bmw.yamaica.base.ui.workbenchobserver.Preferences;
+import de.bmw.yamaica.ide.ui.workbenchobserver.Preferences;
 
 public class MenuBarHandler implements IWindowListener, IPerspectiveListener3, Listener, IPropertyChangeListener
 {
