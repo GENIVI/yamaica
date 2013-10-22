@@ -4,6 +4,7 @@
       label="yamaica IDE Components"
       version="0.8.0.qualifier"
       provider-name="BMW Group"
+      plugin="de.bmw.yamaica.base.ui"
       license-feature="de.bmw.yamaica.base"
       license-feature-version="0.8.0.qualifier">
 
@@ -21,7 +22,7 @@ All rights reserved.
    </license>
 
    <requires>
-      <import feature="de.bmw.yamaica.base" version="0.8.0.qualifier" match="compatible"/>
+      <import feature="de.bmw.yamaica.base" version="0.8.0" match="compatible"/>
    </requires>
 
    <plugin
