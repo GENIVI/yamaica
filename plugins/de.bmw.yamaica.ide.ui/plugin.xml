@@ -72,13 +72,6 @@
                relative="org.eclipse.ui.views.ProblemView">
          </view>
          <view
-               id="org.eclipse.pde.runtime.LogView"
-               minimized="false"
-               ratio="0.25f"
-               relationship="stack"
-               relative="org.eclipse.ui.views.ProblemView">
-         </view>
-         <view
                id="org.eclipse.ui.views.ContentOutline"
                minimized="false"
                ratio="0.75f"
