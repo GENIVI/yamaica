@@ -24,8 +24,8 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
 import org.eclipse.ui.PlatformUI;
 
 import de.bmw.yamaica.base.ui.YamaicaUIConstants;
-import de.bmw.yamaica.base.ui.internal.Activator;
 import de.bmw.yamaica.base.ui.utils.ExtendedStringFieldEditor;
+import de.bmw.yamaica.ide.ui.internal.Activator;
 
 /**
  * This class is needed by the org.eclipse.ui.preferencePages extension point (see plugin.xml)
