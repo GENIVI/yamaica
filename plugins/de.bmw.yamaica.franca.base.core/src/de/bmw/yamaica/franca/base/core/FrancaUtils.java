@@ -37,7 +37,7 @@ public class FrancaUtils
     public static final int         DEPLOYMENT_DEFINITION_KEYWORDS          = 0x10;
     public static final int         KEYWORDS                                = 0x18;
     public static final int         ZERO_LENGTH                             = 0x20;
-    // TODO to be removed
+    // TODO to be removed.
     public static final int         CPP_KEYWORDS                            = 0x40;
 
     public static final int         NONE                                    = 0x0;
@@ -49,7 +49,7 @@ public class FrancaUtils
 
     public static final Set<String> keyWords                                = new HashSet<String>();
 
-    // TODO to be removed
+    // TODO to be removed.
     static
     {
         keyWords.add("alignas");
@@ -147,7 +147,7 @@ public class FrancaUtils
 
         String normalizedName = name;
 
-        // Search for spaces
+        // Search for spaces.
         if (normalizedName.matches(".*\\s.*"))
         {
             if ((normalizeMask & SPACES) > 0)
@@ -160,7 +160,7 @@ public class FrancaUtils
             }
         }
 
-        // Search for leading numbers
+        // Search for leading numbers.
         if (normalizedName.matches("[0-9].*"))
         {
             if ((normalizeMask & LEADING_NUMBERS) > 0)
@@ -188,7 +188,7 @@ public class FrancaUtils
                 normalizedName = normalizedName.replace("Ü", "Ue");
                 normalizedName = normalizedName.replace("ß", "ss");
 
-                // Do unicode normalization (e.g. � => e, � => i).
+                // Do unicode normalization (e.g. é => e, î => i).
                 normalizedName = Normalizer.normalize(normalizedName, Normalizer.Form.NFKD);
                 normalizedName = normalizedName.replaceAll("[\\p{InCombiningDiacriticalMarks}\\p{IsLm}\\p{IsSk}]+", "");
 
@@ -201,7 +201,7 @@ public class FrancaUtils
             }
         }
 
-        // Check if normalization led to a Franca interface definition keyword
+        // Check if normalization led to a Franca interface definition keyword.
         if (InterfaceDefinitionKeyword.isKeyword(normalizedName))
         {
             if ((normalizeMask & INTERFACE_DEFINITION_KEYWORDS) > 0)
@@ -214,7 +214,7 @@ public class FrancaUtils
             }
         }
 
-        // Check if normalization led to a Franca deployment definition keyword
+        // Check if normalization led to a Franca deployment definition keyword.
         if (DeploymentDefinitionKeyword.isKeyword(normalizedName))
         {
             if ((normalizeMask & DEPLOYMENT_DEFINITION_KEYWORDS) > 0)
@@ -227,7 +227,7 @@ public class FrancaUtils
             }
         }
 
-        // Check if normalization led to a string with length zero
+        // Check if normalization led to a string with length zero.
         if (normalizedName.length() == 0)
         {
             if ((normalizeMask & ZERO_LENGTH) > 0)
@@ -240,7 +240,7 @@ public class FrancaUtils
             }
         }
 
-        // TODO to be removed
+        // TODO to be removed.
         if (keyWords.contains(normalizedName))
         {
             if ((normalizeMask & CPP_KEYWORDS) > 0)
