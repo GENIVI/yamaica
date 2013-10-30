@@ -1,6 +1,7 @@
 package de.bmw.yamaica.base.core.utils;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,7 @@ public class TimeBench
     {
         if (null == timestamps)
         {
-            timestamps = new HashMap<Integer, List<Timestamp>>();
+            timestamps = new LinkedHashMap<Integer, List<Timestamp>>();
         }
 
         List<Timestamp> timestampList;
@@ -175,8 +176,8 @@ public class TimeBench
 
     public static void printAllTimers()
     {
-        System.out.printf("%n########################### Details of Timers ###########################%n");
-        System.out.printf("|Description                             |        Time|    Runs|Time/Run|%n");
+        System.out.printf("%n############################## Details of Timers ##############################%n");
+        System.out.printf("|   ID|Description                             |        Time|    Runs|Time/Run|%n");
 
         if (null != timers)
         {
@@ -187,7 +188,7 @@ public class TimeBench
                 int runs = timer.getRuns();
                 long timePerRun = totalTime / runs;
 
-                System.out.printf(" %-40s %,12d %,8d %,8d%n", timer.getDescription(), totalTime, runs, timePerRun);
+                System.out.printf(" %5d %-40s %,12d %,8d %,8d%n", id, timer.getDescription(), totalTime, runs, timePerRun);
             }
         }
     }
