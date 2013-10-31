@@ -71,8 +71,8 @@ public class TimeBench
                 Timestamp previousTimestamp = timestampList.get(0);
                 boolean skippedTimestamp = false;
 
-                System.out.printf("%n######################## Timestamps of ID %-3d ########################%n", id);
-                System.out.printf("  |Description                             |    Duration|    Absolute|%n");
+                System.out.printf("%n####################### Timestamps of ID %-3d #######################%n", id);
+                System.out.printf("|%-40s|%,12d|%,12d|%n", "Description", "Duration", "Absolute");
 
                 for (Timestamp currentTimestamp : timestampList)
                 {
@@ -84,19 +84,35 @@ public class TimeBench
                     {
                         long absoluteTime = currentTime - firstTimestamp.getTimestamp();
 
-                        System.out.printf(" - %-40s %,12d %,12d%n", description, durationTime, absoluteTime);
+                        System.out.printf(" %-40s %,12d %,12d%n", description, durationTime, absoluteTime);
 
                         skippedTimestamp = false;
                     }
                     else if (durationTime > 0 && false == skippedTimestamp)
                     {
-                        System.out.printf(" - ...%n");
+                        System.out.printf(" ...%n");
 
                         skippedTimestamp = true;
                     }
 
                     previousTimestamp = currentTimestamp;
                 }
+            }
+        }
+    }
+
+    public static void printAllTimestamps()
+    {
+        printAllTimestamps(0);
+    }
+
+    public static void printAllTimestamps(long minTime)
+    {
+        if (null != timestamps)
+        {
+            for (int id : timestamps.keySet())
+            {
+                printTimestamps(id, minTime);
             }
         }
     }
@@ -176,8 +192,8 @@ public class TimeBench
 
     public static void printAllTimers()
     {
-        System.out.printf("%n############################## Details of Timers ##############################%n");
-        System.out.printf("|   ID|Description                             |        Time|    Runs|Time/Run|%n");
+        System.out.printf("%n##################################### Details of Timers #####################################%n");
+        System.out.printf("|%5s|%-40s|%12s|%8s|%8s:%6s:%6s|%n", "ID", "Description", "Time", "Runs", "Time/Run", "Min", "Max");
 
         if (null != timers)
         {
@@ -186,9 +202,10 @@ public class TimeBench
                 Timer timer = timers.get(id);
                 long totalTime = timer.getTotalTime();
                 int runs = timer.getRuns();
-                long timePerRun = totalTime / runs;
+                double timePerRun = (runs > 0) ? (double) totalTime / (double) runs : 0;
 
-                System.out.printf(" %5d %-40s %,12d %,8d %,8d%n", id, timer.getDescription(), totalTime, runs, timePerRun);
+                System.out.printf(" %5d %-40s %,12d %,8d %,8.2f %,6d %,6d%n", id, timer.getDescription(), totalTime, runs, timePerRun,
+                        timer.getMinTime(), timer.getMaxTime());
             }
         }
     }
@@ -200,6 +217,8 @@ public class TimeBench
 
         private final String     description;
         private long             totalTime     = 0;
+        private long             minTime       = Long.MAX_VALUE;
+        private long             maxTime       = 0;
         private long             lastStartTime = 0;
         private int              runs          = 0;
         private int              state         = STOPPED;
@@ -222,7 +241,10 @@ public class TimeBench
         {
             if (STARTED == state)
             {
-                totalTime += System.currentTimeMillis() - lastStartTime;
+                long runTime = System.currentTimeMillis() - lastStartTime;
+                totalTime += runTime;
+                minTime = Math.min(minTime, runTime);
+                maxTime = Math.max(maxTime, runTime);
                 runs++;
                 state = STOPPED;
             }
@@ -236,6 +258,16 @@ public class TimeBench
         public long getTotalTime()
         {
             return totalTime;
+        }
+
+        public long getMinTime()
+        {
+            return (runs > 0) ? minTime : 0;
+        }
+
+        public long getMaxTime()
+        {
+            return maxTime;
         }
 
         public int getRuns()
