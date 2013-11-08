@@ -13,7 +13,9 @@ import java.util.Set;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.ecore.EObject;
 import org.franca.core.franca.FModel;
+import org.franca.core.franca.FModelElement;
 
 public class FrancaUtils
 {
@@ -325,5 +327,36 @@ public class FrancaUtils
     public static String path2NamespaceString(IPath path)
     {
         return path2NamespaceString(path.toString());
+    }
+
+    public static IPath getFullyQualifiedNameAsPath(EObject object)
+    {
+        if (object instanceof FModelElement)
+        {
+            IPath name = new Path(((FModelElement) object).getName());
+            EObject parent = object.eContainer();
+
+            if (null != parent)
+            {
+                return getFullyQualifiedNameAsPath(parent).append(name);
+            }
+            else
+            {
+                return name;
+            }
+        }
+        else if (object instanceof FModel)
+        {
+            return new Path(((FModel) object).getName());
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public static String getFullyQualifiedName(FModelElement modelElement)
+    {
+        return path2NamespaceString(getFullyQualifiedNameAsPath(modelElement));
     }
 }
