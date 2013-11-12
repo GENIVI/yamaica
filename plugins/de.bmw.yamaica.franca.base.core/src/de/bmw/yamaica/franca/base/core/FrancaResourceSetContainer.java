@@ -53,7 +53,7 @@ public class FrancaResourceSetContainer
         fModels.put(fModel, resource);
     }
 
-    public void addModels(FModel[] fmodels)
+    public void addModels(Collection<FModel> fmodels)
     {
         for (FModel fmodel : fmodels)
         {
