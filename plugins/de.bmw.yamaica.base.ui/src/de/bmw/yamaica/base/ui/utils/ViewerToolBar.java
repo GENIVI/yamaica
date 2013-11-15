@@ -15,6 +15,7 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.action.ToolBarManager;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.CheckStateChangedEvent;
 import org.eclipse.jface.viewers.CheckboxTableViewer;
@@ -57,6 +58,9 @@ public class ViewerToolBar extends Composite implements ICheckStateListener, Pai
     public static final int              DESELECT_ALL_ACTION  = 0x2;
     public static final int              FILTER_ACTION        = 0x4;
     public static final int              REFRESH_ACTION       = 0x8;
+
+    protected static final String        REFRESH_MESSAGE      = "The viewer could not be refreshed correctly. The displayed content may be wrong.";
+    protected static final String        REFRESH_TITLE        = "Warning";
 
     protected HashSet<ActionRunListener> listeners            = new HashSet<ActionRunListener>();
     protected ToolBarManager             toolBarManager       = null;
@@ -665,11 +669,18 @@ public class ViewerToolBar extends Composite implements ICheckStateListener, Pai
         @Override
         public void runWithEvent(Event event)
         {
-            firePreActionRunEvent(this, REFRESH_ACTION);
+            try
+            {
+                firePreActionRunEvent(this, REFRESH_ACTION);
 
-            BusyIndicator.showWhile(getDisplay(), this);
+                BusyIndicator.showWhile(getDisplay(), this);
 
-            firePostActionRunEvent(this, REFRESH_ACTION);
+                firePostActionRunEvent(this, REFRESH_ACTION);
+            }
+            catch (Exception e)
+            {
+                MessageDialog.openWarning(getShell(), REFRESH_TITLE, REFRESH_MESSAGE);
+            }
         }
     }
 
