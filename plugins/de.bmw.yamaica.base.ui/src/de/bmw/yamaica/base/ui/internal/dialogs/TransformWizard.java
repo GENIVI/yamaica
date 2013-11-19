@@ -6,14 +6,14 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 package de.bmw.yamaica.base.ui.internal.dialogs;
 
+import org.eclipse.debug.core.ILaunchConfigurationType;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.ui.IWorkbench;
+
 import de.bmw.yamaica.base.core.launch.ILaunchConfigurationPreparer;
 import de.bmw.yamaica.base.ui.YamaicaUIConstants;
 import de.bmw.yamaica.base.ui.dialogs.YamaicaWizard;
 import de.bmw.yamaica.base.ui.internal.Activator;
-
-import org.eclipse.debug.core.ILaunchConfigurationType;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.ui.IWorkbench;
 
 public class TransformWizard extends YamaicaWizard implements ILaunchWizard
 {
@@ -38,8 +38,8 @@ public class TransformWizard extends YamaicaWizard implements ILaunchWizard
         super.init(workbench, structuredSelection);
 
         setWindowTitle(getDefaultWindowTitle());
-        setDefaultPageImageDescriptor(Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_PLUGIN_ID,
-                YamaicaUIConstants.RUN_ICON_PATH));
+        setDefaultPageImageDescriptor(Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_DEBUG_UI_PLUGIN_ID,
+                YamaicaUIConstants.RUN_WIZARD_BANNER_PATH));
         setForcePreviousAndNextButtons(true);
         setNeedsProgressMonitor(true);
     }

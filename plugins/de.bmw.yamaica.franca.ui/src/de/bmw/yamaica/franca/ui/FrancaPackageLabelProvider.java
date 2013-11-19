@@ -24,9 +24,9 @@ public class FrancaPackageLabelProvider extends ColumnLabelProvider
         // packageImage = Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/package.gif").createImage();
         // packageImage = Activator.imageDescriptorFromPlugin("org.eclipse.pde.ui", "icons/elcl16/package_obj.gif").createImage();
         packageImage = Activator
-                .imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_JDT_UI_PLUGIN_ID, YamaicaUIConstants.PACKAGE_GIF_PATH).createImage();
+                .imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_JDT_UI_PLUGIN_ID, YamaicaUIConstants.PACKAGE_ICON_PATH).createImage();
         normalizedPackageImage = Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_JDT_UI_PLUGIN_ID,
-                YamaicaUIConstants.SHOW_QUALIFIED_GIF_PATH).createImage();
+                YamaicaUIConstants.SHOW_QUALIFIED_ICON_PATH).createImage();
         // normalizedPackageImage = Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/package_normalized.gif").createImage();
     }
 

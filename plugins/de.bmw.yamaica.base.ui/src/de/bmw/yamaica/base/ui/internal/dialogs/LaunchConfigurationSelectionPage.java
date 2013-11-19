@@ -6,11 +6,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 package de.bmw.yamaica.base.ui.internal.dialogs;
 
-import de.bmw.yamaica.base.core.launch.ILaunchConfigurationPreparer;
-import de.bmw.yamaica.base.ui.YamaicaUIConstants;
-import de.bmw.yamaica.base.ui.internal.Activator;
-import de.bmw.yamaica.base.ui.utils.ViewerToolBar;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -66,6 +61,11 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.model.WorkbenchViewerComparator;
+
+import de.bmw.yamaica.base.core.launch.ILaunchConfigurationPreparer;
+import de.bmw.yamaica.base.ui.YamaicaUIConstants;
+import de.bmw.yamaica.base.ui.internal.Activator;
+import de.bmw.yamaica.base.ui.utils.ViewerToolBar;
 
 public class LaunchConfigurationSelectionPage extends WizardPage implements ILaunchConfigurationListener
 {
@@ -249,7 +249,8 @@ public class LaunchConfigurationSelectionPage extends WizardPage implements ILau
 
         restoreWidgetValues();
 
-        PlatformUI.getWorkbench().getHelpSystem().setHelp(parent, Activator.PLUGIN_ID + YamaicaUIConstants.YAMAICA_TRANSFORM_TYPE_SELECTION);
+        PlatformUI.getWorkbench().getHelpSystem()
+                .setHelp(parent, Activator.PLUGIN_ID + YamaicaUIConstants.YAMAICA_TRANSFORM_TYPE_SELECTION);
     }
 
     protected IContentProvider getContentProvider()
@@ -429,7 +430,7 @@ public class LaunchConfigurationSelectionPage extends WizardPage implements ILau
         public ImageDescriptor getImageDescriptor()
         {
             return Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_IDE_PLUGIN_ID,
-                    YamaicaUIConstants.NEWFILE_ICON_GIF_PATH);
+                    YamaicaUIConstants.NEW_FILE_ICON_PATH);
         }
 
         @Override
@@ -481,13 +482,14 @@ public class LaunchConfigurationSelectionPage extends WizardPage implements ILau
         @Override
         public ImageDescriptor getImageDescriptor()
         {
-            return Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_PLUGIN_ID, YamaicaUIConstants.COPY_EDIT_ICON_GIF_PATH);
+            return Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_PLUGIN_ID, YamaicaUIConstants.COPY_EDIT_ICON_PATH);
         }
 
         @Override
         public ImageDescriptor getDisabledImageDescriptor()
         {
-            return Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, YamaicaUIConstants.COPY_DISABLED_ICON_GIF_PATH);
+            return Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_PLUGIN_ID,
+                    YamaicaUIConstants.COPY_EDIT_DISABLED_ICON_PATH);
         }
 
         @Override
@@ -520,14 +522,14 @@ public class LaunchConfigurationSelectionPage extends WizardPage implements ILau
         @Override
         public ImageDescriptor getImageDescriptor()
         {
-            return Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_PLUGIN_ID,
-                    YamaicaUIConstants.DELETE_EDIT_ICON_GIF_PATH);
+            return Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_PLUGIN_ID, YamaicaUIConstants.DELETE_EDIT_ICON_PATH);
         }
 
         @Override
         public ImageDescriptor getDisabledImageDescriptor()
         {
-            return Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, YamaicaUIConstants.DELETE_DISABLED_GIF_PATH);
+            return Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_PLUGIN_ID,
+                    YamaicaUIConstants.DELETE_EDIT_DISABLED_ICON_PATH);
         }
 
         @Override
@@ -553,7 +555,6 @@ public class LaunchConfigurationSelectionPage extends WizardPage implements ILau
         }
     }
 
-    // TODO ICONS
     protected class EditAction extends Action
     {
         private static final String EDIT_LAUNCH_CONFIGURATION = "Edit launch configuration";
@@ -561,13 +562,15 @@ public class LaunchConfigurationSelectionPage extends WizardPage implements ILau
         @Override
         public ImageDescriptor getImageDescriptor()
         {
-            return Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/edit.gif");
+            return Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_TEXTEDITOR_PLUGIN_ID,
+                    YamaicaUIConstants.EDIT_TEMPLATE_ICON_PATH);
         }
 
         @Override
         public ImageDescriptor getDisabledImageDescriptor()
         {
-            return Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/edit_disabled.gif");
+            return Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_TEXTEDITOR_PLUGIN_ID,
+                    YamaicaUIConstants.EDIT_TEMPLATE_DISABLED_ICON_PATH);
         }
 
         @Override
@@ -593,9 +596,9 @@ public class LaunchConfigurationSelectionPage extends WizardPage implements ILau
     // started by the default run menu.
     protected class LaunchJobExecuter implements IRunnableWithProgress
     {
-        private static final String EXECUTING_LAUNCH_JOB_DID_NOT_FINISH_NORMALLY = "Executing launch job did not finish normally.";
-        private static final String EXECUTING_LAUNCH_JOB_WAS_CANCELED = "Executing launch job was canceled.";
-        private static final String EXECUTING_LAUNCH_JOB = "Executing launch job";
+        private static final String          EXECUTING_LAUNCH_JOB_DID_NOT_FINISH_NORMALLY = "Executing launch job did not finish normally.";
+        private static final String          EXECUTING_LAUNCH_JOB_WAS_CANCELED            = "Executing launch job was canceled.";
+        private static final String          EXECUTING_LAUNCH_JOB                         = "Executing launch job";
         protected final ILaunchConfiguration launchConfiguration;
 
         public LaunchJobExecuter(ILaunchConfiguration launchConfiguration)

@@ -31,8 +31,7 @@ public abstract class YamaicaExportWizard extends YamaicaWizard implements IExpo
 
         setNeedsProgressMonitor(true);
         setDefaultPageImageDescriptor(Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_IDE_PLUGIN_ID,
-                YamaicaUIConstants.EXPORT_DIR_ICON_PATH));
-        // setDefaultPageImageDescriptor(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "/icons/exportdir_wiz.png"));
+                YamaicaUIConstants.EXPORT_DIR_WIZARD_BANNER_PATH));
     }
 
     @Override

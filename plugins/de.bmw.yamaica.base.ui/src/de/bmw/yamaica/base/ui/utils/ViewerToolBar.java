@@ -469,14 +469,15 @@ public class ViewerToolBar extends Composite implements ICheckStateListener, Pai
         @Override
         public ImageDescriptor getImageDescriptor()
         {
-            return Activator
-                    .imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_PLUGIN_ID, YamaicaUIConstants.EXPAND_ALL_ICON_GIF_PATH);
+            return Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_DEBUG_UI_PLUGIN_ID,
+                    YamaicaUIConstants.SELECT_ALL_ICON_PATH);
         }
 
         @Override
         public ImageDescriptor getDisabledImageDescriptor()
         {
-            return Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/select_all_disabled.gif");
+            return Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_DEBUG_UI_PLUGIN_ID,
+                    YamaicaUIConstants.SELECT_ALL_DISABLED_ICON_PATH);
         }
 
         @Override
@@ -530,14 +531,15 @@ public class ViewerToolBar extends Composite implements ICheckStateListener, Pai
         @Override
         public ImageDescriptor getImageDescriptor()
         {
-            return Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_PLUGIN_ID,
-                    YamaicaUIConstants.COLLAPSE_ALL_ICON_GIF_PATH);
+            return Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_DEBUG_UI_PLUGIN_ID,
+                    YamaicaUIConstants.DESELECT_ALL_ICON_PATH);
         }
 
         @Override
         public ImageDescriptor getDisabledImageDescriptor()
         {
-            return Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/deselect_all_disabled.gif");
+            return Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_DEBUG_UI_PLUGIN_ID,
+                    YamaicaUIConstants.DESELECT_ALL_DISABLED_ICON_PATH);
         }
 
         @Override
@@ -577,14 +579,14 @@ public class ViewerToolBar extends Composite implements ICheckStateListener, Pai
         @Override
         public ImageDescriptor getImageDescriptor()
         {
-            return Activator
-                    .imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_IDE_PLUGIN_ID, YamaicaUIConstants.FILTER_ICON_GIF_PATH);
+            return Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_IDE_PLUGIN_ID, YamaicaUIConstants.FILTER_ICON_PATH);
         }
 
         @Override
         public ImageDescriptor getDisabledImageDescriptor()
         {
-            return Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/filter_disabled.gif");
+            return Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_IDE_PLUGIN_ID,
+                    YamaicaUIConstants.FILTER_DISABLED_ICON_PATH);
         }
 
         @Override
@@ -625,14 +627,14 @@ public class ViewerToolBar extends Composite implements ICheckStateListener, Pai
         @Override
         public ImageDescriptor getImageDescriptor()
         {
-            return Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_BROWSER_PLUGIN_ID,
-                    YamaicaUIConstants.REFRESH_ICON_GIF_PATH);
+            return Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_BROWSER_PLUGIN_ID, YamaicaUIConstants.REFRESH_ICON_PATH);
         }
 
         @Override
         public ImageDescriptor getDisabledImageDescriptor()
         {
-            return Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/refresh_disabled.gif");
+            return Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_BROWSER_PLUGIN_ID,
+                    YamaicaUIConstants.REFRESH_DISABLED_ICON_PATH);
         }
 
         @Override

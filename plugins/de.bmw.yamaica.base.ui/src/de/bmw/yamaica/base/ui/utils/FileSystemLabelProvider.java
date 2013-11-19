@@ -68,7 +68,7 @@ public class FileSystemLabelProvider extends ColumnLabelProvider
                 {
                     // Fall back if above implementation fails.
                     image = Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_IDE_PLUGIN_ID,
-                            YamaicaUIConstants.FILE_TYPE_ICON_GIF_PATH).createImage();
+                            YamaicaUIConstants.FILE_TYPE_ICON_PATH).createImage();
                 }
 
                 fileImageCache.put(fileExtension, image);
@@ -97,7 +97,7 @@ public class FileSystemLabelProvider extends ColumnLabelProvider
                 {
                     // Fall back if above implementations fail.
                     folderImageCache = Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_IDE_PLUGIN_ID,
-                            YamaicaUIConstants.FOLDER_GIF_PATH).createImage();
+                            YamaicaUIConstants.FOLDER_ICON_PATH).createImage();
                 }
             }
 

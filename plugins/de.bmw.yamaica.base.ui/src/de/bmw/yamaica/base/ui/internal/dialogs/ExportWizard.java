@@ -6,12 +6,12 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 package de.bmw.yamaica.base.ui.internal.dialogs;
 
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.ui.IWorkbench;
+
 import de.bmw.yamaica.base.ui.YamaicaUIConstants;
 import de.bmw.yamaica.base.ui.dialogs.YamaicaWizard;
 import de.bmw.yamaica.base.ui.internal.Activator;
-
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.ui.IWorkbench;
 
 public class ExportWizard extends YamaicaWizard
 {
@@ -29,7 +29,7 @@ public class ExportWizard extends YamaicaWizard
 
         setWindowTitle(YamaicaUIConstants.EXPORT);
         setDefaultPageImageDescriptor(Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_PLUGIN_ID,
-                YamaicaUIConstants.EXPORT_ICON_PATH));
+                YamaicaUIConstants.EXPORT_WIZARD_BANNER_PATH));
         setForcePreviousAndNextButtons(true);
         setNeedsProgressMonitor(true);
     }

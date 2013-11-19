@@ -32,7 +32,7 @@ public abstract class YamaicaImportWizard extends YamaicaWizard implements IImpo
         setNeedsProgressMonitor(true);
         // setDefaultPageImageDescriptor(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "/icons/importdir_wiz.png"));
         setDefaultPageImageDescriptor(Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_IDE_PLUGIN_ID,
-                YamaicaUIConstants.IMPORT_DIR_ICON_PATH));
+                YamaicaUIConstants.IMPORT_DIR_WIZARD_BANNER_PATH));
 
     }
 

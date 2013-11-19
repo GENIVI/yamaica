@@ -31,7 +31,7 @@ public abstract class YamaicaNewFileWizard extends YamaicaWizard implements INew
 
         // setDefaultPageImageDescriptor(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "/icons/newfile_wiz.png"));
         setDefaultPageImageDescriptor(Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_IDE_PLUGIN_ID,
-                YamaicaUIConstants.NEWFILE_ICON_PATH));
+                YamaicaUIConstants.NEW_FILE_WIZARD_BANNER_PATH));
 
     }
 

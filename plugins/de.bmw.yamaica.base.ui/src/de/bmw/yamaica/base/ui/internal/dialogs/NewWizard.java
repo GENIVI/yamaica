@@ -29,7 +29,7 @@ public class NewWizard extends YamaicaWizard
 
         setWindowTitle(YamaicaUIConstants.NEW);
         setDefaultPageImageDescriptor(Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_PLUGIN_ID,
-                YamaicaUIConstants.NEW_ICON_PATH));
+                YamaicaUIConstants.NEW_WIZARD_BANNER_PATH));
         setForcePreviousAndNextButtons(true);
         setNeedsProgressMonitor(true);
     }

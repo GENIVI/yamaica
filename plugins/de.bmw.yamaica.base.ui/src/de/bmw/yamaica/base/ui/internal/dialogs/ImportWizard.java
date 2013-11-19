@@ -29,7 +29,7 @@ public class ImportWizard extends YamaicaWizard
 
         setWindowTitle(YamaicaUIConstants.IMPORT);
         setDefaultPageImageDescriptor(Activator.imageDescriptorFromPlugin(YamaicaUIConstants.ECLIPSE_UI_PLUGIN_ID,
-                YamaicaUIConstants.IMPORT_ICON_PATH));
+                YamaicaUIConstants.IMPORT_WIZARD_BANNER_PATH));
         setForcePreviousAndNextButtons(true);
         setNeedsProgressMonitor(true);
     }

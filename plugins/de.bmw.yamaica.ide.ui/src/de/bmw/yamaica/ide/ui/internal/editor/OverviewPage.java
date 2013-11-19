@@ -6,13 +6,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 package de.bmw.yamaica.ide.ui.internal.editor;
 
-import de.bmw.yamaica.base.core.resourceproperties.IResourcePropertyStore;
-import de.bmw.yamaica.base.core.resourceproperties.YamaicaXmlModel;
-import de.bmw.yamaica.base.ui.internal.dialogs.ExportWizard;
-import de.bmw.yamaica.base.ui.internal.dialogs.ImportWizard;
-import de.bmw.yamaica.base.ui.internal.dialogs.NewWizard;
-import de.bmw.yamaica.base.ui.internal.dialogs.TransformWizard;
-
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
@@ -62,6 +55,13 @@ import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.views.navigator.ResourceComparator;
 
+import de.bmw.yamaica.base.core.resourceproperties.IResourcePropertyStore;
+import de.bmw.yamaica.base.core.resourceproperties.YamaicaXmlModel;
+import de.bmw.yamaica.base.ui.internal.dialogs.ExportWizard;
+import de.bmw.yamaica.base.ui.internal.dialogs.ImportWizard;
+import de.bmw.yamaica.base.ui.internal.dialogs.NewWizard;
+import de.bmw.yamaica.base.ui.internal.dialogs.TransformWizard;
+import de.bmw.yamaica.ide.ui.YamaicaIdeUiConstants;
 import de.bmw.yamaica.ide.ui.internal.Activator;
 
 public class OverviewPage extends FormPage implements Listener
@@ -120,41 +120,44 @@ public class OverviewPage extends FormPage implements Listener
 
         toolkit = managedForm.getToolkit();
         form = managedForm.getForm();
-        form.setText("Import • Edit / Transform / Generate • Export"); //$NON-NLS-1$
-        form.setBackgroundImage(Activator.imageDescriptorFromPlugin("org.eclipse.ui.intro", "icons/form_banner.gif").createImage());
+        form.setText(YamaicaIdeUiConstants.YAMAICA_EDITOR_TITLE); //$NON-NLS-1$
+        form.setBackgroundImage(Activator.imageDescriptorFromPlugin(YamaicaIdeUiConstants.ECLIPSE_UI_INTRO_PLUGIN_ID,
+                YamaicaIdeUiConstants.YAMAICA_EDITOR_BANNER).createImage());
 
         Composite body = form.getBody();
         body.setLayout(new GridLayout(2, true));
 
-        Composite importSectionClient = createSectionClient(body, "Imported Files", "Overview over all imported files.");
+        Composite importSectionClient = createSectionClient(body, YamaicaIdeUiConstants.IMPORTED_FILES_TITLE,
+                YamaicaIdeUiConstants.IMPORTED_FILES_DESCRIPTION);
 
         importFilesTreeViewer = createTreeViewer(importSectionClient);
         importFilesTreeViewer.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 6));
-        importFilesNewButton = createButton(importSectionClient, "New...",
-                "platform:/plugin/org.eclipse.ui.ide/icons/full/etool16/newfile_wiz.gif");
+        importFilesNewButton = createButton(importSectionClient, YamaicaIdeUiConstants.NEW, YamaicaIdeUiConstants.ECLIPSE_UI_IDE_PLUGIN_ID,
+                YamaicaIdeUiConstants.NEW_FILE_ICON_PATH);
         importFilesNewButton.setEnabled(true);
-        importFilesEditButton = createButton(importSectionClient, "Edit...",
-                "platform:/plugin/org.eclipse.ui.workbench.texteditor/icons/full/elcl16/edit_template.gif");
-        importFilesImportButton = createButton(importSectionClient, "Import...",
-                "platform:/plugin/org.eclipse.ui/icons/full/etool16/import_wiz.gif");
+        importFilesEditButton = createButton(importSectionClient, YamaicaIdeUiConstants.EDIT,
+                YamaicaIdeUiConstants.ECLIPSE_TEXTEDITOR_PLUGIN_ID, YamaicaIdeUiConstants.EDIT_TEMPLATE_ICON_PATH);
+        importFilesImportButton = createButton(importSectionClient, YamaicaIdeUiConstants.IMPORT,
+                YamaicaIdeUiConstants.ECLIPSE_UI_IDE_PLUGIN_ID, YamaicaIdeUiConstants.IMPORT_ICON_PATH);
         importFilesImportButton.setEnabled(true);
-        importFilesExportButton = createButton(importSectionClient, "Export...",
-                "platform:/plugin/org.eclipse.ui/icons/full/etool16/export_wiz.gif");
-        importFilesTransformButton = createButton(importSectionClient, "Transform...",
-                "platform:/plugin/org.eclipse.jdt.ui/icons/full/elcl16/javaassist_co.gif");
+        importFilesExportButton = createButton(importSectionClient, YamaicaIdeUiConstants.EXPORT,
+                YamaicaIdeUiConstants.ECLIPSE_UI_IDE_PLUGIN_ID, YamaicaIdeUiConstants.EXPORT_ICON_PATH);
+        importFilesTransformButton = createButton(importSectionClient, YamaicaIdeUiConstants.TRANSFORM,
+                YamaicaIdeUiConstants.ECLIPSE_JDT_UI_PLUGIN_ID, YamaicaIdeUiConstants.TRANSFORM_ICON_PATH);
         importFilesTreeViewer.addSelectionChangedListener(new TreeViewerButtonEnabler(new Button[] { importFilesEditButton,
                 importFilesExportButton, importFilesTransformButton }));
 
         setViewerInput(importFilesTreeViewer, getPropertyValue(IResourcePropertyStore.IMPORT_FOLDER));
 
-        Composite targetSectionClient = createSectionClient(body, "Generated Files", "Overview over all generated files.");
+        Composite targetSectionClient = createSectionClient(body, YamaicaIdeUiConstants.TARGET_FILES_TITLE,
+                YamaicaIdeUiConstants.TARGET_FILES_DESCRIPTION);
 
         targetFilesTreeViewer = createTreeViewer(targetSectionClient);
         targetFilesTreeViewer.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 3));
-        targetFilesEditButton = createButton(targetSectionClient, "Edit...",
-                "platform:/plugin/org.eclipse.ui.workbench.texteditor/icons/full/elcl16/edit_template.gif");
-        targetFilesExportButton = createButton(targetSectionClient, "Export...",
-                "platform:/plugin/org.eclipse.ui/icons/full/etool16/export_wiz.gif");
+        targetFilesEditButton = createButton(targetSectionClient, YamaicaIdeUiConstants.EDIT,
+                YamaicaIdeUiConstants.ECLIPSE_TEXTEDITOR_PLUGIN_ID, YamaicaIdeUiConstants.EDIT_TEMPLATE_ICON_PATH);
+        targetFilesExportButton = createButton(targetSectionClient, YamaicaIdeUiConstants.EXPORT,
+                YamaicaIdeUiConstants.ECLIPSE_UI_IDE_PLUGIN_ID, YamaicaIdeUiConstants.EXPORT_ICON_PATH);
         targetFilesTreeViewer.addSelectionChangedListener(new TreeViewerButtonEnabler(new Button[] { targetFilesEditButton,
                 targetFilesExportButton }));
 
@@ -211,10 +214,10 @@ public class OverviewPage extends FormPage implements Listener
         return treeViewer;
     }
 
-    private Button createButton(Composite parent, String text, String imagePath)
+    private Button createButton(Composite parent, String text, String pluginId, String iconPath)
     {
         Button button = toolkit.createButton(parent, text, SWT.PUSH); //$NON-NLS-1$
-        button.setImage(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, imagePath).createImage());
+        button.setImage(Activator.imageDescriptorFromPlugin(pluginId, iconPath).createImage());
         button.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
         button.setEnabled(false);
         button.addListener(SWT.Selection, this);
@@ -312,7 +315,7 @@ public class OverviewPage extends FormPage implements Listener
 
                     IContentType contentType = Platform.getContentTypeManager().findContentTypeFor(selectedFile.getContents(), filename);
                     IEditorDescriptor editorDescriptor = workbench.getEditorRegistry().getDefaultEditor(filename, contentType);
-                    String editorId = null == editorDescriptor ? "org.eclipse.ui.DefaultTextEditor" : editorDescriptor.getId();
+                    String editorId = null == editorDescriptor ? YamaicaIdeUiConstants.DEFAULT_TEXT_EDITOR_ID : editorDescriptor.getId();
                     workbench.getActiveWorkbenchWindow().getPages()[0].openEditor(new FileEditorInput(selectedFile), editorId);
                 }
                 catch (PartInitException e)
