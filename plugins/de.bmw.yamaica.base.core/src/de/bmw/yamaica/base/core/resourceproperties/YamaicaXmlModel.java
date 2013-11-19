@@ -162,7 +162,20 @@ public class YamaicaXmlModel extends AbstractPropertyChangeSupport implements IR
                 IFolder projectSettingsFolder = project.getFolder(new ProjectScope(project).getLocation().makeRelativeTo(
                         resource.getLocation()));
 
-                return projectSettingsFolder.getFile(Activator.PLUGIN_ID + YamaicaConstants.XML_FILE_EXTENSION);
+                IFile defaultSettingsFile = projectSettingsFolder.getFile(Activator.PLUGIN_ID + "." + YamaicaConstants.XML_FILE_EXTENSION);
+
+                if (defaultSettingsFile.exists())
+                {
+                    return defaultSettingsFile;
+                }
+
+                IFile oldSettingsFile = projectSettingsFolder.getFile(YamaicaConstants.OLD_SETTINGS_FILENAME + "."
+                        + YamaicaConstants.XML_FILE_EXTENSION);
+
+                if (oldSettingsFile.exists())
+                {
+                    return oldSettingsFile;
+                }
             }
         }
 

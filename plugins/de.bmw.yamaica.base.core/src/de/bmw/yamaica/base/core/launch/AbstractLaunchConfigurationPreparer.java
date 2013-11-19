@@ -6,10 +6,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 package de.bmw.yamaica.base.core.launch;
 
-import de.bmw.yamaica.base.core.YamaicaConstants;
-import de.bmw.yamaica.base.core.resourceproperties.IResourcePropertyStore;
-import de.bmw.yamaica.base.core.resourceproperties.YamaicaXmlModel;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -24,6 +20,10 @@ import org.eclipse.debug.core.ILaunchConfigurationType;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.jface.viewers.ISelection;
+
+import de.bmw.yamaica.base.core.YamaicaConstants;
+import de.bmw.yamaica.base.core.resourceproperties.IResourcePropertyStore;
+import de.bmw.yamaica.base.core.resourceproperties.YamaicaXmlModel;
 
 public abstract class AbstractLaunchConfigurationPreparer implements ILaunchConfigurationPreparer
 {
@@ -67,7 +67,7 @@ public abstract class AbstractLaunchConfigurationPreparer implements ILaunchConf
 
             if (filename.equals(targetFilename))
             {
-                outputPath = outputPath.append(targetFilenameWithoutExtension + YamaicaConstants.GEN_FILE_EXTENSION);
+                outputPath = outputPath.append(targetFilenameWithoutExtension + "." + YamaicaConstants.GEN_FILE_EXTENSION);
             }
             else
             {
