@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: yamaica Base Tests
+Bundle-SymbolicName: de.bmw.yamaica.base.tests;singleton:=true
+Bundle-Version: 0.8.0.qualifier
+Bundle-Vendor: BMW Group
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: de.bmw.yamaica.base.tests.utils
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui,
+ org.eclipse.emf.compare,
+ org.junit
