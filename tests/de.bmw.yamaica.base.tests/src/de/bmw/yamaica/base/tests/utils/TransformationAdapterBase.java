@@ -84,7 +84,11 @@ public class TransformationAdapterBase
     public static ResourceSet loadFilesIntoResourceSet(ResourceSet resourceSet, List<URI> files, String[] fileExtensions) throws Exception
     {
         Set<String> fileExtensionsSet = new HashSet<String>();
-        Collections.addAll(fileExtensionsSet, fileExtensions);
+
+        if (null != fileExtensions)
+        {
+            Collections.addAll(fileExtensionsSet, fileExtensions);
+        }
 
         for (URI file : files)
         {
@@ -109,9 +113,9 @@ public class TransformationAdapterBase
         }
     }
 
-    public static List<Diff> compareResourceSets(ResourceSet genResourceSet, ResourceSet refResourceSet)
+    public static List<Diff> compareResourceSets(ResourceSet resourceSet1, ResourceSet resourceSet2)
     {
-        IComparisonScope scope = EMFCompare.createDefaultScope(genResourceSet, refResourceSet);
+        IComparisonScope scope = EMFCompare.createDefaultScope(resourceSet1, resourceSet2);
         Comparison comparison = EMFCompare.builder().build().compare(scope);
 
         return comparison.getDifferences();
