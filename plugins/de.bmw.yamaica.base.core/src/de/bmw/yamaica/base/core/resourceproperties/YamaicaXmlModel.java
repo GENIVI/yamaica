@@ -176,6 +176,8 @@ public class YamaicaXmlModel extends AbstractPropertyChangeSupport implements IR
                 {
                     return oldSettingsFile;
                 }
+
+                return defaultSettingsFile;
             }
         }
 

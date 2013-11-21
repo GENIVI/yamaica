@@ -6,11 +6,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 package de.bmw.yamaica.ide.ui.internal.dialogs;
 
-import de.bmw.yamaica.base.core.YamaicaNature;
-import de.bmw.yamaica.base.core.resourceproperties.IResourcePropertyStore;
-import de.bmw.yamaica.base.core.resourceproperties.YamaicaXmlModel;
-import de.bmw.yamaica.base.ui.dialogs.YamaicaWizard;
-
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.util.ArrayList;
@@ -39,6 +34,10 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 
+import de.bmw.yamaica.base.core.YamaicaNature;
+import de.bmw.yamaica.base.core.resourceproperties.IResourcePropertyStore;
+import de.bmw.yamaica.base.core.resourceproperties.YamaicaXmlModel;
+import de.bmw.yamaica.base.ui.dialogs.YamaicaWizard;
 import de.bmw.yamaica.ide.ui.internal.Activator;
 import de.bmw.yamaica.ide.ui.internal.preferences.Preferences;
 
@@ -279,7 +278,7 @@ public class ProjectWizard extends YamaicaWizard implements INewWizard
             projectDescription.setNatureIds(newNatureIds.toArray(new String[newNatureIds.size()]));
             project.setDescription(projectDescription, monitor);
 
-            IPreferenceStore store = de.bmw.yamaica.base.ui.internal.Activator.getDefault().getPreferenceStore();
+            IPreferenceStore store = Activator.getDefault().getPreferenceStore();
             String yamaicaEditorLinkName = store.getDefaultString(Preferences.YAMAICA_EDITOR_LINK_NAME);
             IFile yamaicaEditorLinkFile = project.getFile(yamaicaEditorLinkName);
 
