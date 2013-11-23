@@ -3,6 +3,7 @@ package de.bmw.yamaica.base.tests.utils;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -22,7 +23,8 @@ import org.eclipse.emf.ecore.util.Diagnostician;
 
 public class EMFHelper
 {
-    public static ResourceSet loadFilesIntoResourceSet(ResourceSet resourceSet, List<URI> files, String[] fileExtensions) throws Exception
+    public static ResourceSet loadFilesIntoResourceSet(ResourceSet resourceSet, List<URI> files, String[] fileExtensions)
+            throws IOException
     {
         Set<String> fileExtensionsSet = new HashSet<String>();
 
@@ -42,7 +44,7 @@ public class EMFHelper
         return resourceSet;
     }
 
-    public static void validateResourceSet(ResourceSet resourceSet) throws Exception
+    public static void validateResourceSet(ResourceSet resourceSet)
     {
         for (Resource resource : resourceSet.getResources())
         {
