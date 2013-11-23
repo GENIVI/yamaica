@@ -50,6 +50,11 @@ public class PathHelper
 
     public static boolean deleteFolder(File folder)
     {
+        if (!folder.exists())
+        {
+            return true;
+        }
+
         for (File childFile : folder.listFiles())
         {
             if (childFile.isDirectory())
