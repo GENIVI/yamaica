@@ -48,6 +48,28 @@ public class PathHelper
         return fileList;
     }
 
+    public static boolean deleteFolder(File folder)
+    {
+        for (File childFile : folder.listFiles())
+        {
+            if (childFile.isDirectory())
+            {
+                deleteFolder(childFile);
+            }
+            else
+            {
+                childFile.delete();
+            }
+        }
+
+        return folder.delete();
+    }
+
+    public static boolean deleteBundleFolder(String bundleId, String bundleRelativePath) throws URISyntaxException, IOException
+    {
+        return deleteFolder(new File(getFileUriFromBundleRelativePath(bundleId, bundleRelativePath).toFileString()));
+    }
+
     public static List<URI> toFileUriList(List<File> files)
     {
         List<URI> fileUriList = new LinkedList<URI>();
