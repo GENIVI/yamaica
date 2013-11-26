@@ -10,7 +10,7 @@ import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.swt.graphics.Image;
 
 import de.bmw.yamaica.common.ui.YamaicaUIConstants;
-import de.bmw.yamaica.franca.base.core.FrancaUtils;
+import de.bmw.yamaica.franca.common.core.FrancaUtils;
 import de.bmw.yamaica.franca.ui.internal.Activator;
 
 public class FrancaPackageLabelProvider extends ColumnLabelProvider

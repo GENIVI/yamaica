@@ -16,7 +16,7 @@ Require-Bundle: org.eclipse.core.filebuffers,
  org.franca.deploymodel.dsl,
  org.franca.generators,
  de.bmw.yamaica.franca.core,
- de.bmw.yamaica.franca.base.core,
+ de.bmw.yamaica.franca.common.core,
  de.bmw.yamaica.common.core,
  de.bmw.yamaica.common.ui
 Bundle-ActivationPolicy: lazy

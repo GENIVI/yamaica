@@ -11,5 +11,5 @@ Require-Bundle: org.eclipse.core.filebuffers;visibility:=reexport,
  org.franca.core;visibility:=reexport,
  org.franca.core.dsl;visibility:=reexport,
  org.franca.deploymodel.dsl;visibility:=reexport,
- de.bmw.yamaica.franca.base.core;visibility:=reexport
+ de.bmw.yamaica.franca.common.core;visibility:=reexport
 Export-Package: de.bmw.yamaica.franca.core

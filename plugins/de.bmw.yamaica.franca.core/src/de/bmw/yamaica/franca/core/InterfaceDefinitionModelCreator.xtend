@@ -6,7 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
  package de.bmw.yamaica.franca.core
 
-import de.bmw.yamaica.franca.base.core.InterfaceDefinitionKeyword
+import de.bmw.yamaica.franca.common.core.InterfaceDefinitionKeyword
 import org.franca.core.franca.FBasicTypeId
 import org.franca.core.franca.FType
 import org.franca.core.franca.FrancaFactory

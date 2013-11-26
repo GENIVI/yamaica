@@ -30,7 +30,7 @@ import org.franca.deploymodel.dsl.fDeploy.FDPropertyHost;
 
 import de.bmw.yamaica.common.ui.dialogs.YamaicaWizardNewFilePage;
 import de.bmw.yamaica.common.ui.utils.ViewerToolBar;
-import de.bmw.yamaica.franca.base.core.FrancaUtils;
+import de.bmw.yamaica.franca.common.core.FrancaUtils;
 
 public class DeploymentSpecificationNewPage extends YamaicaWizardNewFilePage
 {

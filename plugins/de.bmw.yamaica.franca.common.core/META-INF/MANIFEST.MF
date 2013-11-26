@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Yamaica Franca Base Core Components
-Bundle-SymbolicName: de.bmw.yamaica.franca.base.core
+Bundle-Name: Yamaica Franca Common Core Components
+Bundle-SymbolicName: de.bmw.yamaica.franca.common.core
 Bundle-Version: 0.8.0.qualifier
 Bundle-Vendor: BMW Group
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
@@ -10,4 +10,4 @@ Require-Bundle: org.eclipse.core.runtime;visibility:=reexport,
  org.franca.core.dsl;visibility:=reexport,
  org.franca.deploymodel.dsl;visibility:=reexport,
  de.bmw.yamaica.common.core;visibility:=reexport
-Export-Package: de.bmw.yamaica.franca.base.core
+Export-Package: de.bmw.yamaica.franca.common.core

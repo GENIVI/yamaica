@@ -16,7 +16,7 @@ import org.eclipse.ui.IWorkbench;
 
 import de.bmw.yamaica.common.ui.dialogs.YamaicaWizardExportPage;
 import de.bmw.yamaica.common.ui.utils.FileSystemExportOperation;
-import de.bmw.yamaica.franca.base.core.YamaicaFrancaConstants;
+import de.bmw.yamaica.franca.common.core.YamaicaFrancaConstants;
 
 public class ExportPage extends YamaicaWizardExportPage
 {
