@@ -57,12 +57,12 @@
       <feature id="org.eclipse.equinox.p2.extras.feature"/>
       <feature id="org.eclipse.emf.ecore.edit"/>
       <feature id="de.bmw.yamaica.base"/>
+      <feature id="de.bmw.emf.fibex.feature"/>
       <feature id="org.eclipse.emf.ecore.editor"/>
       <feature id="org.eclipse.xtend.dependencies"/>
       <feature id="org.eclipse.platform"/>
       <feature id="org.eclipse.emf.mwe.ui"/>
       <feature id="org.eclipse.help"/>
-      <feature id="model.emf.fibexxml.feature"/>
       <feature id="org.eclipse.emf.codegen.ecore"/>
       <feature id="org.eclipse.xtext.xbase.lib.source"/>
       <feature id="org.franca.feature"/>
