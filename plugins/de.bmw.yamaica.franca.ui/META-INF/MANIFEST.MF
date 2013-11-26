@@ -17,8 +17,8 @@ Require-Bundle: org.eclipse.core.filebuffers,
  org.franca.generators,
  de.bmw.yamaica.franca.core,
  de.bmw.yamaica.franca.base.core,
- de.bmw.yamaica.base.core,
- de.bmw.yamaica.base.ui
+ de.bmw.yamaica.common.core,
+ de.bmw.yamaica.common.ui
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: de.bmw.yamaica.franca.ui,

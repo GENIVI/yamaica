@@ -26,8 +26,8 @@ import org.franca.generators.FrancaGenerators;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-import de.bmw.yamaica.base.core.utils.ResourceUtils;
-import de.bmw.yamaica.base.ui.YamaicaUIConstants;
+import de.bmw.yamaica.common.core.utils.ResourceUtils;
+import de.bmw.yamaica.common.ui.YamaicaUIConstants;
 
 public class HtmlExportOperation implements IRunnableWithProgress
 {

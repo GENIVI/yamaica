@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.resource.SynchronizedXtextResourceSet;
 import org.franca.deploymodel.dsl.fDeploy.FDModel;
 
-import de.bmw.yamaica.base.ui.utils.AbstractFileCreationOperation;
+import de.bmw.yamaica.common.ui.utils.AbstractFileCreationOperation;
 import de.bmw.yamaica.franca.core.DeploymentDefinitionModelCreator;
 
 public class DeploymentDefinitionCreationOperation extends AbstractFileCreationOperation

@@ -9,7 +9,7 @@ package de.bmw.yamaica.ide.ui.internal.preferences;
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
 
-import de.bmw.yamaica.base.core.YamaicaConstants;
+import de.bmw.yamaica.common.core.YamaicaConstants;
 import de.bmw.yamaica.ide.ui.internal.Activator;
 
 /**

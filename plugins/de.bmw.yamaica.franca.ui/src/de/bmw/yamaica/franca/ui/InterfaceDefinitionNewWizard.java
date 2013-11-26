@@ -6,7 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 package de.bmw.yamaica.franca.ui;
 
-import de.bmw.yamaica.base.ui.dialogs.YamaicaNewFileWizard;
+import de.bmw.yamaica.common.ui.dialogs.YamaicaNewFileWizard;
 
 public class InterfaceDefinitionNewWizard extends YamaicaNewFileWizard
 {

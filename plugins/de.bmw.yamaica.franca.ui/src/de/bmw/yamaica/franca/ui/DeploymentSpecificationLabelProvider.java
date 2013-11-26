@@ -13,7 +13,7 @@ import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.franca.deploymodel.dsl.fDeploy.FDPropertyHost;
 
-import de.bmw.yamaica.base.ui.YamaicaUIConstants;
+import de.bmw.yamaica.common.ui.YamaicaUIConstants;
 import de.bmw.yamaica.franca.ui.internal.Activator;
 
 class DeploymentSpecificationLabelProvider extends ColumnLabelProvider

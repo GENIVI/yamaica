@@ -19,13 +19,13 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.ui.IWorkbench;
 
-import de.bmw.yamaica.base.ui.utils.ExtendedStringFieldEditor;
+import de.bmw.yamaica.common.ui.utils.ExtendedStringFieldEditor;
 import de.bmw.yamaica.ide.ui.internal.Activator;
 import de.bmw.yamaica.ide.ui.internal.preferences.Preferences;
 
 public class ProjectSettingsPage extends WizardPage
 {
-    private IPreferenceStore baseStore = de.bmw.yamaica.base.ui.Preferences.getPreferenceStore();
+    private IPreferenceStore baseStore = de.bmw.yamaica.common.ui.Preferences.getPreferenceStore();
     private IPreferenceStore store     = Activator.getDefault().getPreferenceStore();
     private ExtendedStringFieldEditor importDirectoryFieldEditor, targetDirectoryFieldEditor;
     private BooleanFieldEditor        createEditorLinkFieldEditor;
@@ -50,7 +50,7 @@ public class ProjectSettingsPage extends WizardPage
         projectSettings.setText("Project settings");
         projectSettings.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
 
-        importDirectoryFieldEditor = new ExtendedStringFieldEditor(de.bmw.yamaica.base.ui.Preferences.IMPORT_FOLDER, "Import folder:",
+        importDirectoryFieldEditor = new ExtendedStringFieldEditor(de.bmw.yamaica.common.ui.Preferences.IMPORT_FOLDER, "Import folder:",
                 projectSettings);
         importDirectoryFieldEditor.setPreferenceStore(baseStore);
         importDirectoryFieldEditor.setPage(this);
@@ -68,7 +68,7 @@ public class ProjectSettingsPage extends WizardPage
         importDirectoryFieldEditor.fillIntoGrid(projectSettings, 2);
         importDirectoryFieldEditor.load();
 
-        targetDirectoryFieldEditor = new ExtendedStringFieldEditor(de.bmw.yamaica.base.ui.Preferences.TARGET_FOLDER, "Target folder:",
+        targetDirectoryFieldEditor = new ExtendedStringFieldEditor(de.bmw.yamaica.common.ui.Preferences.TARGET_FOLDER, "Target folder:",
                 projectSettings);
         targetDirectoryFieldEditor.setPreferenceStore(baseStore);
         targetDirectoryFieldEditor.setPage(this);
@@ -105,7 +105,7 @@ public class ProjectSettingsPage extends WizardPage
             return importDirectoryFieldEditor.getStringValue();
         }
 
-        return baseStore.getString(de.bmw.yamaica.base.ui.Preferences.IMPORT_FOLDER);
+        return baseStore.getString(de.bmw.yamaica.common.ui.Preferences.IMPORT_FOLDER);
     }
 
     String getTargetDirectoryPath()
@@ -115,7 +115,7 @@ public class ProjectSettingsPage extends WizardPage
             return targetDirectoryFieldEditor.getStringValue();
         }
 
-        return baseStore.getString(de.bmw.yamaica.base.ui.Preferences.TARGET_FOLDER);
+        return baseStore.getString(de.bmw.yamaica.common.ui.Preferences.TARGET_FOLDER);
     }
 
     boolean getCreateEditorLink()

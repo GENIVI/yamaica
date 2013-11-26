@@ -6,7 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 package de.bmw.yamaica.ide.ui;
 
-import de.bmw.yamaica.base.ui.YamaicaUIConstants;
+import de.bmw.yamaica.common.ui.YamaicaUIConstants;
 
 public interface YamaicaIdeUiConstants extends YamaicaUIConstants
 {

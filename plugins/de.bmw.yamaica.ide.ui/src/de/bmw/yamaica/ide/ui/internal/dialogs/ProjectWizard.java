@@ -34,10 +34,10 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 
-import de.bmw.yamaica.base.core.YamaicaNature;
-import de.bmw.yamaica.base.core.resourceproperties.IResourcePropertyStore;
-import de.bmw.yamaica.base.core.resourceproperties.YamaicaXmlModel;
-import de.bmw.yamaica.base.ui.dialogs.YamaicaWizard;
+import de.bmw.yamaica.common.core.YamaicaNature;
+import de.bmw.yamaica.common.core.resourceproperties.IResourcePropertyStore;
+import de.bmw.yamaica.common.core.resourceproperties.YamaicaXmlModel;
+import de.bmw.yamaica.common.ui.dialogs.YamaicaWizard;
 import de.bmw.yamaica.ide.ui.internal.Activator;
 import de.bmw.yamaica.ide.ui.internal.preferences.Preferences;
 
@@ -199,7 +199,7 @@ public class ProjectWizard extends YamaicaWizard implements INewWizard
             projectDescription.setNatureIds(newNatureIds.toArray(new String[newNatureIds.size()]));
             project.setDescription(projectDescription, monitor);
 
-            IPreferenceStore baseStore = de.bmw.yamaica.base.ui.Preferences.getPreferenceStore();
+            IPreferenceStore baseStore = de.bmw.yamaica.common.ui.Preferences.getPreferenceStore();
             IPreferenceStore store = Activator.getDefault().getPreferenceStore();
             YamaicaXmlModel model = YamaicaXmlModel.acquireInstance(project, project);
             IResourcePropertyStore resourcePropertyStore = model.getResourcePropertyStore(project);
@@ -208,13 +208,13 @@ public class ProjectWizard extends YamaicaWizard implements INewWizard
 
             if (null == importFolderPathAsString)
             {
-                importFolderPathAsString = baseStore.getString(de.bmw.yamaica.base.ui.Preferences.IMPORT_FOLDER);
+                importFolderPathAsString = baseStore.getString(de.bmw.yamaica.common.ui.Preferences.IMPORT_FOLDER);
                 resourcePropertyStore.setProperty(IResourcePropertyStore.IMPORT_FOLDER, importFolderPathAsString);
             }
 
             if (null == targetFolderPathAsString)
             {
-                targetFolderPathAsString = baseStore.getString(de.bmw.yamaica.base.ui.Preferences.TARGET_FOLDER);
+                targetFolderPathAsString = baseStore.getString(de.bmw.yamaica.common.ui.Preferences.TARGET_FOLDER);
                 resourcePropertyStore.setProperty(IResourcePropertyStore.TARGET_FOLDER, targetFolderPathAsString);
             }
 

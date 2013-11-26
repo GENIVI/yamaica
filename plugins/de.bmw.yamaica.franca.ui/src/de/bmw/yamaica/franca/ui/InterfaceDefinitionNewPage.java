@@ -28,7 +28,7 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbench;
 
-import de.bmw.yamaica.base.ui.dialogs.YamaicaWizardNewFilePage;
+import de.bmw.yamaica.common.ui.dialogs.YamaicaWizardNewFilePage;
 import de.bmw.yamaica.franca.base.core.FrancaUtils;
 
 public class InterfaceDefinitionNewPage extends YamaicaWizardNewFilePage implements ISelectionChangedListener

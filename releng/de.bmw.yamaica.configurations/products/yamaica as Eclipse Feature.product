@@ -35,6 +35,7 @@
       <feature id="org.eclipse.xtend"/>
       <feature id="org.eclipse.xtext.ui.source"/>
       <feature id="org.eclipse.xtend.ui"/>
+      <feature id="de.bmw.yamaica.common"/>
       <feature id="org.eclipse.xtext.xtext.ui.source"/>
       <feature id="org.eclipse.xtext.xbase.lib"/>
       <feature id="org.eclipse.emf.ecore"/>
@@ -50,13 +51,13 @@
       <feature id="org.eclipse.emf.converter"/>
       <feature id="org.eclipse.draw2d"/>
       <feature id="org.eclipse.xtext.examples.source"/>
+      <feature id="de.bmw.emf.eaxmi.feature"/>
       <feature id="org.eclipse.xtext.xbase.source"/>
       <feature id="org.eclipse.emf.common"/>
       <feature id="org.eclipse.xtext.examples"/>
       <feature id="org.eclipse.emf.common.ui"/>
       <feature id="org.eclipse.equinox.p2.extras.feature"/>
       <feature id="org.eclipse.emf.ecore.edit"/>
-      <feature id="de.bmw.yamaica.base"/>
       <feature id="de.bmw.emf.fibex.feature"/>
       <feature id="org.eclipse.emf.ecore.editor"/>
       <feature id="org.eclipse.xtend.dependencies"/>
@@ -83,7 +84,7 @@
    </features>
 
    <configurations>
-      <plugin id="de.bmw.yamaica.base.core.resourceobserver" autoStart="true" startLevel="0" />
+      <plugin id="de.bmw.yamaica.common.core.resourceobserver" autoStart="true" startLevel="0" />
       <plugin id="de.bmw.yamaica.ide.ui.workbenchobserver" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />

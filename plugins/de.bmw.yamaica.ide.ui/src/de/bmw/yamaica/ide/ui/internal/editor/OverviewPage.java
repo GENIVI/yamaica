@@ -55,12 +55,12 @@ import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.views.navigator.ResourceComparator;
 
-import de.bmw.yamaica.base.core.resourceproperties.IResourcePropertyStore;
-import de.bmw.yamaica.base.core.resourceproperties.YamaicaXmlModel;
-import de.bmw.yamaica.base.ui.internal.dialogs.ExportWizard;
-import de.bmw.yamaica.base.ui.internal.dialogs.ImportWizard;
-import de.bmw.yamaica.base.ui.internal.dialogs.NewWizard;
-import de.bmw.yamaica.base.ui.internal.dialogs.TransformWizard;
+import de.bmw.yamaica.common.core.resourceproperties.IResourcePropertyStore;
+import de.bmw.yamaica.common.core.resourceproperties.YamaicaXmlModel;
+import de.bmw.yamaica.common.ui.internal.dialogs.ExportWizard;
+import de.bmw.yamaica.common.ui.internal.dialogs.ImportWizard;
+import de.bmw.yamaica.common.ui.internal.dialogs.NewWizard;
+import de.bmw.yamaica.common.ui.internal.dialogs.TransformWizard;
 import de.bmw.yamaica.ide.ui.YamaicaIdeUiConstants;
 import de.bmw.yamaica.ide.ui.internal.Activator;
 
@@ -294,7 +294,7 @@ public class OverviewPage extends FormPage implements Listener
         Assert.isNotNull(propertyName);
 
         return store.getProperty(propertyName,
-                de.bmw.yamaica.base.ui.internal.Activator.getDefault().getPreferenceStore().getString(propertyName));
+                de.bmw.yamaica.common.ui.internal.Activator.getDefault().getPreferenceStore().getString(propertyName));
     }
 
     private void openEditor(ISelection selection)

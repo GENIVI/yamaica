@@ -12,7 +12,7 @@
       <image
             icon="icons/yamaica_nature.gif"
             id="de.bmw.yamaica.ide.ui.projectNatureImage"
-            natureId="de.bmw.yamaica.base.core.yamaicanature">
+            natureId="de.bmw.yamaica.common.core.yamaicanature">
       </image>
    </extension>
    <extension
@@ -62,7 +62,7 @@
             class="de.bmw.yamaica.ide.ui.internal.editor.YamaicaEditor"
             default="true"
             filenames="yamaica.xml"
-            icon="platform:/plugin/de.bmw.yamaica.base.ui/icons/yamaica.png"
+            icon="platform:/plugin/de.bmw.yamaica.common.ui/icons/yamaica.png"
             id="de.bmw.yamaica.ide.ui.editor"
             name="yamaica Editor">
       </editor>
@@ -71,7 +71,7 @@
          point="org.eclipse.ui.perspectives">
       <perspective
             class="de.bmw.yamaica.ide.ui.internal.perspectives.MainPerspective"
-            icon="platform:/plugin/de.bmw.yamaica.base.ui/icons/yamaica.png"
+            icon="platform:/plugin/de.bmw.yamaica.common.ui/icons/yamaica.png"
             id="de.bmw.yamaica.ide.ui.mainPerspective"
             name="yamaica">
       </perspective>
@@ -227,7 +227,7 @@
                      </adapt>
                      <test
                         property="org.eclipse.core.resources.projectNature"
-                        value="de.bmw.yamaica.base.core.yamaicanature">
+                        value="de.bmw.yamaica.common.core.yamaicanature">
                      </test>
                   </iterate>
                </and>
@@ -251,7 +251,7 @@
                      <not>
                         <test
                               property="org.eclipse.core.resources.projectNature"
-                              value="de.bmw.yamaica.base.core.yamaicanature">
+                              value="de.bmw.yamaica.common.core.yamaicanature">
                         </test>
                      </not>
                   </iterate>
@@ -264,7 +264,7 @@
          point="org.eclipse.ui.newWizards">
       <wizard
             canFinishEarly="false"
-            category="de.bmw.yamaica.base.ui.newCategory"
+            category="de.bmw.yamaica.common.ui.newCategory"
             class="de.bmw.yamaica.ide.ui.internal.dialogs.ProjectWizard"
             finalPerspective="de.bmw.yamaica.ide.ui.mainPerspective"
             hasPages="true"

@@ -23,8 +23,8 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 import org.eclipse.ui.PlatformUI;
 
-import de.bmw.yamaica.base.ui.YamaicaUIConstants;
-import de.bmw.yamaica.base.ui.utils.ExtendedStringFieldEditor;
+import de.bmw.yamaica.common.ui.YamaicaUIConstants;
+import de.bmw.yamaica.common.ui.utils.ExtendedStringFieldEditor;
 import de.bmw.yamaica.ide.ui.internal.Activator;
 
 /**
@@ -62,7 +62,7 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
     {
         PlatformUI.getWorkbench().getHelpSystem().setHelp(parent, Activator.PLUGIN_ID + YAMAICA_PREFERENCES_CONTEXT);
 
-        IPreferenceStore store = de.bmw.yamaica.base.ui.Preferences.getPreferenceStore();
+        IPreferenceStore store = de.bmw.yamaica.common.ui.Preferences.getPreferenceStore();
 
         GridLayout gridLayout = new GridLayout(1, false);
         gridLayout.marginWidth = gridLayout.marginHeight = 0;
@@ -73,13 +73,13 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
         consoleSettings.setText("Console settings");
         consoleSettings.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
 
-        redirectStreamsFieldEditor = new BooleanFieldEditor(de.bmw.yamaica.base.ui.Preferences.REDIRECT_SYSTEM_STREAMS,
+        redirectStreamsFieldEditor = new BooleanFieldEditor(de.bmw.yamaica.common.ui.Preferences.REDIRECT_SYSTEM_STREAMS,
                 REDIRECT_SYSTEM_STREAMS_TO_BUILT_IN_CONSOLE, consoleSettings);
         redirectStreamsFieldEditor.setPreferenceStore(store);
         redirectStreamsFieldEditor.setPage(this);
         redirectStreamsFieldEditor.load();
 
-        limitConsoleOutputFieldEditor = new BooleanFieldEditor(de.bmw.yamaica.base.ui.Preferences.LIMIT_CONSOLE_OUTPUT,
+        limitConsoleOutputFieldEditor = new BooleanFieldEditor(de.bmw.yamaica.common.ui.Preferences.LIMIT_CONSOLE_OUTPUT,
                 LIMIT_CONSOLE_OUTPUT2, consoleSettings);
         limitConsoleOutputFieldEditor.setPreferenceStore(store);
         limitConsoleOutputFieldEditor.setPage(this);
@@ -91,7 +91,7 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
         projectSettings.setText("Project settings");
         projectSettings.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
 
-        importDirectoryFieldEditor = new ExtendedStringFieldEditor(de.bmw.yamaica.base.ui.Preferences.IMPORT_FOLDER,
+        importDirectoryFieldEditor = new ExtendedStringFieldEditor(de.bmw.yamaica.common.ui.Preferences.IMPORT_FOLDER,
                 IMPORT_FOLDER_BUTTON_TEXT, projectSettings);
         importDirectoryFieldEditor.setPreferenceStore(store);
         importDirectoryFieldEditor.setPage(this);
@@ -108,7 +108,7 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
         importDirectoryFieldEditor.fillIntoGrid(projectSettings, 2);
         importDirectoryFieldEditor.load();
 
-        targetDirectoryFieldEditor = new ExtendedStringFieldEditor(de.bmw.yamaica.base.ui.Preferences.TARGET_FOLDER,
+        targetDirectoryFieldEditor = new ExtendedStringFieldEditor(de.bmw.yamaica.common.ui.Preferences.TARGET_FOLDER,
                 TARGET_FOLDER_BUTTON_TEXT, projectSettings);
         targetDirectoryFieldEditor.setPreferenceStore(store);
         targetDirectoryFieldEditor.setPage(this);

@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: yamaica Base Documentation
-Bundle-SymbolicName: de.bmw.yamaica.base.doc;singleton:=true
-Bundle-Version: 0.8.0.qualifier
-Bundle-Vendor: BMW Group

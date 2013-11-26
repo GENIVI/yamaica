@@ -9,7 +9,7 @@ package de.bmw.yamaica.franca.ui;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.swt.graphics.Image;
 
-import de.bmw.yamaica.base.ui.YamaicaUIConstants;
+import de.bmw.yamaica.common.ui.YamaicaUIConstants;
 import de.bmw.yamaica.franca.base.core.FrancaUtils;
 import de.bmw.yamaica.franca.ui.internal.Activator;
 

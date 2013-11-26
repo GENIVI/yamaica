@@ -115,7 +115,7 @@
                      type="org.eclipse.core.resources.IResource">
                   <test
                         property="org.eclipse.core.resources.projectNature"
-                        value="de.bmw.yamaica.base.core.yamaicanature">
+                        value="de.bmw.yamaica.common.core.yamaicanature">
                   </test>
                </adapt>
             </or>
@@ -131,7 +131,7 @@
                      type="org.eclipse.core.resources.IResource">
                   <test
                         property="org.eclipse.core.resources.projectNature"
-                        value="de.bmw.yamaica.base.core.yamaicanature">
+                        value="de.bmw.yamaica.common.core.yamaicanature">
                   </test>
                </adapt>
             </or>
@@ -147,7 +147,7 @@
                      type="org.eclipse.core.resources.IResource">
                   <test
                         property="org.eclipse.core.resources.projectNature"
-                        value="de.bmw.yamaica.base.core.yamaicanature">
+                        value="de.bmw.yamaica.common.core.yamaicanature">
                   </test>
                </adapt>
             </or>
@@ -163,7 +163,7 @@
                      type="org.eclipse.core.resources.IResource">
                   <test
                         property="org.eclipse.core.resources.projectNature"
-                        value="de.bmw.yamaica.base.core.yamaicanature">
+                        value="de.bmw.yamaica.common.core.yamaicanature">
                   </test>
                </adapt>
             </or>
@@ -179,7 +179,7 @@
                      type="org.eclipse.core.resources.IFile">
                   <test
                         property="org.eclipse.core.resources.projectNature"
-                        value="de.bmw.yamaica.base.core.yamaicanature">
+                        value="de.bmw.yamaica.common.core.yamaicanature">
                   </test>
                   <or>
                      <test
@@ -196,7 +196,7 @@
                      type="org.eclipse.core.resources.IContainer">
                   <test
                         property="org.eclipse.core.resources.projectNature"
-                        value="de.bmw.yamaica.base.core.yamaicanature">
+                        value="de.bmw.yamaica.common.core.yamaicanature">
                   </test>
                </adapt>
             </or>
@@ -212,7 +212,7 @@
                      type="org.eclipse.core.resources.IFile">
                   <test
                         property="org.eclipse.core.resources.projectNature"
-                        value="de.bmw.yamaica.base.core.yamaicanature">
+                        value="de.bmw.yamaica.common.core.yamaicanature">
                   </test>
                   <test
                         property="org.eclipse.core.resources.name"
@@ -223,7 +223,7 @@
                      type="org.eclipse.core.resources.IContainer">
                   <test
                         property="org.eclipse.core.resources.projectNature"
-                        value="de.bmw.yamaica.base.core.yamaicanature">
+                        value="de.bmw.yamaica.common.core.yamaicanature">
                   </test>
                </adapt>
             </or>
@@ -231,7 +231,7 @@
       </commonWizard>
    </extension>
    <extension
-         point="de.bmw.yamaica.base.ui.yamaicaExportWizards">
+         point="de.bmw.yamaica.common.ui.yamaicaExportWizards">
       <wizard
             exportWizardId="de.bmw.yamaica.franca.ui.exportWizard">
       </wizard>
@@ -240,13 +240,13 @@
       </wizard>
    </extension>
    <extension
-         point="de.bmw.yamaica.base.ui.yamaicaImportWizards">
+         point="de.bmw.yamaica.common.ui.yamaicaImportWizards">
       <wizard
             importWizardId="de.bmw.yamaica.franca.ui.importWizard">
       </wizard>
    </extension>
    <extension
-         point="de.bmw.yamaica.base.ui.yamaicaNewWizards">
+         point="de.bmw.yamaica.common.ui.yamaicaNewWizards">
       <wizard
             newWizardId="de.bmw.yamaica.franca.ui.interfaceDefinitionNewWizard">
       </wizard>

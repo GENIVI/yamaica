@@ -20,7 +20,7 @@ import org.eclipse.xtext.resource.SynchronizedXtextResourceSet;
 import org.franca.deploymodel.dsl.fDeploy.FDModel;
 import org.franca.deploymodel.dsl.fDeploy.FDPropertyHost;
 
-import de.bmw.yamaica.base.ui.utils.AbstractFileCreationOperation;
+import de.bmw.yamaica.common.ui.utils.AbstractFileCreationOperation;
 import de.bmw.yamaica.franca.core.DeploymentDescriptionModelCreator;
 
 public class DeploymentDescriptionCreationOperation extends AbstractFileCreationOperation

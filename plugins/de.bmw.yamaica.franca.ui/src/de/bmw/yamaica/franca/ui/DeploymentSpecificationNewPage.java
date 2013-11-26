@@ -28,8 +28,8 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbench;
 import org.franca.deploymodel.dsl.fDeploy.FDPropertyHost;
 
-import de.bmw.yamaica.base.ui.dialogs.YamaicaWizardNewFilePage;
-import de.bmw.yamaica.base.ui.utils.ViewerToolBar;
+import de.bmw.yamaica.common.ui.dialogs.YamaicaWizardNewFilePage;
+import de.bmw.yamaica.common.ui.utils.ViewerToolBar;
 import de.bmw.yamaica.franca.base.core.FrancaUtils;
 
 public class DeploymentSpecificationNewPage extends YamaicaWizardNewFilePage

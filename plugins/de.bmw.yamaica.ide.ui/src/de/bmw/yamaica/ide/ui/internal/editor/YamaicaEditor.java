@@ -51,8 +51,8 @@ public class YamaicaEditor extends FormEditor implements IResourceChangeListener
     {
         try
         {
-            overviewPage = new OverviewPage(this, "de.bmw.yamaica.base.core.editor.main", "Overview");
-            textEditorPage = new RawTextPage(this, "de.bmw.yamaica.base.core.editor.raw");
+            overviewPage = new OverviewPage(this, "de.bmw.yamaica.common.core.editor.main", "Overview");
+            textEditorPage = new RawTextPage(this, "de.bmw.yamaica.common.core.editor.raw");
 
             addPage(overviewPage);
 

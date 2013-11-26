@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.resource.URIConverter;
 import org.franca.core.franca.FModel;
 import org.franca.deploymodel.dsl.fDeploy.FDModel;
 
-import de.bmw.yamaica.base.core.YamaicaConstants;
+import de.bmw.yamaica.common.core.YamaicaConstants;
 
 public class FrancaResourceSetContainer
 {

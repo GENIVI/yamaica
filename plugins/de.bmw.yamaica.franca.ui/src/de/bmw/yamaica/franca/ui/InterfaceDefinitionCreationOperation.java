@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.resource.SynchronizedXtextResourceSet;
 import org.franca.core.franca.FModel;
 
-import de.bmw.yamaica.base.ui.utils.AbstractFileCreationOperation;
+import de.bmw.yamaica.common.ui.utils.AbstractFileCreationOperation;
 import de.bmw.yamaica.franca.core.InterfaceDefinitionModelCreator;
 
 public class InterfaceDefinitionCreationOperation extends AbstractFileCreationOperation

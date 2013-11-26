@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: yamaica Common UI Components
+Bundle-SymbolicName: de.bmw.yamaica.common.ui;singleton:=true
+Bundle-Version: 0.8.0.qualifier
+Bundle-Vendor: BMW Group
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: de.bmw.yamaica.common.ui,
+ de.bmw.yamaica.common.ui.dialogs,
+ de.bmw.yamaica.common.ui.internal;x-friends:="de.bmw.yamaica.ide.ui",
+ de.bmw.yamaica.common.ui.internal.dialogs;x-friends:="de.bmw.yamaica.ide.ui",
+ de.bmw.yamaica.common.ui.internal.preferences;x-friends:="de.bmw.yamaica.ide.ui",
+ de.bmw.yamaica.common.ui.launch,
+ de.bmw.yamaica.common.ui.utils
+Require-Bundle: org.eclipse.core.filebuffers;visibility:=reexport,
+ org.eclipse.debug.ui;visibility:=reexport,
+ org.eclipse.ui;visibility:=reexport,
+ org.eclipse.ui.ide;visibility:=reexport,
+ org.eclipse.jface;visibility:=reexport,
+ de.bmw.yamaica.common.core;visibility:=reexport,
+ org.eclipse.ui.console;visibility:=reexport
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: de.bmw.yamaica.common.ui.internal.Activator

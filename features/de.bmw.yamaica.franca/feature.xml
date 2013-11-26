@@ -4,8 +4,8 @@
       label="yamaica Franca Components"
       version="0.8.0.qualifier"
       provider-name="BMW Group"
-      plugin="de.bmw.yamaica.base.ui"
-      license-feature="de.bmw.yamaica.base"
+      plugin="de.bmw.yamaica.common.ui"
+      license-feature="de.bmw.yamaica.common"
       license-feature-version="0.8.0.qualifier">
 
    <description>
@@ -37,7 +37,7 @@ All rights reserved.
       <import feature="org.eclipse.xtend.sdk" version="2.4.1.v201304180855" match="compatible"/>
       <import feature="org.eclipse.xtext.sdk" version="2.4.1.v201304180855" match="compatible"/>
       <import feature="org.eclipse.draw2d" version="3.9.0.201212170307" match="compatible"/>
-      <import feature="de.bmw.yamaica.base" version="0.8.0" match="compatible"/>
+      <import feature="de.bmw.yamaica.common" version="0.8.0" match="compatible"/>
    </requires>
 
    <plugin

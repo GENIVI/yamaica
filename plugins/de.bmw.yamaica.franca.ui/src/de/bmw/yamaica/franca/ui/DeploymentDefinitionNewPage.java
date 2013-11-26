@@ -11,7 +11,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbench;
 
-import de.bmw.yamaica.base.ui.dialogs.YamaicaWizardNewFilePage;
+import de.bmw.yamaica.common.ui.dialogs.YamaicaWizardNewFilePage;
 import de.bmw.yamaica.franca.base.core.FrancaUtils;
 
 public class DeploymentDefinitionNewPage extends YamaicaWizardNewFilePage

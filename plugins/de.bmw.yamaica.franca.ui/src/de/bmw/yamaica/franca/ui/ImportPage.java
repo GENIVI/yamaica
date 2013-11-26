@@ -15,7 +15,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.wizards.datatransfer.FileSystemStructureProvider;
 import org.eclipse.ui.wizards.datatransfer.ImportOperation;
 
-import de.bmw.yamaica.base.ui.dialogs.YamaicaWizardImportPage;
+import de.bmw.yamaica.common.ui.dialogs.YamaicaWizardImportPage;
 import de.bmw.yamaica.franca.base.core.YamaicaFrancaConstants;
 
 public class ImportPage extends YamaicaWizardImportPage
