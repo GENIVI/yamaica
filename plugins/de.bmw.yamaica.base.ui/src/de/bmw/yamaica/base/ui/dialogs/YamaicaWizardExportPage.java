@@ -56,6 +56,7 @@ import de.bmw.yamaica.base.ui.utils.ViewerToolBar;
 
 public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage implements ICheckStateListener, ActionRunListener
 {
+    private static final String        SELECT_A_FILE_TO_EXPORT_TO        = "Select a file to export to";
     protected IWorkbench               workbench;
     protected IStructuredSelection     structuredSelection;
     protected boolean                  restrictWizardPage                = false;
@@ -385,7 +386,7 @@ public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage 
             else
             {
                 FileDialog dialog = new FileDialog(getContainer().getShell(), SWT.SAVE | SWT.SHEET);
-                dialog.setText("bla");
+                dialog.setText(SELECT_A_FILE_TO_EXPORT_TO);
                 dialog.setFilterPath(getDestinationValue());
                 selectedDirectoryName = dialog.open();
             }
