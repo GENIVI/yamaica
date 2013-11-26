@@ -17,12 +17,8 @@
 All rights reserved.
    </copyright>
 
-   <license url="http://www.example.com/license">
-      [Enter License Description here.]
-   </license>
-
    <requires>
-      <import feature="de.bmw.yamaica.common" version="0.8.0" match="compatible"/>
+      <import feature="de.bmw.yamaica.common" version="0.8.0" match="equivalent"/>
    </requires>
 
    <plugin

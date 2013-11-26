@@ -6,7 +6,7 @@
       provider-name="BMW Group">
 
    <description>
-      This feature consolidates all yamaica base plug-ins.
+      This feature consolidates all yamaica common plug-ins.
    </description>
 
    <copyright>
@@ -391,7 +391,7 @@ Exhibit B - &quot;Incompatible With Secondary Licenses&quot; Notice
    </license>
 
    <requires>
-      <import feature="org.eclipse.platform" version="4.2.1.v20130118-173121-9MF7GHYdG0B5kx4E_SkfZV-1mNjVATf67ZAb7" match="compatible"/>
+      <import feature="org.eclipse.platform" version="4.2.1.v20130118-173121-9MF7GHYdG0B5kx4E_SkfZV-1mNjVATf67ZAb7" match="equivalent"/>
    </requires>
 
    <plugin
