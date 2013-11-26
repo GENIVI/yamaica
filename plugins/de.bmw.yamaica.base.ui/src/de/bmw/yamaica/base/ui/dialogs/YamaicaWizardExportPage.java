@@ -37,6 +37,7 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IWorkbench;
@@ -58,6 +59,7 @@ public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage 
     protected IWorkbench               workbench;
     protected IStructuredSelection     structuredSelection;
     protected boolean                  restrictWizardPage                = false;
+    protected boolean                  isFileExportWizard                = false;
 
     // widgets
     protected ViewerToolBar            viewerToolBar;
@@ -88,10 +90,16 @@ public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage 
 
     public YamaicaWizardExportPage(IWorkbench workbench, IStructuredSelection structuredSelection, String name)
     {
+        this(workbench, structuredSelection, name, false);
+    }
+
+    public YamaicaWizardExportPage(IWorkbench workbench, IStructuredSelection structuredSelection, String name, boolean isFileExportWizard)
+    {
         super(name, structuredSelection);
 
         this.workbench = workbench;
         this.structuredSelection = structuredSelection;
+        this.isFileExportWizard = isFileExportWizard;
     }
 
     @Override
@@ -308,7 +316,12 @@ public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage 
     {
         File destinationDirectory = new File(getDestinationValue());
 
-        if (!ensureTargetIsValid(destinationDirectory))
+        if (!isFileExportWizard && !ensureTargetIsValid(destinationDirectory))
+        {
+            return false;
+        }
+
+        if (isFileExportWizard && !ensureTargetIsValid(destinationDirectory.getParentFile()))
         {
             return false;
         }
@@ -360,11 +373,22 @@ public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage 
     {
         if (event.widget == destinationBrowseButton)
         {
-            DirectoryDialog dialog = new DirectoryDialog(getContainer().getShell(), SWT.SAVE | SWT.SHEET);
-            dialog.setMessage(DIRECTORY_SELECTION_MESSAGE);
-            dialog.setText(EXPORT_TO_DIRECTORY);
-            dialog.setFilterPath(getDestinationValue());
-            String selectedDirectoryName = dialog.open();
+            String selectedDirectoryName = null;
+
+            if (!isFileExportWizard)
+            {
+                DirectoryDialog dialog = new DirectoryDialog(getContainer().getShell(), SWT.SAVE | SWT.SHEET);
+                dialog.setMessage(DIRECTORY_SELECTION_MESSAGE);
+                dialog.setText(EXPORT_TO_DIRECTORY);
+
+            }
+            else
+            {
+                FileDialog dialog = new FileDialog(getContainer().getShell(), SWT.SAVE | SWT.SHEET);
+                dialog.setText("bla");
+                dialog.setFilterPath(getDestinationValue());
+                selectedDirectoryName = dialog.open();
+            }
 
             if (selectedDirectoryName != null)
             {

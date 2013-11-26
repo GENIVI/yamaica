@@ -51,7 +51,7 @@ public class FileSystemExportOperation implements IRunnableWithProgress
     @Override
     public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException
     {
-        int work = null != resources ? resources.size() : 0;
+        int work = (null != resources) ? resources.size() : 0;
         IPath sourceContainerSystemPath = source.getLocation();
 
         monitor.beginTask(YamaicaUIConstants.EXPORTING_RESOURCES, work);
