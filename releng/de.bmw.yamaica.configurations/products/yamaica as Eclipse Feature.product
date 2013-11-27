@@ -27,6 +27,7 @@
    </plugins>
 
    <features>
+      <feature id="de.bmw.yamaica.commonapi" version="0.8.0.qualifier"/>
       <feature id="de.bmw.yamaica.ea" version="0.8.0.qualifier"/>
       <feature id="de.bmw.yamaica.fibex" version="0.8.0.qualifier"/>
       <feature id="de.bmw.yamaica.franca" version="0.8.0.qualifier"/>
@@ -35,8 +36,8 @@
       <feature id="org.eclipse.xtend"/>
       <feature id="org.eclipse.xtext.ui.source"/>
       <feature id="org.eclipse.xtend.ui"/>
-      <feature id="de.bmw.yamaica.common"/>
       <feature id="org.eclipse.xtext.xtext.ui.source"/>
+      <feature id="de.bmw.yamaica.common"/>
       <feature id="org.eclipse.xtext.xbase.lib"/>
       <feature id="org.eclipse.emf.ecore"/>
       <feature id="org.eclipse.xtend.typesystem.emf"/>
@@ -61,6 +62,7 @@
       <feature id="de.bmw.emf.fibex.feature"/>
       <feature id="org.eclipse.emf.ecore.editor"/>
       <feature id="org.eclipse.xtend.dependencies"/>
+      <feature id="org.genivi.commonapi.core.feature"/>
       <feature id="org.eclipse.platform"/>
       <feature id="org.eclipse.emf.mwe.ui"/>
       <feature id="org.eclipse.help"/>
@@ -72,12 +74,13 @@
       <feature id="org.eclipse.rcp"/>
       <feature id="org.eclipse.xtext.docs"/>
       <feature id="org.eclipse.jdt"/>
+      <feature id="org.genivi.commonapi.dbus.feature"/>
       <feature id="org.eclipse.emf.edit.ui"/>
       <feature id="org.eclipse.xtext.xbase"/>
       <feature id="org.eclipse.xtext.runtime.source"/>
       <feature id="org.eclipse.emf.mwe2.language.sdk"/>
-      <feature id="org.eclipse.emf.mwe.core"/>
       <feature id="org.eclipse.e4.rcp"/>
+      <feature id="org.eclipse.emf.mwe.core"/>
       <feature id="org.eclipse.xtext.xtext.ui"/>
       <feature id="org.eclipse.xtext.runtime"/>
       <feature id="org.eclipse.emf.codegen"/>
