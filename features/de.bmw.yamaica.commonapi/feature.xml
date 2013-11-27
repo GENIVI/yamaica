@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="de.bmw.yamaica.commonapi"
-      label="yamaica Common API Components"
+      label="yamaica Common API"
       version="0.8.0.qualifier"
       provider-name="BMW Group"
       plugin="de.bmw.yamaica.common.ui"
