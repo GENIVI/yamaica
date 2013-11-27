@@ -9,8 +9,10 @@ package de.bmw.yamaica.common.ui.dialogs;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -388,6 +390,10 @@ public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage 
                 FileDialog dialog = new FileDialog(getContainer().getShell(), SWT.SAVE | SWT.SHEET);
                 dialog.setText(SELECT_A_FILE_TO_EXPORT_TO);
                 dialog.setFilterPath(getDestinationValue());
+                Map<String, String> extensionMap = getSaveDialogExtensions();
+                dialog.setFilterExtensions(extensionMap.keySet().toArray(new String[extensionMap.size()]));
+                dialog.setFilterNames(extensionMap.values().toArray(new String[extensionMap.size()]));
+                dialog.setFilterIndex(0);
                 selectedDirectoryName = dialog.open();
             }
 
@@ -399,6 +405,13 @@ public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage 
         }
 
         updatePageCompletion();
+    }
+
+    protected Map<String, String> getSaveDialogExtensions()
+    {
+        LinkedHashMap<String, String> returnMap = new LinkedHashMap<String, String>();
+        returnMap.put("*.*", "All types");
+        return returnMap;
     }
 
     @Override
