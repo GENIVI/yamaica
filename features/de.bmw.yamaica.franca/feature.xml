@@ -4,7 +4,7 @@
       label="yamaica Franca"
       version="0.8.0.qualifier"
       provider-name="BMW Group"
-      plugin="de.bmw.yamaica.common.ui"
+      plugin="de.bmw.yamaica.franca.ui"
       license-feature="de.bmw.yamaica.common"
       license-feature-version="0.8.0.qualifier">
 
