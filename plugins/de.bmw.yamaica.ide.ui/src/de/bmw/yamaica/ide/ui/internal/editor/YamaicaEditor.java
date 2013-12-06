@@ -15,12 +15,12 @@ import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.forms.editor.FormEditor;
 import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.widgets.FormToolkit;
@@ -31,7 +31,6 @@ public class YamaicaEditor extends FormEditor implements IResourceChangeListener
 {
     private FormToolkit formToolkit;
     private FormPage    overviewPage;
-    private TextEditor  textEditorPage;
 
     public YamaicaEditor()
     {
@@ -52,13 +51,11 @@ public class YamaicaEditor extends FormEditor implements IResourceChangeListener
         try
         {
             overviewPage = new OverviewPage(this, "de.bmw.yamaica.common.core.editor.main", "Overview");
-            textEditorPage = new RawTextPage(this, "de.bmw.yamaica.common.core.editor.raw");
 
             addPage(overviewPage);
 
-            int index = addPage(textEditorPage, getEditorInput());
-
-            setPageText(index, getEditorInput().getName());
+            // Disable tab bar
+            ((CTabFolder) getContainer()).setTabHeight(0);
         }
         catch (PartInitException e)
         {
@@ -69,7 +66,7 @@ public class YamaicaEditor extends FormEditor implements IResourceChangeListener
     @Override
     public void doSave(IProgressMonitor monitor)
     {
-        textEditorPage.doSave(monitor);
+
     }
 
     @Override

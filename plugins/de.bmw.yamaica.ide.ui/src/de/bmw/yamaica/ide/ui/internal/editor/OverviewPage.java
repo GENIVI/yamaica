@@ -130,8 +130,7 @@ public class OverviewPage extends FormPage implements Listener
         Composite importSectionClient = createSectionClient(body, YamaicaIdeUiConstants.IMPORTED_FILES_TITLE,
                 YamaicaIdeUiConstants.IMPORTED_FILES_DESCRIPTION);
 
-        importFilesTreeViewer = createTreeViewer(importSectionClient);
-        importFilesTreeViewer.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 6));
+        importFilesTreeViewer = createTreeViewer(importSectionClient, 6);
         importFilesNewButton = createButton(importSectionClient, YamaicaIdeUiConstants.NEW, YamaicaIdeUiConstants.ECLIPSE_UI_IDE_PLUGIN_ID,
                 YamaicaIdeUiConstants.NEW_FILE_ICON_PATH);
         importFilesNewButton.setEnabled(true);
@@ -152,8 +151,7 @@ public class OverviewPage extends FormPage implements Listener
         Composite targetSectionClient = createSectionClient(body, YamaicaIdeUiConstants.TARGET_FILES_TITLE,
                 YamaicaIdeUiConstants.TARGET_FILES_DESCRIPTION);
 
-        targetFilesTreeViewer = createTreeViewer(targetSectionClient);
-        targetFilesTreeViewer.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 3));
+        targetFilesTreeViewer = createTreeViewer(targetSectionClient, 3);
         targetFilesEditButton = createButton(targetSectionClient, YamaicaIdeUiConstants.EDIT,
                 YamaicaIdeUiConstants.ECLIPSE_TEXTEDITOR_PLUGIN_ID, YamaicaIdeUiConstants.EDIT_TEMPLATE_ICON_PATH);
         targetFilesExportButton = createButton(targetSectionClient, YamaicaIdeUiConstants.EXPORT,
@@ -181,10 +179,15 @@ public class OverviewPage extends FormPage implements Listener
         super.dispose();
     }
 
-    private TreeViewer createTreeViewer(Composite parent)
+    private TreeViewer createTreeViewer(Composite parent, int verticalSpan)
     {
+        GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true, 1, verticalSpan);
+        gridData.minimumWidth = 100;
+        gridData.widthHint = 100;
+
         Tree tree = toolkit.createTree(parent, SWT.BORDER | SWT.MULTI);
         tree.setHeaderVisible(false);
+        tree.setLayoutData(gridData);
 
         final TreeViewer treeViewer = new TreeViewer(tree);
         treeViewer.setComparator(new ResourceComparator(ResourceComparator.NAME));
