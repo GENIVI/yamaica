@@ -208,7 +208,7 @@ public class FrancaUtils
         {
             if ((normalizeMask & INTERFACE_DEFINITION_KEYWORDS) > 0)
             {
-                normalizedName = "^" + normalizedName;
+                normalizedName = normalizedName + "_";
             }
             else if ((toleranceMask & INTERFACE_DEFINITION_KEYWORDS) == 0)
             {
@@ -221,7 +221,7 @@ public class FrancaUtils
         {
             if ((normalizeMask & DEPLOYMENT_DEFINITION_KEYWORDS) > 0)
             {
-                normalizedName = "^" + normalizedName;
+                normalizedName = normalizedName + "_";
             }
             else if ((toleranceMask & DEPLOYMENT_DEFINITION_KEYWORDS) == 0)
             {
