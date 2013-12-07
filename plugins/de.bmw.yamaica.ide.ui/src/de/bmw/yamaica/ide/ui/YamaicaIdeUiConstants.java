@@ -17,7 +17,7 @@ public interface YamaicaIdeUiConstants extends YamaicaUIConstants
     String TARGET_FILES_TITLE         = "Generated Files";
     String TARGET_FILES_DESCRIPTION   = "Overview over all generated files.";
     String NEW                        = "New...";
-    String EDIT                       = "Edit...";
+    String EDIT                       = "Edit";
     String IMPORT                     = "Import...";
     String EXPORT                     = "Export...";
     String TRANSFORM                  = "Transform...";
