@@ -383,7 +383,7 @@ public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage 
                 DirectoryDialog dialog = new DirectoryDialog(getContainer().getShell(), SWT.SAVE | SWT.SHEET);
                 dialog.setMessage(DIRECTORY_SELECTION_MESSAGE);
                 dialog.setText(EXPORT_TO_DIRECTORY);
-
+                selectedDirectoryName = dialog.open();
             }
             else
             {
