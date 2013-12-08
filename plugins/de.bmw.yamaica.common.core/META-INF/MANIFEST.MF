@@ -15,6 +15,7 @@ Require-Bundle: org.eclipse.core.runtime;visibility:=reexport,
  org.eclipse.core.resources;visibility:=reexport,
  org.eclipse.core.variables;visibility:=reexport,
  org.eclipse.debug.core;visibility:=reexport,
+ org.eclipse.emf.common;visibility:=reexport,
  org.eclipse.jface;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: de.bmw.yamaica.common.core.internal.Activator

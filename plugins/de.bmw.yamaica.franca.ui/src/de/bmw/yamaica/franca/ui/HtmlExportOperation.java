@@ -14,7 +14,6 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.ui.dialogs.IOverwriteQuery;
@@ -31,7 +30,7 @@ import de.bmw.yamaica.common.ui.YamaicaUIConstants;
 
 public class HtmlExportOperation implements IRunnableWithProgress
 {
-    private static final String HTML_FILE_EXTENSION = ".html";
+    private static final String        HTML_FILE_EXTENSION = ".html";
     protected Injector                 injector;
     protected FrancaPersistenceManager francaPersistenceManager;
     protected IPath                    directoryPath;
@@ -59,11 +58,8 @@ public class HtmlExportOperation implements IRunnableWithProgress
         for (IResource resource : resources)
         {
             String resourceName = resource.getName();
-            IPath resourcePath = ResourceUtils.getPlatformRelativePath(resource.getLocation());
-            IPath rootPath = ResourceUtils.getPlatformRelativePath(new Path(String.valueOf(Path.SEPARATOR)));
-
-            URI resourcePathUri = URI.createURI(resourcePath.toString(), true);
-            URI rootPathUri = URI.createURI(rootPath.toString(), true);
+            URI resourcePathUri = ResourceUtils.createURIForLocation(resource.getFullPath());
+            URI rootPathUri = ResourceUtils.createURIForLocation(resource.getProject().getFullPath());
 
             monitor.subTask(resourceName);
 

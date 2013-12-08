@@ -8,13 +8,10 @@ package de.bmw.yamaica.common.core.launch;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.core.variables.IStringVariableManager;
-import org.eclipse.core.variables.VariablesPlugin;
 import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunchConfigurationType;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
@@ -98,29 +95,5 @@ public abstract class AbstractLaunchConfigurationPreparer implements ILaunchConf
         }
 
         return null;
-    }
-
-    public String generateWorkspacePathExpression(IResource resource, boolean inline)
-    {
-        IStringVariableManager variableManager = VariablesPlugin.getDefault().getStringVariableManager();
-
-        String pathAsVariableExpression = null;
-
-        if (inline)
-        {
-            // Generate something like ${workspace_loc:project_name/folder_name/file_name}
-            pathAsVariableExpression = variableManager.generateVariableExpression(YamaicaConstants.WORKSPACE_LOC, resource.getFullPath()
-                    .makeRelative().toString());
-        }
-        else
-        {
-            // Generate something like ${workspace_loc:project_name}/folder_name/file_name
-            // This is needed if file does not exist in workspace!
-            pathAsVariableExpression = variableManager.generateVariableExpression(YamaicaConstants.WORKSPACE_LOC, resource.getProject()
-                    .getName())
-                    + resource.getProjectRelativePath().makeAbsolute().toString();
-        }
-
-        return pathAsVariableExpression;
     }
 }

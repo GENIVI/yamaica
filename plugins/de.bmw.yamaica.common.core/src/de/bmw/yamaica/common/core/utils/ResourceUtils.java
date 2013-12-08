@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -22,12 +23,20 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.variables.IStringVariableManager;
 import org.eclipse.core.variables.VariablesPlugin;
+import org.eclipse.emf.common.util.URI;
 
 import de.bmw.yamaica.common.core.YamaicaConstants;
 import de.bmw.yamaica.common.core.internal.Activator;
 
+/**
+ * A utility class for common Eclipse resource tasks.
+ */
 public class ResourceUtils
 {
+    /**
+     * @deprecated use {@link FileLocator#openStream(org.osgi.framework.Bundle, IPath, boolean)}
+     */
+    @Deprecated
     public static InputStream getResourceStreamFromPlugin(String pluginId, String resourcePath)
     {
         Assert.isNotNull(pluginId);
@@ -47,16 +56,35 @@ public class ResourceUtils
         return null;
     }
 
+    /**
+     * @deprecated use {@link FileLocator#openStream(org.osgi.framework.Bundle, IPath, boolean)}
+     */
+    @Deprecated
     public static InputStream getResourceStreamFromResourcesPlugin(String resourcePath)
     {
-        Assert.isNotNull(resourcePath);
+        return getResourceStreamFromPlugin(Activator.RESOURCES_PLUGIN_ID, resourcePath);
+    }
+
+    /**
+     * Returns a {@link File} object representing a file within a folder bundle.
+     * 
+     * @param bundleId
+     *            The ID of the bundle.
+     * @param bundleRelativePath
+     *            A relative path within the bundle folder.
+     * @return a {@link File} object representing a file within a folder bundle.
+     */
+    public static File getResourceFileFromBundle(String bundleId, String bundleRelativePath)
+    {
+        Assert.isNotNull(bundleId);
+        Assert.isNotNull(bundleRelativePath);
 
         try
         {
-            URL resourceURL = new URL(YamaicaConstants.PLATFORM_PLUGIN_PATH + Activator.RESOURCES_PLUGIN_ID + "/"
-                    + YamaicaConstants.RESOURCES + "/" + resourcePath);
+            File file = FileLocator.getBundleFile(Platform.getBundle(bundleId));
+            IPath path = new Path(file.getPath()).append(bundleRelativePath);
 
-            return resourceURL.openConnection().getInputStream();
+            return new File(path.toOSString());
         }
         catch (IOException e)
         {
@@ -66,92 +94,156 @@ public class ResourceUtils
         return null;
     }
 
+    /**
+     * @deprecated use {@link ResourceUtils#getResourceFileFromPlugin(String, String)}
+     */
+    @Deprecated
     public static File getResourceFileFromResourcesPlugin(String resourcePath)
     {
-        Assert.isNotNull(resourcePath);
-
-        IPath path = new Path("");
-
-        try
-        {
-            File file = FileLocator.getBundleFile(Platform.getBundle(Activator.RESOURCES_PLUGIN_ID));
-            path = new Path(file.getPath()).append(YamaicaConstants.RESOURCES).append(resourcePath);
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-
-        return new File(path.toOSString());
+        return getResourceFileFromBundle(Activator.RESOURCES_PLUGIN_ID, new Path(YamaicaConstants.RESOURCES).append(resourcePath)
+                .toString());
     }
 
+    /**
+     * Changes the file extension of the referred filename to the referred value.
+     * 
+     * @param filename
+     *            The filename with the old file extension.
+     * @param newExtension
+     *            The new file extension.
+     * @return the filename with the new file extension.
+     */
     public static String changeFilenameExtension(String filename, String newExtension)
     {
         return new Path(filename).removeFileExtension().addFileExtension(newExtension).toString();
     }
 
-    public static String performStringSubstitution(String filename)
+    /**
+     * Recursively resolves and replaces all variable references in the given expression with their corresponding values. Reports errors for
+     * references to undefined variables.
+     * 
+     * @param expression
+     *            expression referencing variables
+     * @return expression with variable references replaced with variable values.
+     * @throws CoreException
+     *             if unable to resolve the value of one or more variables.
+     * @see IStringVariableManager#performStringSubstitution(String)
+     */
+    public static String performStringSubstitution(String expression)
     {
         IStringVariableManager variableManager = VariablesPlugin.getDefault().getStringVariableManager();
 
         try
         {
-            return variableManager.performStringSubstitution(filename);
+            return variableManager.performStringSubstitution(expression);
         }
         catch (CoreException e)
         {
-            return null;
+            return expression;
         }
     }
 
-    public static IPath getPlatformRelativePath(IPath path)
+    /**
+     * Converts a workspace relative path (e.g. PROJECT_NAME/FOLDER_NAME/FILE_NAME) to a Eclipse platform path (e.g.
+     * platform:/resource/PROJECT_NAME/FOLDER_NAME/FILE_NAME).
+     * 
+     * @param path
+     *            A workspace relative path.
+     * @return a Eclipse platform path.
+     * @see ResourceUtils#createPlatformPath(String)
+     * @see URI#createPlatformResourceURI(String, Boolean)
+     */
+    public static IPath createPlatformPath(IPath path)
     {
         Assert.isNotNull(path);
 
-        IResource resource = getResourceForLocation(path.toString());
-
-        if (null == resource)
-        {
-            IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
-            resource = workspaceRoot.findMember(path);
-
-            if (null == resource)
-            {
-                resource = workspaceRoot.getFile(path);
-
-                if (null == resource)
-                {
-                    return null;
-                }
-            }
-        }
-
-        return new Path(YamaicaConstants.PLATFORM_RESOURCE_PATH).append(resource.getFullPath());
+        return createPlatformPath(path.toString());
     }
 
+    /**
+     * Converts a workspace relative path (e.g. PROJECT_NAME/FOLDER_NAME/FILE_NAME) to a Eclipse platform path (e.g.
+     * platform:/resource/PROJECT_NAME/FOLDER_NAME/FILE_NAME).
+     * 
+     * @param pathAsString
+     *            A workspace relative path.
+     * @return a Eclipse platform path.
+     * @see URI#createPlatformResourceURI(String, Boolean)
+     */
+    public static IPath createPlatformPath(String pathAsString)
+    {
+        Assert.isNotNull(pathAsString);
+
+        pathAsString = performStringSubstitution(pathAsString);
+
+        return new Path(URI.createPlatformResourceURI(pathAsString, true).toString());
+    }
+
+    /**
+     * Creates a EMF file or platform URI. If the referred path can be resolved to a workspace resource a platform URI will be created.
+     * 
+     * @param path
+     *            May be a workspace relative or a absolute system path
+     * @return a EMF file or platform URI.
+     * @see ResourceUtils#createURIForLocation(String)
+     */
+    public static URI createURIForLocation(IPath path)
+    {
+        Assert.isNotNull(path);
+
+        return createURIForLocation(path.toString());
+    }
+
+    /**
+     * Creates a EMF file or platform URI. If the referred path can be resolved to a workspace resource a platform URI will be created.
+     * 
+     * @param pathAsString
+     *            May be a workspace relative or a absolute system path
+     * @return a EMF file or platform URI.
+     */
+    public static URI createURIForLocation(String pathAsString)
+    {
+        Assert.isNotNull(pathAsString);
+
+        IPath path = new Path(performStringSubstitution(pathAsString));
+        int segementCount = path.segmentCount();
+
+        for (int i = segementCount; i > 0; i--)
+        {
+            IPath projectPath = path.removeLastSegments(i - 1);
+            IPath workspacePath = path.removeFirstSegments(segementCount - i).setDevice(null);
+
+            if (getResourceForLocation(projectPath.toString()) instanceof IProject)
+            {
+                return URI.createPlatformResourceURI(workspacePath.toString(), true);
+            }
+        }
+
+        return URI.createFileURI(path.toString());
+    }
+
+    /**
+     * Returns the workspace resource represented by the referred path. Finds only non linked resources.
+     * 
+     * @param pathAsString
+     *            May be a workspace relative or a absolute system path
+     * @return the workspace resource represented by the referred path.
+     */
     public static IResource getResourceForLocation(String pathAsString)
     {
-        try
+        Assert.isNotNull(pathAsString);
+
+        pathAsString = performStringSubstitution(pathAsString);
+        IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
+        IResource resource = workspaceRoot.findMember(pathAsString);
+
+        if (null != resource)
         {
-            IStringVariableManager variableManager = VariablesPlugin.getDefault().getStringVariableManager();
-            pathAsString = variableManager.performStringSubstitution(pathAsString);
-
-            IPath path = new Path(pathAsString);
-            IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
-            IResource resource = workspaceRoot.getFileForLocation(path);
-
-            if (null != resource)
-            {
-                return resource;
-            }
-
-            return workspaceRoot.getContainerForLocation(path);
-        }
-        catch (CoreException e)
-        {
-
+            return resource;
         }
 
-        return null;
+        IPath path = new Path(pathAsString);
+        resource = workspaceRoot.getFileForLocation(path);
+
+        return (null != resource) ? resource : workspaceRoot.getContainerForLocation(path);
     }
 }

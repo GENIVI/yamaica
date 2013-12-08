@@ -6,7 +6,8 @@ Bundle-Version: 0.8.0.qualifier
 Bundle-Vendor: BMW Group
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: de.bmw.yamaica.common.tests.utils
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.ui,
- org.eclipse.emf.compare,
- org.junit
+Require-Bundle: org.eclipse.core.runtime;visibility:=reexport,
+ org.eclipse.ui;visibility:=reexport,
+ org.eclipse.emf.compare;visibility:=reexport,
+ org.junit;visibility:=reexport,
+ de.bmw.yamaica.common.core;visibility:=reexport
