@@ -158,7 +158,7 @@ public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage 
 
         resourceSelectionTreeViewer = new YamaicaCheckedTreeViewer(viewerToolBar, SWT.NONE);
         resourceSelectionTreeViewer.setContentProvider(new WorkbenchContentProvider());
-        resourceSelectionTreeViewer.setLabelProvider(new WorkbenchLabelProvider());
+        resourceSelectionTreeViewer.setLabelProvider(WorkbenchLabelProvider.getDecoratingWorkbenchLabelProvider());
         resourceSelectionTreeViewer.setUseHashlookup(true);
         resourceSelectionTreeViewer.addCheckStateListener(this);
         resourceSelectionTreeViewer.setComparator(new ResourceComparator());

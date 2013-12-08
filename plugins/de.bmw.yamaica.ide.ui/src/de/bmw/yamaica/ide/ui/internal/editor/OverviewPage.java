@@ -192,7 +192,7 @@ public class OverviewPage extends FormPage implements Listener
         final TreeViewer treeViewer = new TreeViewer(tree);
         treeViewer.setComparator(new ResourceComparator(ResourceComparator.NAME));
         treeViewer.setContentProvider(new WorkbenchContentProvider());
-        treeViewer.setLabelProvider(new WorkbenchLabelProvider());
+        treeViewer.setLabelProvider(WorkbenchLabelProvider.getDecoratingWorkbenchLabelProvider());
         treeViewer.addDoubleClickListener(new IDoubleClickListener()
         {
             @Override
