@@ -167,7 +167,7 @@
          </command>
          <command
                commandId="org.eclipse.ui.window.preferences"
-               icon="platform:/plugin/org.eclipse.jdt.ui/icons/full/elcl16/smartmode_co.gif"
+               icon="platform:/plugin/org.eclipse.ui.ide/icons/full/elcl16/configs.gif"
                style="push">
             <visibleWhen
                   checkEnabled="false">
@@ -178,7 +178,7 @@
          </command>
          <command
                commandId="org.eclipse.ui.help.aboutAction"
-               icon="platform:/plugin/org.eclipse.ui.ide/icons/full/obj16/info_tsk.gif"
+               icon="platform:/plugin/org.eclipse.jface/icons/full/message_info.gif"
                style="push">
             <visibleWhen
                   checkEnabled="false">
