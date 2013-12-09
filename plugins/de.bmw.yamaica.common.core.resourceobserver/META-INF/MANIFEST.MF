@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: yamaica Resource Observer
 Bundle-SymbolicName: de.bmw.yamaica.common.core.resourceobserver
-Bundle-Version: 0.8.0.qualifier
+Bundle-Version: 0.9.0.qualifier
 Bundle-Activator: de.bmw.yamaica.common.core.resourceobserver.internal.Activator
 Bundle-Vendor: BMW Group
 Require-Bundle: org.eclipse.core.runtime,

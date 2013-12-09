@@ -2,11 +2,11 @@
 <feature
       id="de.bmw.yamaica.ide"
       label="yamaica IDE"
-      version="0.8.0.qualifier"
+      version="0.9.0.qualifier"
       provider-name="BMW Group"
       plugin="de.bmw.yamaica.ide.ui"
       license-feature="de.bmw.yamaica.common"
-      license-feature-version="0.8.0.qualifier">
+      license-feature-version="0.9.0.qualifier">
 
    <description>
       This feature consolidates all yamaica IDE plug-ins.
@@ -18,7 +18,7 @@ All rights reserved.
    </copyright>
 
    <requires>
-      <import feature="de.bmw.yamaica.common" version="0.8.0" match="equivalent"/>
+      <import feature="de.bmw.yamaica.common" version="0.9.0" match="equivalent"/>
       <import feature="org.eclipse.jdt" version="3.8.2.v20130116-090414-8-8nFu3FNOfwKLRuqgXKIy9z0I83" match="equivalent"/>
    </requires>
 

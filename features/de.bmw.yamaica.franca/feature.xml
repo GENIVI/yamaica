@@ -2,11 +2,11 @@
 <feature
       id="de.bmw.yamaica.franca"
       label="yamaica Franca"
-      version="0.8.0.qualifier"
+      version="0.9.0.qualifier"
       provider-name="BMW Group"
       plugin="de.bmw.yamaica.franca.ui"
       license-feature="de.bmw.yamaica.common"
-      license-feature-version="0.8.0.qualifier">
+      license-feature-version="0.9.0.qualifier">
 
    <description>
       This feature consolidates all yamaica Franca plug-ins.
@@ -18,7 +18,7 @@ All rights reserved.
    </copyright>
 
    <requires>
-      <import feature="de.bmw.yamaica.common" version="0.8.0" match="equivalent"/>
+      <import feature="de.bmw.yamaica.common" version="0.9.0" match="equivalent"/>
       <import feature="org.franca.feature" version="0.8.8.201306170812" match="equivalent"/>
       <import feature="org.eclipse.draw2d" version="3.9.0.201212170307" match="equivalent"/>
       <import feature="org.eclipse.emf.codegen" version="2.9.0.v20130902-0605" match="equivalent"/>
