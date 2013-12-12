@@ -5,9 +5,9 @@ Bundle-SymbolicName: de.bmw.yamaica.common.core.resourceobserver
 Bundle-Version: 0.9.0.qualifier
 Bundle-Activator: de.bmw.yamaica.common.core.resourceobserver.internal.Activator
 Bundle-Vendor: BMW Group
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.core.resources,
- de.bmw.yamaica.common.core
+Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.8.0,4.0.0)";visibility:=reexport,
+ org.eclipse.core.resources;bundle-version="[3.8.0,4.0.0)";visibility:=reexport,
+ de.bmw.yamaica.common.core;bundle-version="[0.9.0,0.10.0)";visibility:=reexport
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: de.bmw.yamaica.common.core.resourceobserver.internal;x-internal:=true;uses:="org.eclipse.core.runtime,org.eclipse.core.resources,org.osgi.framework"

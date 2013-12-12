@@ -5,11 +5,11 @@ Bundle-SymbolicName: de.bmw.yamaica.franca.core;singleton:=true
 Bundle-Version: 0.9.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: BMW Group
-Require-Bundle: org.eclipse.core.filebuffers;visibility:=reexport,
- org.eclipse.core.runtime;visibility:=reexport,
- org.eclipse.xtend2.lib;visibility:=reexport,
- org.franca.core;visibility:=reexport,
- org.franca.core.dsl;visibility:=reexport,
- org.franca.deploymodel.dsl;visibility:=reexport,
- de.bmw.yamaica.franca.common.core;visibility:=reexport
+Require-Bundle: org.eclipse.core.filebuffers;bundle-version="[3.5.0,4.0.0)";visibility:=reexport,
+ org.eclipse.core.runtime;bundle-version="[3.8.0,4.0.0)";visibility:=reexport,
+ org.eclipse.xtend2.lib;bundle-version="[2.4.0,3.0.0)";visibility:=reexport,
+ org.franca.core;bundle-version="[0.8.8,0.9.0)";visibility:=reexport,
+ org.franca.core.dsl;bundle-version="[0.8.8,0.9.0)";visibility:=reexport,
+ org.franca.deploymodel.dsl;bundle-version="[0.8.8,0.9.0)";visibility:=reexport,
+ de.bmw.yamaica.franca.common.core;bundle-version="[0.9.0,0.10.0)";visibility:=reexport
 Export-Package: de.bmw.yamaica.franca.core
