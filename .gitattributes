@@ -20,8 +20,11 @@
 
 *.html text
 *.xml text
+*.css text
 
 *.properties text
+*.ini text
+*.mappings text
 
 AUTHORS text
 LICENSE text
@@ -33,6 +36,10 @@ README text
 .project text
 *.prefs text
 *.MF text
+*.target text
+*.product text
+*.launch text
+*.inf text
 
 # Declare files that will always have CRLF line endings on checkout.
 *.sln text eol=crlf
