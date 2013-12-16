@@ -8,7 +8,7 @@ package de.bmw.yamaica.ide.ui;
 
 import de.bmw.yamaica.common.ui.YamaicaUIConstants;
 
-public interface YamaicaIdeUiConstants extends YamaicaUIConstants
+public interface YamaicaConstants extends YamaicaUIConstants
 {
     // Labels
     String YAMAICA_EDITOR_TITLE       = "Import • Edit / Transform / Generate • Export";

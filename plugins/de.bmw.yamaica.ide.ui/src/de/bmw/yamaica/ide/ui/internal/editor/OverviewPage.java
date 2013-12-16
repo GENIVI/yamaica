@@ -61,7 +61,7 @@ import de.bmw.yamaica.common.ui.internal.dialogs.ExportWizard;
 import de.bmw.yamaica.common.ui.internal.dialogs.ImportWizard;
 import de.bmw.yamaica.common.ui.internal.dialogs.NewWizard;
 import de.bmw.yamaica.common.ui.internal.dialogs.TransformWizard;
-import de.bmw.yamaica.ide.ui.YamaicaIdeUiConstants;
+import de.bmw.yamaica.ide.ui.YamaicaConstants;
 import de.bmw.yamaica.ide.ui.internal.Activator;
 
 public class OverviewPage extends FormPage implements Listener
@@ -120,42 +120,42 @@ public class OverviewPage extends FormPage implements Listener
 
         toolkit = managedForm.getToolkit();
         form = managedForm.getForm();
-        form.setText(YamaicaIdeUiConstants.YAMAICA_EDITOR_TITLE); //$NON-NLS-1$
-        form.setBackgroundImage(Activator.imageDescriptorFromPlugin(YamaicaIdeUiConstants.ECLIPSE_UI_INTRO_PLUGIN_ID,
-                YamaicaIdeUiConstants.YAMAICA_EDITOR_BANNER).createImage());
+        form.setText(YamaicaConstants.YAMAICA_EDITOR_TITLE); //$NON-NLS-1$
+        form.setBackgroundImage(Activator.imageDescriptorFromPlugin(YamaicaConstants.ECLIPSE_UI_INTRO_PLUGIN_ID,
+                YamaicaConstants.YAMAICA_EDITOR_BANNER).createImage());
 
         Composite body = form.getBody();
         body.setLayout(new GridLayout(2, true));
 
-        Composite importSectionClient = createSectionClient(body, YamaicaIdeUiConstants.IMPORTED_FILES_TITLE,
-                YamaicaIdeUiConstants.IMPORTED_FILES_DESCRIPTION);
+        Composite importSectionClient = createSectionClient(body, YamaicaConstants.IMPORTED_FILES_TITLE,
+                YamaicaConstants.IMPORTED_FILES_DESCRIPTION);
 
         importFilesTreeViewer = createTreeViewer(importSectionClient, 6);
-        importFilesNewButton = createButton(importSectionClient, YamaicaIdeUiConstants.NEW, YamaicaIdeUiConstants.ECLIPSE_UI_IDE_PLUGIN_ID,
-                YamaicaIdeUiConstants.NEW_FILE_ICON_PATH);
+        importFilesNewButton = createButton(importSectionClient, YamaicaConstants.NEW, YamaicaConstants.ECLIPSE_UI_IDE_PLUGIN_ID,
+                YamaicaConstants.NEW_FILE_ICON_PATH);
         importFilesNewButton.setEnabled(true);
-        importFilesEditButton = createButton(importSectionClient, YamaicaIdeUiConstants.EDIT,
-                YamaicaIdeUiConstants.ECLIPSE_TEXTEDITOR_PLUGIN_ID, YamaicaIdeUiConstants.EDIT_TEMPLATE_ICON_PATH);
-        importFilesImportButton = createButton(importSectionClient, YamaicaIdeUiConstants.IMPORT,
-                YamaicaIdeUiConstants.ECLIPSE_UI_IDE_PLUGIN_ID, YamaicaIdeUiConstants.IMPORT_ICON_PATH);
+        importFilesEditButton = createButton(importSectionClient, YamaicaConstants.EDIT, YamaicaConstants.ECLIPSE_TEXTEDITOR_PLUGIN_ID,
+                YamaicaConstants.EDIT_TEMPLATE_ICON_PATH);
+        importFilesImportButton = createButton(importSectionClient, YamaicaConstants.IMPORT, YamaicaConstants.ECLIPSE_UI_IDE_PLUGIN_ID,
+                YamaicaConstants.IMPORT_ICON_PATH);
         importFilesImportButton.setEnabled(true);
-        importFilesExportButton = createButton(importSectionClient, YamaicaIdeUiConstants.EXPORT,
-                YamaicaIdeUiConstants.ECLIPSE_UI_IDE_PLUGIN_ID, YamaicaIdeUiConstants.EXPORT_ICON_PATH);
-        importFilesTransformButton = createButton(importSectionClient, YamaicaIdeUiConstants.TRANSFORM,
-                YamaicaIdeUiConstants.ECLIPSE_JDT_UI_PLUGIN_ID, YamaicaIdeUiConstants.TRANSFORM_ICON_PATH);
+        importFilesExportButton = createButton(importSectionClient, YamaicaConstants.EXPORT, YamaicaConstants.ECLIPSE_UI_IDE_PLUGIN_ID,
+                YamaicaConstants.EXPORT_ICON_PATH);
+        importFilesTransformButton = createButton(importSectionClient, YamaicaConstants.TRANSFORM,
+                YamaicaConstants.ECLIPSE_JDT_UI_PLUGIN_ID, YamaicaConstants.TRANSFORM_ICON_PATH);
         importFilesTreeViewer.addSelectionChangedListener(new TreeViewerButtonEnabler(new Button[] { importFilesEditButton,
                 importFilesExportButton, importFilesTransformButton }));
 
         setViewerInput(importFilesTreeViewer, getPropertyValue(IResourcePropertyStore.IMPORT_FOLDER));
 
-        Composite targetSectionClient = createSectionClient(body, YamaicaIdeUiConstants.TARGET_FILES_TITLE,
-                YamaicaIdeUiConstants.TARGET_FILES_DESCRIPTION);
+        Composite targetSectionClient = createSectionClient(body, YamaicaConstants.TARGET_FILES_TITLE,
+                YamaicaConstants.TARGET_FILES_DESCRIPTION);
 
         targetFilesTreeViewer = createTreeViewer(targetSectionClient, 3);
-        targetFilesEditButton = createButton(targetSectionClient, YamaicaIdeUiConstants.EDIT,
-                YamaicaIdeUiConstants.ECLIPSE_TEXTEDITOR_PLUGIN_ID, YamaicaIdeUiConstants.EDIT_TEMPLATE_ICON_PATH);
-        targetFilesExportButton = createButton(targetSectionClient, YamaicaIdeUiConstants.EXPORT,
-                YamaicaIdeUiConstants.ECLIPSE_UI_IDE_PLUGIN_ID, YamaicaIdeUiConstants.EXPORT_ICON_PATH);
+        targetFilesEditButton = createButton(targetSectionClient, YamaicaConstants.EDIT, YamaicaConstants.ECLIPSE_TEXTEDITOR_PLUGIN_ID,
+                YamaicaConstants.EDIT_TEMPLATE_ICON_PATH);
+        targetFilesExportButton = createButton(targetSectionClient, YamaicaConstants.EXPORT, YamaicaConstants.ECLIPSE_UI_IDE_PLUGIN_ID,
+                YamaicaConstants.EXPORT_ICON_PATH);
         targetFilesTreeViewer.addSelectionChangedListener(new TreeViewerButtonEnabler(new Button[] { targetFilesEditButton,
                 targetFilesExportButton }));
 
@@ -318,7 +318,7 @@ public class OverviewPage extends FormPage implements Listener
 
                     IContentType contentType = Platform.getContentTypeManager().findContentTypeFor(selectedFile.getContents(), filename);
                     IEditorDescriptor editorDescriptor = workbench.getEditorRegistry().getDefaultEditor(filename, contentType);
-                    String editorId = null == editorDescriptor ? YamaicaIdeUiConstants.DEFAULT_TEXT_EDITOR_ID : editorDescriptor.getId();
+                    String editorId = null == editorDescriptor ? YamaicaConstants.DEFAULT_TEXT_EDITOR_ID : editorDescriptor.getId();
                     workbench.getActiveWorkbenchWindow().getPages()[0].openEditor(new FileEditorInput(selectedFile), editorId);
                 }
                 catch (PartInitException e)
