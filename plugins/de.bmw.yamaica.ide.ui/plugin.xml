@@ -177,8 +177,8 @@
             </visibleWhen>
          </command>
          <command
-               commandId="org.eclipse.ui.help.aboutAction"
-               icon="platform:/plugin/org.eclipse.jface/icons/full/message_info.gif"
+               commandId="org.eclipse.ui.project.cleanAction"
+               icon="platform:/plugin/org.eclipse.debug.ui/icons/full/obj16/debugt_obj.gif"
                style="push">
             <visibleWhen
                   checkEnabled="false">
@@ -205,10 +205,45 @@
                commandId="org.eclipse.ui.help.quickStartAction"
                icon="platform:/plugin/org.eclipse.ui.intro/icons/welcome16.gif"
                style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <reference
+                     definitionId="de.bmw.yamaica.ide.ui.fileToolbarExtensionsActive">
+               </reference>
+            </visibleWhen>
          </command>
          <command
                commandId="org.eclipse.ui.help.helpContents"
                style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <reference
+                     definitionId="de.bmw.yamaica.ide.ui.fileToolbarExtensionsActive">
+               </reference>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.equinox.p2.ui.sdk.install"
+               icon="platform:/plugin/org.eclipse.equinox.p2.ui/icons/obj/iu_update_obj.gif"
+               label="Install New Software"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <reference
+                     definitionId="de.bmw.yamaica.ide.ui.fileToolbarExtensionsActive">
+               </reference>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.ui.help.aboutAction"
+               icon="platform:/plugin/org.eclipse.jface/icons/full/message_info.gif"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <reference
+                     definitionId="de.bmw.yamaica.ide.ui.fileToolbarExtensionsActive">
+               </reference>
+            </visibleWhen>
          </command>
       </menuContribution>
       <menuContribution
