@@ -18,8 +18,10 @@ All rights reserved.
    </copyright>
 
    <requires>
-      <import feature="org.genivi.commonapi.core.feature" version="2.0.4.201308081532" match="equivalent"/>
-      <import feature="org.genivi.commonapi.dbus.feature" version="2.0.5.201308081532" match="equivalent"/>
+      <import plugin="org.genivi.commonapi.core" version="2.0.0" match="greaterOrEqual"/>
+      <import plugin="org.genivi.commonapi.core.ui" version="2.0.0" match="greaterOrEqual"/>
+      <import plugin="org.genivi.commonapi.dbus" version="2.0.0" match="greaterOrEqual"/>
+      <import plugin="org.genivi.commonapi.dbus.ui" version="2.0.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin

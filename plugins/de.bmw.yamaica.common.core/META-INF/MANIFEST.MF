@@ -5,12 +5,11 @@ Bundle-SymbolicName: de.bmw.yamaica.common.core;singleton:=true
 Bundle-Version: 0.9.0.qualifier
 Bundle-Vendor: BMW Group
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: de.bmw.yamaica.common.core,
- de.bmw.yamaica.common.core.internal;x-internal:=true,
- de.bmw.yamaica.common.core.internal.resourceproperties;x-internal:=true,
- de.bmw.yamaica.common.core.launch,
- de.bmw.yamaica.common.core.resourceproperties,
- de.bmw.yamaica.common.core.utils
+Export-Package: de.bmw.yamaica.common.core,de.bmw.yamaica.common.core.
+ internal;x-internal:=true,de.bmw.yamaica.common.core.internal.resourc
+ eproperties;x-internal:=true,de.bmw.yamaica.common.core.launch,de.bmw
+ .yamaica.common.core.resourceproperties,de.bmw.yamaica.common.core.ut
+ ils
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.8.0,4.0.0)";visibility:=reexport,
  org.eclipse.core.resources;bundle-version="[3.8.0,4.0.0)";visibility:=reexport,
  org.eclipse.core.variables;bundle-version="[3.2.0,4.0.0)";visibility:=reexport,

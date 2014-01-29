@@ -9,5 +9,5 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.8.0,4.0.0)";visibili
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: BMW Group
-Export-Package: de.bmw.yamaica.ide.ui.internal.workbenchobserver;x-internal:=true,
- de.bmw.yamaica.ide.ui.workbenchobserver
+Export-Package: de.bmw.yamaica.ide.ui.internal.workbenchobserver;x-int
+ ernal:=true,de.bmw.yamaica.ide.ui.workbenchobserver

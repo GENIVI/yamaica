@@ -14,11 +14,9 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.8.0,4.0.0)";visibili
  de.bmw.yamaica.ide.ui.workbenchobserver;bundle-version="[0.9.0,0.10.0)";visibility:=reexport
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
-Export-Package: de.bmw.yamaica.ide.ui,
- de.bmw.yamaica.ide.ui.commands,
- de.bmw.yamaica.ide.ui.internal;x-internal:=true,
- de.bmw.yamaica.ide.ui.internal.dialogs;x-internal:=true,
- de.bmw.yamaica.ide.ui.internal.editor;x-internal:=true,
- de.bmw.yamaica.ide.ui.internal.editor.xml;x-internal:=true,
- de.bmw.yamaica.ide.ui.internal.perspectives;x-internal:=true,
- de.bmw.yamaica.ide.ui.internal.preferences;x-internal:=true
+Export-Package: de.bmw.yamaica.ide.ui,de.bmw.yamaica.ide.ui.commands,d
+ e.bmw.yamaica.ide.ui.internal;x-internal:=true,de.bmw.yamaica.ide.ui.
+ internal.dialogs;x-internal:=true,de.bmw.yamaica.ide.ui.internal.edit
+ or;x-internal:=true,de.bmw.yamaica.ide.ui.internal.editor.xml;x-inter
+ nal:=true,de.bmw.yamaica.ide.ui.internal.perspectives;x-internal:=tru
+ e,de.bmw.yamaica.ide.ui.internal.preferences;x-internal:=true

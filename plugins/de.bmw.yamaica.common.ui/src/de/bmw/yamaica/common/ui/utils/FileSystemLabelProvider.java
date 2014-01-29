@@ -24,7 +24,7 @@ import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.program.Program;
 import org.eclipse.swt.widgets.Display;
 
-import sun.awt.image.ToolkitImage;
+//import sun.awt.image.ToolkitImage;
 import de.bmw.yamaica.common.ui.YamaicaUIConstants;
 import de.bmw.yamaica.common.ui.internal.Activator;
 
@@ -88,11 +88,12 @@ public class FileSystemLabelProvider extends ColumnLabelProvider
                     // Default implementation.
                     folderImageCache = new Image(display, convertToSWT((BufferedImage) image));
                 }
-                else if (image instanceof ToolkitImage)
-                {
-                    // Workaround for badly supported systems (mainly UNIX systems).
-                    folderImageCache = new Image(display, convertToSWT(((ToolkitImage) image).getBufferedImage()));
-                }
+                // FIXME
+                // else if (image instanceof ToolkitImage)
+                // {
+                // // Workaround for badly supported systems (mainly UNIX systems).
+                // folderImageCache = new Image(display, convertToSWT(((ToolkitImage) image).getBufferedImage()));
+                // }
                 else
                 {
                     // Fall back if above implementations fail.

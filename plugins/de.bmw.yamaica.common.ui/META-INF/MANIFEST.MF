@@ -5,13 +5,12 @@ Bundle-SymbolicName: de.bmw.yamaica.common.ui;singleton:=true
 Bundle-Version: 0.9.0.qualifier
 Bundle-Vendor: BMW Group
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: de.bmw.yamaica.common.ui,
- de.bmw.yamaica.common.ui.dialogs,
- de.bmw.yamaica.common.ui.internal;x-friends:="de.bmw.yamaica.ide.ui",
- de.bmw.yamaica.common.ui.internal.dialogs;x-friends:="de.bmw.yamaica.ide.ui",
- de.bmw.yamaica.common.ui.internal.preferences;x-friends:="de.bmw.yamaica.ide.ui",
- de.bmw.yamaica.common.ui.launch,
- de.bmw.yamaica.common.ui.utils
+Export-Package: de.bmw.yamaica.common.ui,de.bmw.yamaica.common.ui.dial
+ ogs,de.bmw.yamaica.common.ui.internal;x-friends:="de.bmw.yamaica.ide.
+ ui",de.bmw.yamaica.common.ui.internal.dialogs;x-friends:="de.bmw.yama
+ ica.ide.ui",de.bmw.yamaica.common.ui.internal.preferences;x-friends:=
+ "de.bmw.yamaica.ide.ui",de.bmw.yamaica.common.ui.launch,de.bmw.yamaic
+ a.common.ui.utils
 Require-Bundle: org.eclipse.core.filebuffers;bundle-version="[3.5.0,4.0.0)";visibility:=reexport,
  org.eclipse.ui;bundle-version="[3.103.0,4.0.0)";visibility:=reexport,
  org.eclipse.ui.ide;bundle-version="[3.8.0,4.0.0)";visibility:=reexport,

@@ -17,6 +17,6 @@ Require-Bundle: org.eclipse.core.resources;bundle-version="[3.8.0,4.0.0)";visibi
  de.bmw.yamaica.common.ui;bundle-version="[0.9.0,0.10.0)";visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: de.bmw.yamaica.franca.ui,
- de.bmw.yamaica.franca.ui.internal;x-internal:=true
+Export-Package: de.bmw.yamaica.franca.ui,de.bmw.yamaica.franca.ui.inte
+ rnal;x-internal:=true
 Bundle-Vendor: BMW Group
