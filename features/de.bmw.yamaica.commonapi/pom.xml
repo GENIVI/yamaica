@@ -8,7 +8,7 @@
     <parent>
         <groupId>yamaica</groupId>
         <artifactId>de.bmw.yamaica.commonapi.releng</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
+        <version>0.9.1-SNAPSHOT</version>
         <relativePath>../../releng/de.bmw.yamaica.commonapi.releng</relativePath>
     </parent>
     

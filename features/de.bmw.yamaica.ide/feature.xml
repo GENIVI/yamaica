@@ -2,11 +2,10 @@
 <feature
       id="de.bmw.yamaica.ide"
       label="yamaica IDE"
-      version="0.9.0.qualifier"
+      version="0.9.1.qualifier"
       provider-name="BMW Group"
       plugin="de.bmw.yamaica.ide.ui"
-      license-feature="de.bmw.yamaica.common"
-      license-feature-version="0.9.0.qualifier">
+      license-feature="de.bmw.yamaica.common">
 
    <description>
       This feature consolidates all yamaica IDE plug-ins.

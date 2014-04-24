@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>yamaica</groupId>
   <artifactId>de.bmw.yamaica.releng</artifactId>
-  <version>0.9.0-SNAPSHOT</version>
+  <version>0.9.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <properties>
@@ -53,7 +53,7 @@
                 <artifact>
                   <groupId>yamaica</groupId>
                   <artifactId>${target.id}</artifactId>
-                  <version>0.9.0-SNAPSHOT</version>
+                  <version>0.9.1-SNAPSHOT</version>
                 </artifact>
               </target>
               <environments>
@@ -106,7 +106,7 @@
                 <artifact>
                   <groupId>yamaica</groupId>
                   <artifactId>${target.id}</artifactId>
-                  <version>0.9.0-SNAPSHOT</version>
+                  <version>0.9.1-SNAPSHOT</version>
                 </artifact>
               </target>
               <environments>
@@ -152,7 +152,7 @@
                 <artifact>
                   <groupId>yamaica</groupId>
                   <artifactId>de.bmw.yamaica.genivi.target</artifactId>
-                  <version>0.9.0-SNAPSHOT</version>
+                  <version>0.9.1-SNAPSHOT</version>
                 </artifact>
               </target>
               <environments>
@@ -173,8 +173,8 @@
         <module>../../releng/de.bmw.yamaica.commonapi.releng</module>
         <module>../../releng/de.bmw.yamaica.ide.releng</module>
         <module>../../releng/de.bmw.yamaica.genivi.updatesite</module>
-        <module>../../../${ea.repo.name}/releng/de.bmw.emf.eaxmi.releng</module>
-        <module>../../../${ea.repo.name}/releng/de.bmw.yamaica.ea.releng</module>
+        <module>../../../ascgit048.yamaica-ea/releng/de.bmw.emf.eaxmi.releng</module>
+        <module>../../../ascgit048.yamaica-ea/releng/de.bmw.yamaica.ea.releng</module>
       </modules>
     </profile>
   </profiles>

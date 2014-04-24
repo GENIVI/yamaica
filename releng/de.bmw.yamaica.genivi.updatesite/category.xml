@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/de.bmw.yamaica.commonapi_0.9.0.qualifier.jar" id="de.bmw.yamaica.commonapi" version="0.9.0.qualifier">
+   <feature url="features/de.bmw.yamaica.common_0.9.1.qualifier.jar" id="de.bmw.yamaica.common" version="0.9.1.qualifier">
       <category name="de.bmw.yamaica.category"/>
    </feature>
-   <feature url="features/de.bmw.yamaica.franca_0.9.0.qualifier.jar" id="de.bmw.yamaica.franca" version="0.9.0.qualifier">
+   <feature url="features/de.bmw.yamaica.commonapi_0.9.1.qualifier.jar" id="de.bmw.yamaica.commonapi" version="0.9.1.qualifier">
       <category name="de.bmw.yamaica.category"/>
    </feature>
-   <feature url="features/de.bmw.yamaica.ide_0.9.0.qualifier.jar" id="de.bmw.yamaica.ide" version="0.9.0.qualifier">
+   <feature url="features/de.bmw.yamaica.ea_0.9.1.qualifier.jar" id="de.bmw.yamaica.ea" version="0.9.1.qualifier" os="win32" arch="x86">
       <category name="de.bmw.yamaica.category"/>
    </feature>
-   <feature url="features/de.bmw.yamaica.common_0.9.0.qualifier.jar" id="de.bmw.yamaica.common" version="0.9.0.qualifier">
+   <feature url="features/de.bmw.yamaica.franca_0.9.1.qualifier.jar" id="de.bmw.yamaica.franca" version="0.9.1.qualifier">
       <category name="de.bmw.yamaica.category"/>
    </feature>
-   <feature url="features/de.bmw.yamaica.ea_0.9.0.qualifier.jar" id="de.bmw.yamaica.ea" version="0.9.0.qualifier" os="win32" arch="x86">
+   <feature url="features/de.bmw.yamaica.ide_0.9.1.qualifier.jar" id="de.bmw.yamaica.ide" version="0.9.1.qualifier">
       <category name="de.bmw.yamaica.category"/>
    </feature>
    <category-def name="de.bmw.yamaica.category" label="yamaica (Incubation)"/>

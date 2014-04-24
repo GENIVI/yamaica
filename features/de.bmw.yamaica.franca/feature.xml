@@ -2,11 +2,10 @@
 <feature
       id="de.bmw.yamaica.franca"
       label="yamaica Franca"
-      version="0.9.0.qualifier"
+      version="0.9.1.qualifier"
       provider-name="BMW Group"
       plugin="de.bmw.yamaica.franca.ui"
-      license-feature="de.bmw.yamaica.common"
-      license-feature-version="0.9.0.qualifier">
+      license-feature="de.bmw.yamaica.common">
 
    <description>
       This feature consolidates all yamaica Franca plug-ins.
