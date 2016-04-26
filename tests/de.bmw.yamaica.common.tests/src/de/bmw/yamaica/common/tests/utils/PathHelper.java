@@ -1,3 +1,9 @@
+/* Copyright (C) 2013-2015 BMW Group
+ * Author: Manfred Bathelt (manfred.bathelt@bmw.de)
+ * Author: Juergen Gehring (juergen.gehring@bmw.de)
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 package de.bmw.yamaica.common.tests.utils;
 
 import java.io.File;
@@ -19,7 +25,12 @@ public class PathHelper
 
     public static List<File> getFilesOfDirectory(File directory)
     {
-        List<File> fileList = new LinkedList<File>();
+        return getFilesOfDirectory(directory, null);
+    }
+
+    public static List<File> getFilesOfDirectory(File directory, String fileExtension)
+    {
+        List<File> fileList = new LinkedList<>();
 
         if (!directory.isDirectory())
         {
@@ -30,9 +41,9 @@ public class PathHelper
         {
             if (fileInDirectory.isDirectory())
             {
-                fileList.addAll(getFilesOfDirectory(fileInDirectory));
+                fileList.addAll(getFilesOfDirectory(fileInDirectory, fileExtension));
             }
-            else
+            else if (fileInDirectory.isFile() && (null == fileExtension || fileInDirectory.getName().endsWith("." + fileExtension)))
             {
                 fileList.add(fileInDirectory);
             }
@@ -41,36 +52,39 @@ public class PathHelper
         return fileList;
     }
 
-    public static boolean deleteFolder(File folder)
+    public static boolean deleteFile(File file)
     {
-        if (!folder.exists())
+        if (!file.exists())
         {
             return true;
         }
 
-        for (File childFile : folder.listFiles())
+        if (file.isDirectory())
         {
-            if (childFile.isDirectory())
+            for (File childFile : file.listFiles())
             {
-                deleteFolder(childFile);
-            }
-            else
-            {
-                childFile.delete();
+                if (childFile.isDirectory())
+                {
+                    deleteFile(childFile);
+                }
+                else
+                {
+                    childFile.delete();
+                }
             }
         }
 
-        return folder.delete();
+        return file.delete();
     }
 
-    public static boolean deleteBundleFolder(String bundleId, String bundleRelativePath) throws URISyntaxException, IOException
+    public static boolean deleteBundleFile(String bundleId, String bundleRelativePath) throws URISyntaxException, IOException
     {
-        return deleteFolder(ResourceUtils.getResourceFileFromBundle(bundleId, bundleRelativePath));
+        return deleteFile(ResourceUtils.getResourceFileFromBundle(bundleId, bundleRelativePath));
     }
 
     public static List<URI> toFileUriList(List<File> files)
     {
-        List<URI> fileUriList = new LinkedList<URI>();
+        List<URI> fileUriList = new LinkedList<>();
 
         for (File file : files)
         {

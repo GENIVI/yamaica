@@ -2,17 +2,18 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: yamaica IDE UI
 Bundle-SymbolicName: de.bmw.yamaica.ide.ui;singleton:=true
-Bundle-Version: 0.9.1.qualifier
+Bundle-Version: 0.15.0.qualifier
 Bundle-Activator: de.bmw.yamaica.ide.ui.internal.Activator
 Bundle-Vendor: BMW Group
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.8.0,4.0.0)";visibility:=reexport,
  org.eclipse.ui;bundle-version="[3.103.0,4.0.0)";visibility:=reexport,
  org.eclipse.ui.editors;bundle-version="[3.8.0,4.0.0)";visibility:=reexport,
  org.eclipse.ui.forms;bundle-version="[3.5.0,4.0.0)";visibility:=reexport,
+ org.eclipse.equinox.p2.ui;bundle-version="[2.3.0,3.0.0)";visibility:=reexport,
  org.eclipse.jface.text;bundle-version="[3.8.0,4.0.0)";visibility:=reexport,
- de.bmw.yamaica.common.ui;bundle-version="[0.9.0,0.10.0)";visibility:=reexport,
- de.bmw.yamaica.ide.ui.workbenchobserver;bundle-version="[0.9.0,0.10.0)";visibility:=reexport
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+ de.bmw.yamaica.common.ui;bundle-version="[0.15.0,0.16.0)";visibility:=reexport,
+ de.bmw.yamaica.ide.ui.workbenchobserver;bundle-version="[0.13.0,0.14.0)";visibility:=reexport
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Export-Package: de.bmw.yamaica.ide.ui,de.bmw.yamaica.ide.ui.commands,d
  e.bmw.yamaica.ide.ui.internal;x-internal:=true,de.bmw.yamaica.ide.ui.

@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 BMW Group
+/* Copyright (C) 2013-2015 BMW Group
  * Author: Manfred Bathelt (manfred.bathelt@bmw.de)
  * Author: Juergen Gehring (juergen.gehring@bmw.de)
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -11,14 +11,19 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
+import org.eclipse.xtext.parsetree.reconstr.XtextSerializationException;
 import org.franca.core.franca.FModel;
 import org.franca.deploymodel.dsl.fDeploy.FDModel;
 
@@ -26,11 +31,18 @@ import de.bmw.yamaica.common.core.YamaicaConstants;
 
 public class FrancaResourceSetContainer
 {
-    protected final Map<FModel, Resource>  fModels       = new HashMap<FModel, Resource>();
-    protected final Map<FDModel, Resource> fdModels      = new HashMap<FDModel, Resource>();
+    protected final Map<FModel, Resource>  fModels       = new LinkedHashMap<FModel, Resource>();
+    protected final Map<FDModel, Resource> fdModels      = new LinkedHashMap<FDModel, Resource>();
+
     protected final ResourceSet            resourceSet;
     protected final IPath                  rootSavePath;
     protected String                       headerComment = null;
+
+    // Stores each FModel object paired with the origin file name.
+    private final Map<FModel, String>      fileNameCache = new HashMap<>();
+
+    private final Map<FModel, Resource>    errorCache    = new LinkedHashMap<FModel, Resource>();
+    private static final Logger            LOGGER        = Logger.getLogger(FrancaResourceSetContainer.class.getName());
 
     public FrancaResourceSetContainer(ResourceSet resourceSet, IPath rootSavePath)
     {
@@ -44,13 +56,25 @@ public class FrancaResourceSetContainer
         {
             return;
         }
+        if (fModel.eResource() != null)
+        {
+            resourceSet.getResources().add(fModel.eResource());
+        }
+        final IPath savePath = rootSavePath.append(FrancaUtils.getRelativeFidlPackagePath(fModel));
 
-        IPath savePath = rootSavePath.append(FrancaUtils.getRelativeFidlPackagePath(fModel));
-
-        Resource resource = resourceSet.createResource(URI.createURI(savePath.toString(), true));
+        final Resource resource = createResourceByURI(savePath, fModel);
         resource.getContents().add(fModel);
 
         fModels.put(fModel, resource);
+    }
+
+    private Resource createResourceByURI(IPath savePath, FModel fModel)
+    {
+        final URI uri = URI.createURI(FrancaUtils.restoreOriginFileName(fileNameCache, savePath, fModel).toString(), true);
+
+        LOGGER.log(Level.FINEST, String.format("Creating resource with URI: '%s'", uri));
+
+        return resourceSet.createResource(uri);
     }
 
     public void addModels(Collection<FModel> fmodels)
@@ -75,11 +99,18 @@ public class FrancaResourceSetContainer
         {
             return;
         }
-
-        IPath savePath = rootSavePath.append(FrancaUtils.getRelativeFidlPackagePath(fModel).removeFileExtension()
+        if (fModel.eResource() != null)
+        {
+            resourceSet.getResources().add(fModel.eResource());
+        }
+        if (fdModel.eResource() != null)
+        {
+            resourceSet.getResources().add(fdModel.eResource());
+        }
+        final IPath savePath = rootSavePath.append(FrancaUtils.getRelativeFidlPackagePath(fModel).removeFileExtension()
                 .addFileExtension(FrancaUtils.DEPLOYMENT_DEFINITION_FILE_EXTENSION));
 
-        Resource resource = resourceSet.createResource(URI.createURI(savePath.toString(), true));
+        final Resource resource = createResourceByURI(savePath, fModel);
         resource.getContents().add(fdModel);
 
         fdModels.put(fdModel, resource);
@@ -103,6 +134,11 @@ public class FrancaResourceSetContainer
         return resourceSet;
     }
 
+    public Map<FModel, Resource> getErrorCache()
+    {
+        return errorCache;
+    }
+
     public Resource getResource(FModel fModel)
     {
         return fModels.get(fModel);
@@ -120,7 +156,7 @@ public class FrancaResourceSetContainer
 
     public Map<FModel, IPath> getModelSavePaths()
     {
-        Map<FModel, IPath> modelPaths = new HashMap<FModel, IPath>();
+        Map<FModel, IPath> modelPaths = new HashMap<>();
 
         for (Map.Entry<FModel, Resource> model : fModels.entrySet())
         {
@@ -129,13 +165,12 @@ public class FrancaResourceSetContainer
 
             modelPaths.put(model.getKey(), modelPath);
         }
-
         return modelPaths;
     }
 
     public Map<FDModel, IPath> getFDModelSavePaths()
     {
-        Map<FDModel, IPath> fdModelPaths = new HashMap<FDModel, IPath>();
+        Map<FDModel, IPath> fdModelPaths = new HashMap<>();
 
         for (Map.Entry<FDModel, Resource> fdModel : fdModels.entrySet())
         {
@@ -166,25 +201,43 @@ public class FrancaResourceSetContainer
 
     protected void save(Collection<Resource> resources)
     {
-        Map<Object, Object> saveOptions = new HashMap<Object, Object>();
+        Map<Object, Object> saveOptions = new HashMap<>();
         saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, true);
 
         URIConverter uriConverter = resourceSet.getURIConverter();
 
         for (Resource resource : resources)
         {
-            try
+            try (OutputStream outputStream = uriConverter.createOutputStream(resource.getURI(), saveOptions))
             {
-                OutputStream outputStream = uriConverter.createOutputStream(resource.getURI(), saveOptions);
-
                 writeFormatedHeaderComment(outputStream);
                 resource.save(outputStream, saveOptions);
-
-                outputStream.close();
             }
             catch (IOException e)
             {
-                e.printStackTrace();
+                LOGGER.log(Level.SEVERE, e.getMessage());
+            }
+            catch (XtextSerializationException e)
+            {
+                if (resource.getContents() != null)
+                {
+                    EObject eObject = resource.getContents().get(0);
+                    if (eObject instanceof FModel)
+                    {
+                        // Store all corrupt fidl-files from FrancaResourceSetContainer in errorCache
+                        FModel model = (FModel) eObject;
+                        if (model != null)
+                        {
+                            // System.out.println(String.format("---->Error Model :  %s  Uri :  %s", model.getName(), resource.getURI()));
+                            if (!errorCache.containsKey(model))
+                            {
+                                errorCache.put(model, resource);
+                            }
+                        }
+                    }
+                }
+                LOGGER.log(Level.WARNING,
+                        String.format("Could not save resource [ %s ]. Exception : %s", resource.getURI(), e.getMessage()));
             }
         }
     }
@@ -214,6 +267,18 @@ public class FrancaResourceSetContainer
         stringBuilder.append(" */");
         stringBuilder.append(newLineString);
         outputStreamWriter.write(stringBuilder.toString());
-        outputStreamWriter.close();
+        outputStreamWriter.flush(); // outputStreamWriter.close(); Exception by console Ticket-414
+    }
+
+    /**
+     * Clears the file name cache and copies all entries of originFileNames.
+     *
+     * @param originFileNames
+     *            Map of origin file names.
+     */
+    public void addOriginFileNames(Map<FModel, String> originFileNames)
+    {
+        fileNameCache.clear();
+        fileNameCache.putAll(originFileNames);
     }
 }

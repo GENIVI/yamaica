@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 BMW Group
+/* Copyright (C) 2013-2015 BMW Group
  * Author: Manfred Bathelt (manfred.bathelt@bmw.de)
  * Author: Juergen Gehring (juergen.gehring@bmw.de)
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -833,7 +833,7 @@ public abstract class YamaicaWizardImportPage extends WizardResourceImportPage i
 
         try
         {
-            getContainer().run(true, true, importer);
+            getContainer().run(true, getIsProgressMonitorCancelable(), importer);
 
             return true;
         }
@@ -925,5 +925,10 @@ public abstract class YamaicaWizardImportPage extends WizardResourceImportPage i
     protected final ITreeContentProvider getFolderProvider()
     {
         return null;
+    }
+
+    protected boolean getIsProgressMonitorCancelable()
+    {
+        return true;
     }
 }

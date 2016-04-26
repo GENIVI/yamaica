@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 BMW Group
+/* Copyright (C) 2013-2015 BMW Group
  * Author: Manfred Bathelt (manfred.bathelt@bmw.de)
  * Author: Juergen Gehring (juergen.gehring@bmw.de)
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -21,10 +21,18 @@ public class DeploymentSpecificationLoader
 {
     protected final ResourceSet resourceSet;
     protected FDModel           model;
+    private final String        specificationURI;
+
+    public String getSpecificationURI()
+    {
+        return specificationURI;
+    }
 
     public DeploymentSpecificationLoader(ResourceSet resourceSet, URI uri)
     {
         this.resourceSet = resourceSet;
+
+        specificationURI = uri.toString();
 
         try
         {

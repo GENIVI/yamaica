@@ -76,6 +76,13 @@
                </appInfo>
             </annotation>
          </attribute>
+         <attribute name="extensions" type="string">
+            <annotation>
+               <documentation>
+                  List of file extensions which are handled by the launch configuration type, when opened from within the Yamaica editor.
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 

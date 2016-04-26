@@ -10,15 +10,16 @@
         <module>../../plugins/de.bmw.yamaica.common.core.resourceobserver</module>
         <module>../../plugins/de.bmw.yamaica.common.doc</module>
         <module>../../plugins/de.bmw.yamaica.common.ui</module>
+        <module>../../plugins/de.bmw.yamaica.common.console</module>
         <module>../../tests/de.bmw.yamaica.common.tests</module>
         <module>../../features/de.bmw.yamaica.common</module> 
     </modules>
-    
+
     <parent>
         <groupId>yamaica</groupId>
         <artifactId>de.bmw.yamaica.releng</artifactId>
-        <version>0.9.1-SNAPSHOT</version>
+        <version>0.13.0-SNAPSHOT</version>
         <relativePath>../../releng/de.bmw.yamaica.releng</relativePath>
     </parent>
 
-</project>  
+</project>

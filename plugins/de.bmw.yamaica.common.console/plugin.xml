@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="commands" name="yamaica Console Commands" schema="schema/commands.exsd"/>
+   <extension-point id="optionGroups" name="yamaica Console Option Groups" schema="schema/optionGroups.exsd"/>
+   <extension-point id="options" name="yamaica Console Options" schema="schema/options.exsd"/>
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="de.bmw.yamaica.common.console.internal.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="de.bmw.yamaica.common.console.commands">
+      <command
+            class="de.bmw.yamaica.common.console.internal.HelpCommandHandler"
+            id="de.bmw.yamaica.common.console.commands.help"
+            name="Console Help">
+         <options>
+            <option
+                  argCount="0"
+                  description="display help of available console commands"
+                  hasOptionalArg="false"
+                  id="de.bmw.yamaica.common.console.options.help"
+                  longName="help"
+                  required="true"
+                  shortName="h">
+            </option>
+         </options>
+      </command>
+   </extension>
+</plugin>

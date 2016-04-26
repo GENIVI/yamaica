@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 BMW Group
+/* Copyright (C) 2013-2015 BMW Group
  * Author: Manfred Bathelt (manfred.bathelt@bmw.de)
  * Author: Juergen Gehring (juergen.gehring@bmw.de)
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -15,6 +15,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -57,6 +59,7 @@ public class YamaicaXmlModel extends AbstractPropertyChangeSupport implements IR
     private static HashMap<IPath, YamaicaXmlModel> instances;
 
     private final String                           VERSION_NUMBER = "1.0";
+    private static final Logger                    LOGGER         = Logger.getLogger(YamaicaXmlModel.class.getName());
 
     public static synchronized YamaicaXmlModel acquireInstance(IResource resource, Object reference)
     {
@@ -189,13 +192,13 @@ public class YamaicaXmlModel extends AbstractPropertyChangeSupport implements IR
         // Remove the model object from instances list if no
         // object instance does reference it.
         instances.remove(path);
-        System.out.println("Deleted singleton because no object references it.");
+        LOGGER.log(Level.FINE, "Deleted singleton because no object references it.");
 
         if (instances.size() == 0)
         {
             // Free the hash map if it is empty.
             instances = null;
-            System.out.println("Deleted model hash map because no singelton is available.");
+            LOGGER.log(Level.FINE, "Deleted model hash map because no singelton is available.");
         }
     }
 

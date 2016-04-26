@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 BMW Group
+/* Copyright (C) 2013-2015 BMW Group
  * Author: Manfred Bathelt (manfred.bathelt@bmw.de)
  * Author: Juergen Gehring (juergen.gehring@bmw.de)
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -58,7 +58,6 @@ import de.bmw.yamaica.common.ui.utils.ViewerToolBar;
 
 public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage implements ICheckStateListener, ActionRunListener
 {
-    private static final String        SELECT_A_FILE_TO_EXPORT_TO        = "Select a file to export to";
     protected IWorkbench               workbench;
     protected IStructuredSelection     structuredSelection;
     protected boolean                  restrictWizardPage                = false;
@@ -67,6 +66,7 @@ public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage 
     // widgets
     protected ViewerToolBar            viewerToolBar;
     protected YamaicaCheckedTreeViewer resourceSelectionTreeViewer;
+    protected Composite                destinationSelectionGroup;
     protected Combo                    destinationNameField;
     protected Button                   destinationBrowseButton;
     protected Button                   overwriteExistingFilesCheckbox;
@@ -79,17 +79,19 @@ public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage 
     protected static final String      STORE_OVERWRITE_EXISTING_FILES_ID = "YamaicaWizardExportPage.STORE_OVERWRITE_EXISTING_FILES_ID";     //$NON-NLS-1$
     protected static final String      STORE_SHOW_ALL_FILES_ID           = "YamaicaWizardImportPage.STORE_SHOW_ALL_FILES_ID";               //$NON-NLS-1$
 
-    private static final String        TO_DIRECTORY                      = "To director&y:";
-    private static final String        BROWSE                            = "Bro&wse...";
-    private static final String        DIRECTORY_SELECTION_MESSAGE       = "Select a directory to export to.";
-    private static final String        EXPORT_TO_DIRECTORY               = "Export to Directory";
-    private static final String        RESOURCE_SELECTION_ERROR_MESSAGE  = "There are no resources currently selected for export.";
-    private static final String        ENTER_DESTINATION_MESSAGE         = "Please enter a destination directory.";
-    private static final String        COULD_NOT_CREATE_MESSAGE          = "Target directory could not be created.";
-    private static final String        ALREADY_EXISTS_MESSAGE            = "Target directory already exists as a file.";
-    private static final String        DIRECTORY_CREATE_QUESTION         = "Target directory does not exist.  Would you like to create it?";
-    private static final String        LOCATION_CONFLICT_ERROR_MESSAGE   = "Destination directory conflicts with location of {0}.";
-    private static final String        PROJECT_DAMAGED_WARNING           = "The project {0} may be damaged after this operation";
+    protected static final String      SELECT_A_FILE_TO_EXPORT_TO        = "Select a file to export to";
+    protected static final String      TO_DIRECTORY                      = "To director&y:";
+    protected static final String      DESTINATION_FILE                  = "Des&tination file:";
+    protected static final String      BROWSE                            = "Bro&wse...";
+    protected static final String      DIRECTORY_SELECTION_MESSAGE       = "Select a directory to export to.";
+    protected static final String      EXPORT_TO_DIRECTORY               = "Export to Directory";
+    protected static final String      RESOURCE_SELECTION_ERROR_MESSAGE  = "There are no resources currently selected for export.";
+    protected static final String      ENTER_DESTINATION_MESSAGE         = "Please enter a destination directory.";
+    protected static final String      COULD_NOT_CREATE_MESSAGE          = "Target directory could not be created.";
+    protected static final String      ALREADY_EXISTS_MESSAGE            = "Target directory already exists as a file.";
+    protected static final String      DIRECTORY_CREATE_QUESTION         = "Target directory does not exist.  Would you like to create it?";
+    protected static final String      LOCATION_CONFLICT_ERROR_MESSAGE   = "Destination directory conflicts with location of {0}.";
+    protected static final String      PROJECT_DAMAGED_WARNING           = "The project {0} may be damaged after this operation";
 
     public YamaicaWizardExportPage(IWorkbench workbench, IStructuredSelection structuredSelection, String name)
     {
@@ -248,13 +250,22 @@ public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage 
         layout.marginHeight = 10;
 
         // destination specification group
-        Composite destinationSelectionGroup = new Composite(parent, SWT.NONE);
+        destinationSelectionGroup = new Composite(parent, SWT.NONE);
         destinationSelectionGroup.setLayout(layout);
         destinationSelectionGroup.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL | GridData.VERTICAL_ALIGN_FILL));
         destinationSelectionGroup.setFont(font);
 
         Label destinationLabel = new Label(destinationSelectionGroup, SWT.NONE);
-        destinationLabel.setText(TO_DIRECTORY);
+
+        if (!isFileExportWizard)
+        {
+            destinationLabel.setText(TO_DIRECTORY);
+        }
+        else
+        {
+            destinationLabel.setText(DESTINATION_FILE);
+        }
+
         destinationLabel.setFont(font);
 
         // destination name entry field
@@ -299,7 +310,7 @@ public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage 
     @Override
     protected List<IResource> getSelectedResources()
     {
-        List<IResource> resources = new LinkedList<IResource>();
+        List<IResource> resources = new LinkedList<>();
 
         if (null != resourceSelectionTreeViewer)
         {
@@ -343,7 +354,7 @@ public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage 
 
         try
         {
-            getContainer().run(true, true, exporter);
+            getContainer().run(true, getIsProgressMonitorCancelable(), exporter);
 
             return true;
         }
@@ -667,4 +678,9 @@ public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage 
     protected abstract String[] getFileExtensions();
 
     protected abstract IRunnableWithProgress getExporter();
+
+    protected boolean getIsProgressMonitorCancelable()
+    {
+        return true;
+    }
 }

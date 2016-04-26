@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 BMW Group
+/* Copyright (C) 2013-2015 BMW Group
  * Author: Manfred Bathelt (manfred.bathelt@bmw.de)
  * Author: Juergen Gehring (juergen.gehring@bmw.de)
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -17,21 +17,17 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.ui.dialogs.IOverwriteQuery;
-import org.franca.core.dsl.FrancaIDLRuntimeModule;
 import org.franca.core.dsl.FrancaPersistenceManager;
 import org.franca.core.franca.FModel;
 import org.franca.generators.FrancaGenerators;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-
 import de.bmw.yamaica.common.core.utils.ResourceUtils;
 import de.bmw.yamaica.common.ui.YamaicaUIConstants;
+import de.bmw.yamaica.franca.common.core.FrancaInjector;
 
 public class HtmlExportOperation implements IRunnableWithProgress
 {
     private static final String        HTML_FILE_EXTENSION = ".html";
-    protected Injector                 injector;
     protected FrancaPersistenceManager francaPersistenceManager;
     protected IPath                    directoryPath;
     protected List<IResource>          resources;
@@ -44,8 +40,7 @@ public class HtmlExportOperation implements IRunnableWithProgress
         this.directoryPath = directoryPath;
         this.resources = resources;
 
-        injector = Guice.createInjector(new FrancaIDLRuntimeModule());
-        francaPersistenceManager = injector.getInstance(FrancaPersistenceManager.class);
+        francaPersistenceManager = FrancaInjector.INSTANCE.getInstance(FrancaPersistenceManager.class);
     }
 
     @Override

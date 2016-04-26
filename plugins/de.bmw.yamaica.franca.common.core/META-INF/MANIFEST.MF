@@ -2,12 +2,15 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: yamaica Franca Common Core
 Bundle-SymbolicName: de.bmw.yamaica.franca.common.core
-Bundle-Version: 0.9.1.qualifier
+Bundle-Version: 0.15.0.qualifier
 Bundle-Vendor: BMW Group
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.8.0,4.0.0)";visibility:=reexport,
- org.franca.core;bundle-version="[0.8.8,0.9.0)";visibility:=reexport,
- org.franca.core.dsl;bundle-version="[0.8.8,0.9.0)";visibility:=reexport,
- org.franca.deploymodel.dsl;bundle-version="[0.8.8,0.9.0)";visibility:=reexport,
- de.bmw.yamaica.common.core;bundle-version="[0.9.0,0.10.0)";visibility:=reexport
+ org.franca.core;bundle-version="[0.9.0,0.10.0)";visibility:=reexport,
+ org.franca.core.dsl;bundle-version="[0.9.0,0.10.0)";visibility:=reexport,
+ org.franca.deploymodel.dsl;bundle-version="[0.9.0,0.10.0)";visibility:=reexport,
+ de.bmw.yamaica.common.core;bundle-version="[0.14.0,0.15.0)";visibility:=reexport,
+ org.eclipse.xtend.lib;bundle-version="[2.7.0,3.0.0)";visibility:=reexport,
+ com.google.inject;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
+ org.eclipse.xtext;bundle-version="[2.7.0,3.0.0)";visibility:=reexport
 Export-Package: de.bmw.yamaica.franca.common.core

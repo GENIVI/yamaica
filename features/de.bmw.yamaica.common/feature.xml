@@ -2,7 +2,7 @@
 <feature
       id="de.bmw.yamaica.common"
       label="yamaica Common"
-      version="0.9.1.qualifier"
+      version="0.16.0.qualifier"
       provider-name="BMW Group">
 
    <description>
@@ -10,7 +10,7 @@
    </description>
 
    <copyright>
-      Copyright © 2010-2013 BMW Group.
+      Copyright © 2010, 2015 BMW Group.
 All rights reserved.
    </copyright>
 
@@ -416,5 +416,12 @@ Exhibit B - &quot;Incompatible With Secondary Licenses&quot; Notice
          download-size="0"
          install-size="0"
          version="0.0.0"/>
+
+   <plugin
+         id="de.bmw.yamaica.common.console"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>

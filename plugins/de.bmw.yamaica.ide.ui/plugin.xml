@@ -20,12 +20,18 @@
       <definition
             id="de.bmw.yamaica.ide.ui.fileToolbarExtensionsActive">
          <and>
-            <with
-                  variable="activeWorkbenchWindow.activePerspective">
-               <equals
-                     value="de.bmw.yamaica.ide.ui.mainPerspective">
-               </equals>
-            </with>
+            <or>
+               <with
+                     variable="activeWorkbenchWindow.activePerspective">
+                  <equals
+                        value="de.bmw.yamaica.ide.ui.mainPerspective">
+                  </equals>
+               </with>
+               <test
+                     property="de.bmw.yamaica.ide.ui.workbenchobserver.menuBarEnabled"
+                     value="false">
+               </test>
+            </or>
             <not>
                <with
                      variable="org.eclipse.ui.IWorkbench">

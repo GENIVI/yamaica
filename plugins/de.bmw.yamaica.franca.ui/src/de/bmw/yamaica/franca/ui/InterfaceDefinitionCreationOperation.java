@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 BMW Group
+/* Copyright (C) 2013-2015 BMW Group
  * Author: Manfred Bathelt (manfred.bathelt@bmw.de)
  * Author: Juergen Gehring (juergen.gehring@bmw.de)
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -15,10 +15,11 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.xtext.resource.SynchronizedXtextResourceSet;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.franca.core.franca.FModel;
 
 import de.bmw.yamaica.common.ui.utils.AbstractFileCreationOperation;
+import de.bmw.yamaica.franca.common.core.FrancaInjector;
 import de.bmw.yamaica.franca.core.InterfaceDefinitionModelCreator;
 
 public class InterfaceDefinitionCreationOperation extends AbstractFileCreationOperation
@@ -55,7 +56,7 @@ public class InterfaceDefinitionCreationOperation extends AbstractFileCreationOp
             checkCancel(monitor);
             monitor.subTask(SUB_TASK_NAME_SAVING_FILE);
 
-            SynchronizedXtextResourceSet resourcesSet = new SynchronizedXtextResourceSet();
+            ResourceSet resourcesSet = FrancaInjector.INSTANCE.getInstance(ResourceSet.class);
             Resource resource = resourcesSet.createResource(URI.createPlatformResourceURI(file.getFullPath().toString(), true));
             resource.getContents().add(model);
             resource.save(Collections.emptyMap());

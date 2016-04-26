@@ -233,10 +233,12 @@
    <extension
          point="de.bmw.yamaica.common.ui.yamaicaExportWizards">
       <wizard
-            exportWizardId="de.bmw.yamaica.franca.ui.exportWizard">
+            exportWizardId="de.bmw.yamaica.franca.ui.exportWizard"
+            extensions="fidl,fdepl">
       </wizard>
       <wizard
-            exportWizardId="de.bmw.yamaica.franca.ui.htmlExportWizard">
+            exportWizardId="de.bmw.yamaica.franca.ui.htmlExportWizard"
+            extensions="fidl">
       </wizard>
    </extension>
    <extension

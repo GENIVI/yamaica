@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 BMW Group
+/* Copyright (C) 2013-2015 BMW Group
  * Author: Manfred Bathelt (manfred.bathelt@bmw.de)
  * Author: Juergen Gehring (juergen.gehring@bmw.de)
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -85,7 +85,7 @@ public class YamaicaCheckedTreeViewer extends ContainerCheckedTreeViewer
     @Override
     protected void inputChanged(Object input, Object oldInput)
     {
-        LinkedList<Object> checkedElements = new LinkedList<Object>();
+        LinkedList<Object> checkedElements = new LinkedList<>();
 
         if (null != input && null != oldInput && input != oldInput)
         {
@@ -109,7 +109,7 @@ public class YamaicaCheckedTreeViewer extends ContainerCheckedTreeViewer
 
     protected TreeItem[] getAllCheckedRootTreeItems(TreeItem[] treeItems)
     {
-        LinkedList<TreeItem> list = new LinkedList<TreeItem>();
+        LinkedList<TreeItem> list = new LinkedList<>();
 
         for (TreeItem treeItem : treeItems)
         {

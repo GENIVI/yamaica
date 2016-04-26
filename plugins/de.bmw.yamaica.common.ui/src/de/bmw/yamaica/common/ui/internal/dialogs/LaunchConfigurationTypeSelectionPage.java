@@ -1,14 +1,10 @@
-/* Copyright (C) 2013 BMW Group
+/* Copyright (C) 2013-2015 BMW Group
  * Author: Manfred Bathelt (manfred.bathelt@bmw.de)
  * Author: Juergen Gehring (juergen.gehring@bmw.de)
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 package de.bmw.yamaica.common.ui.internal.dialogs;
-
-import de.bmw.yamaica.common.core.launch.ILaunchConfigurationPreparer;
-import de.bmw.yamaica.common.ui.YamaicaUIConstants;
-import de.bmw.yamaica.common.ui.internal.Activator;
 
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -46,6 +42,11 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 
+import de.bmw.yamaica.common.core.launch.ILaunchConfigurationPreparer;
+import de.bmw.yamaica.common.ui.YamaicaUIConstants;
+import de.bmw.yamaica.common.ui.internal.Activator;
+import de.bmw.yamaica.common.ui.utils.WizardSelector;
+
 public class LaunchConfigurationTypeSelectionPage extends WizardPage
 {
     private static final String WIZARD_TITLE = "wizardTitle";
@@ -54,11 +55,13 @@ public class LaunchConfigurationTypeSelectionPage extends WizardPage
     private static final String CHOOSE_A_TRANSFORM_LAUNCH_CONFIGURATION_TYPE     = "Choose a transform launch configuration type.";
     private static final String YAMAICA_LAUNCH_CONFIGURATION_TYPE_SELECTION_PAGE = "yamaicaLaunchConfigurationTypeSelectionPage";
     protected TableViewer       tableViewer;
+    private IStructuredSelection selection;
 
     public LaunchConfigurationTypeSelectionPage(IWorkbench workbench, IStructuredSelection structuredSelection)
     {
         super(YAMAICA_LAUNCH_CONFIGURATION_TYPE_SELECTION_PAGE);
 
+        this.selection = structuredSelection;
         setTitle(YamaicaUIConstants.SELECT);
         setMessage(CHOOSE_A_TRANSFORM_LAUNCH_CONFIGURATION_TYPE);
     }
@@ -183,27 +186,30 @@ public class LaunchConfigurationTypeSelectionPage extends WizardPage
         for (IConfigurationElement configurationElement : Platform.getExtensionRegistry().getConfigurationElementsFor(
                 Activator.PLUGIN_ID + YAMAICA_LAUNCH_CONFIGURATION_TYPES))
         {
-            ILaunchConfigurationType yamaicaLaunchConfigurationType = launchManager.getLaunchConfigurationType(configurationElement
-                    .getAttribute(LAUNCH_CONFIGURATION_TYPE_ID));
-
-            if (null != yamaicaLaunchConfigurationType)
+            if (WizardSelector.isEnabledForSelection(configurationElement, selection))
             {
-                ILaunchConfigurationPreparer launchConfigurationPreparer = null;
+                ILaunchConfigurationType yamaicaLaunchConfigurationType = launchManager.getLaunchConfigurationType(configurationElement
+                        .getAttribute(LAUNCH_CONFIGURATION_TYPE_ID));
 
-                try
+                if (null != yamaicaLaunchConfigurationType)
                 {
-                    launchConfigurationPreparer = (ILaunchConfigurationPreparer) configurationElement.createExecutableExtension("class");
-                }
-                catch (CoreException e)
-                {
-                    e.printStackTrace();
-                }
-                finally
-                {
-                    String wizardTitle = configurationElement.getAttribute(WIZARD_TITLE);
+                    ILaunchConfigurationPreparer launchConfigurationPreparer = null;
 
-                    yamaicaLaunchConfigurationTypeData.add(new LaunchConfigurationTypeData(yamaicaLaunchConfigurationType,
-                            launchConfigurationPreparer, wizardTitle));
+                    try
+                    {
+                        launchConfigurationPreparer = (ILaunchConfigurationPreparer) configurationElement.createExecutableExtension("class");
+                    }
+                    catch (CoreException e)
+                    {
+                        e.printStackTrace();
+                    }
+                    finally
+                    {
+                        String wizardTitle = configurationElement.getAttribute(WIZARD_TITLE);
+
+                        yamaicaLaunchConfigurationTypeData.add(new LaunchConfigurationTypeData(yamaicaLaunchConfigurationType,
+                                launchConfigurationPreparer, wizardTitle));
+                    }
                 }
             }
         }

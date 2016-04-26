@@ -3,13 +3,33 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>yamaica</groupId>
     <artifactId>de.bmw.yamaica.genivi.updatesite</artifactId>
+    <version>0.18.0-SNAPSHOT</version>
     <packaging>eclipse-repository</packaging>
+
+    <build>
+      <plugins>
+        <plugin>
+          <groupId>org.eclipse.tycho</groupId>
+          <artifactId>target-platform-configuration</artifactId>
+          <version>${tycho-version}</version>
+          <configuration>
+            <environments>
+              <environment>
+                <os>win32</os>
+                <ws>win32</ws>
+                <arch>x86</arch>
+              </environment>
+            </environments>
+          </configuration>
+        </plugin>
+      </plugins>
+    </build>
 
     <parent>
         <groupId>yamaica</groupId>
         <artifactId>de.bmw.yamaica.releng</artifactId>
-        <version>0.9.1-SNAPSHOT</version>
+        <version>0.13.0-SNAPSHOT</version>
         <relativePath>../de.bmw.yamaica.releng</relativePath>
     </parent>
-    
-</project>  
+
+</project>

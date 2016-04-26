@@ -2,19 +2,25 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: yamaica Common Core
 Bundle-SymbolicName: de.bmw.yamaica.common.core;singleton:=true
-Bundle-Version: 0.9.1.qualifier
+Bundle-Version: 0.14.0.qualifier
 Bundle-Vendor: BMW Group
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: de.bmw.yamaica.common.core,de.bmw.yamaica.common.core.
- internal;x-internal:=true,de.bmw.yamaica.common.core.internal.resourc
- eproperties;x-internal:=true,de.bmw.yamaica.common.core.launch,de.bmw
- .yamaica.common.core.resourceproperties,de.bmw.yamaica.common.core.ut
- ils
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: de.bmw.yamaica.common.core,
+ de.bmw.yamaica.common.core.internal;x-internal:=true,
+ de.bmw.yamaica.common.core.internal.resourceproperties;x-internal:=true,
+ de.bmw.yamaica.common.core.launch,
+ de.bmw.yamaica.common.core.resourceproperties,
+ de.bmw.yamaica.common.core.utils
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.8.0,4.0.0)";visibility:=reexport,
  org.eclipse.core.resources;bundle-version="[3.8.0,4.0.0)";visibility:=reexport,
  org.eclipse.core.variables;bundle-version="[3.2.0,4.0.0)";visibility:=reexport,
  org.eclipse.debug.core;bundle-version="[3.7.0,4.0.0)";visibility:=reexport,
  org.eclipse.emf.common;bundle-version="[2.9.0,3.0.0)";visibility:=reexport,
- org.eclipse.jface;bundle-version="[3.8.0,4.0.0)";visibility:=reexport
+ org.eclipse.jface;bundle-version="[3.8.0,4.0.0)";visibility:=reexport,
+ org.eclipse.xtend.lib,
+ org.eclipse.xtend.lib.macro,
+ com.google.guava,
+ org.eclipse.xtext.xbase.lib
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: de.bmw.yamaica.common.core.internal.Activator
+

@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 BMW Group
+/* Copyright (C) 2013-2015 BMW Group
  * Author: Manfred Bathelt (manfred.bathelt@bmw.de)
  * Author: Juergen Gehring (juergen.gehring@bmw.de)
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -438,7 +438,7 @@ public abstract class YamaicaWizardNewFilePage extends WizardPage implements Lis
 
         try
         {
-            getContainer().run(true, true, fileCreator);
+            getContainer().run(true, getIsProgressMonitorCancelable(), fileCreator);
 
             IFile file = getSpecifiedFile();
 
@@ -621,5 +621,10 @@ public abstract class YamaicaWizardNewFilePage extends WizardPage implements Lis
         }
 
         super.setWizard(newWizard);
+    }
+
+    protected boolean getIsProgressMonitorCancelable()
+    {
+        return true;
     }
 }

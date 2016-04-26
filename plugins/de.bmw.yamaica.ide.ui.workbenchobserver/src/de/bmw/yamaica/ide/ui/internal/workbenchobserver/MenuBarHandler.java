@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 BMW Group
+/* Copyright (C) 2013-2015 BMW Group
  * Author: Manfred Bathelt (manfred.bathelt@bmw.de)
  * Author: Juergen Gehring (juergen.gehring@bmw.de)
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -33,14 +33,14 @@ import de.bmw.yamaica.ide.ui.workbenchobserver.Preferences;
 
 public class MenuBarHandler implements IWindowListener, IPerspectiveListener3, Listener, IPropertyChangeListener
 {
-    private static final String DE_BMW_YAMAICA_IDE_UI_MAIN_PERSPECTIVE = "de.bmw.yamaica.ide.ui.mainPerspective";
+    private static final String         DE_BMW_YAMAICA_IDE_UI_MAIN_PERSPECTIVE = "de.bmw.yamaica.ide.ui.mainPerspective";
 
-    private static MenuBarHandler       instance          = null;
+    private static MenuBarHandler       instance                               = null;
 
-    private IWorkbench                  workbench         = null;
-    private Map<IWorkbenchWindow, Menu> windows           = new HashMap<IWorkbenchWindow, Menu>();
-    private int                         lastCtrlKeyTime   = 0;
-    private String                      menuBarhidingRule = null;
+    private IWorkbench                  workbench                              = null;
+    private Map<IWorkbenchWindow, Menu> windows                                = new HashMap<IWorkbenchWindow, Menu>();
+    private int                         lastCtrlKeyTime                        = 0;
+    private String                      menuBarhidingRule                      = null;
 
     private MenuBarHandler()
     {
@@ -155,7 +155,7 @@ public class MenuBarHandler implements IWindowListener, IPerspectiveListener3, L
         }
     }
 
-    private boolean shouldMenuBarBeVisibile(IWorkbenchWindow window)
+    public boolean shouldMenuBarBeVisibile(IWorkbenchWindow window)
     {
         if (menuBarhidingRule.equals(Preferences.ALWAYS_HIDE))
         {

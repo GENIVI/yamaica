@@ -7,4 +7,14 @@
             class="de.bmw.yamaica.ide.ui.workbenchobserver.DefaultPreferences">
       </initializer>
    </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="de.bmw.yamaica.ide.ui.workbenchobserver.MenuBarPropertyTester"
+            id="de.bmw.yamaica.ide.ui.workbenchobserver.menuBarPropertyTester"
+            namespace="de.bmw.yamaica.ide.ui.workbenchobserver"
+            properties="menuBarEnabled"
+            type="java.lang.Object">
+      </propertyTester>
+   </extension>
 </plugin>
