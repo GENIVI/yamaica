@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: yamaica Common API UI
-Bundle-SymbolicName: de.bmw.yamaica.commonapi.ui
-Bundle-Version: 0.13.0.qualifier
-Bundle-Vendor: BMW Group
