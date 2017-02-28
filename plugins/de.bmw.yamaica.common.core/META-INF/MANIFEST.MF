@@ -2,9 +2,9 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: yamaica Common Core
 Bundle-SymbolicName: de.bmw.yamaica.common.core;singleton:=true
-Bundle-Version: 0.14.0.qualifier
+Bundle-Version: 0.17.0.qualifier
 Bundle-Vendor: BMW Group
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.bmw.yamaica.common.core,
  de.bmw.yamaica.common.core.internal;x-internal:=true,
  de.bmw.yamaica.common.core.internal.resourceproperties;x-internal:=true,

@@ -57,6 +57,12 @@ public class EMFHelper
             for (EObject eObject : resource.getContents())
             {
                 Diagnostic validate = Diagnostician.INSTANCE.validate(eObject);
+                if (validate.getSeverity() != Diagnostic.OK)
+                {
+                    System.out.println(validate.getMessage());
+                    for (Diagnostic diag : validate.getChildren())
+                        System.out.println(diag.getMessage());
+                }
                 assertEquals(Diagnostic.OK, validate.getSeverity());
             }
         }

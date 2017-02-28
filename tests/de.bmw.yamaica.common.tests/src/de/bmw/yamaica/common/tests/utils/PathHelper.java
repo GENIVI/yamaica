@@ -9,6 +9,7 @@ package de.bmw.yamaica.common.tests.utils;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -48,6 +49,13 @@ public class PathHelper
                 fileList.add(fileInDirectory);
             }
         }
+
+        Collections.sort(fileList, new java.util.Comparator<File>() {
+            @Override
+            public int compare(File file1, File file2) {
+                return file1.getAbsolutePath().compareTo(file2.getAbsolutePath());
+            }
+        });
 
         return fileList;
     }

@@ -10,6 +10,8 @@ import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.core.filebuffers.manipulation.ContainerCreator;
 import org.eclipse.core.resources.IContainer;
@@ -66,49 +68,52 @@ import de.bmw.yamaica.common.ui.utils.ViewerToolBar;
 
 public abstract class YamaicaWizardImportPage extends WizardResourceImportPage implements ICheckStateListener, ActionRunListener
 {
-    private static final String        CANNOT_IMPORT_INTO_A_WORKSPACE                                     = "Cannot import into a workspace with no open projects. Please create a project before importing.";
-    private static final String        SPECIFY_A_PROJECT                                                  = "Specify a project";
-    private static final String        DESTINATION_FOLDER_DOES_NOT_EXIST                                  = "Destination folder does not exist.";
-    private static final String        DESTINATION_FOLDER_LOCATION_IS_BASED_ON_AN_UNDEFINED_PATH_VARIABLE = "Destination folder location is based on an undefined path variable.";
-    private static final String        FOLDER_MUST_BE_ACCESSIBLE                                          = "Folder must be accessible.";
-    private static final String        DESTINATION_PROJECT_DOES_NOT_EXIST                                 = "Destination project does not exist.";
-    private static final String        PLEASE_SPECIFY_FOLDER                                              = "Please specify folder";
-    private static final String        CANNOT_IMPORT_A_FILE_INTO_A_VIRTUAL_FOLDER                         = "Cannot import a file into a virtual folder.";
-    private static final String        THERE_ARE_NO_RESOURCES_CURRENTLY_SELECTED_FOR_IMPORT               = "There are no resources currently selected for import.";
-    private static final String        SOURCE_MUST_NOT_BE_EMPTY                                           = "Source must not be empty.";
-    private static final String        SOURCE_DIRECTORY_IS_NOT_VALID_OR_HAS_NOT_BEEN_SPECIFIED            = "Source directory is not valid or has not been specified.";
-    private static final String        SELECT_A_DIRECTORY_TO_IMPORT_FROM                                  = "Select a directory to import from.";
-    private static final String        IMPORT_FROM_DIRECTORY                                              = "Import from directory";
-    private static final String        INTO_FOLDER                                                        = "Into fo&lder:";
-    private static final String        BROWSE                                                             = "B&rowse...";
-    private static final String        FROM_DIRECTORY                                                     = "From director&y:";
+    private static final Logger          LOGGER                                                             = Logger.getLogger(YamaicaWizardImportPage.class
+                                                                                                                    .getName());
 
-    protected IWorkbench               workbench;
-    protected IStructuredSelection     structuredSelection;
-    protected boolean                  restrictWizardPage                                                 = false;
+    private static final String          CANNOT_IMPORT_INTO_A_WORKSPACE                                     = "Cannot import into a workspace with no open projects. Please create a project before importing.";
+    private static final String          SPECIFY_A_PROJECT                                                  = "Specify a project";
+    private static final String          DESTINATION_FOLDER_DOES_NOT_EXIST                                  = "Destination folder does not exist.";
+    private static final String          DESTINATION_FOLDER_LOCATION_IS_BASED_ON_AN_UNDEFINED_PATH_VARIABLE = "Destination folder location is based on an undefined path variable.";
+    private static final String          FOLDER_MUST_BE_ACCESSIBLE                                          = "Folder must be accessible.";
+    private static final String          DESTINATION_PROJECT_DOES_NOT_EXIST                                 = "Destination project does not exist.";
+    private static final String          PLEASE_SPECIFY_FOLDER                                              = "Please specify folder";
+    private static final String          CANNOT_IMPORT_A_FILE_INTO_A_VIRTUAL_FOLDER                         = "Cannot import a file into a virtual folder.";
+    private static final String          THERE_ARE_NO_RESOURCES_CURRENTLY_SELECTED_FOR_IMPORT               = "There are no resources currently selected for import.";
+    private static final String          SOURCE_MUST_NOT_BE_EMPTY                                           = "Source must not be empty.";
+    private static final String          SOURCE_DIRECTORY_IS_NOT_VALID_OR_HAS_NOT_BEEN_SPECIFIED            = "Source directory is not valid or has not been specified.";
+    private static final String          SELECT_A_DIRECTORY_TO_IMPORT_FROM                                  = "Select a directory to import from.";
+    private static final String          IMPORT_FROM_DIRECTORY                                              = "Import from directory";
+    private static final String          INTO_FOLDER                                                        = "Into fo&lder:";
+    private static final String          BROWSE                                                             = "B&rowse...";
+    private static final String          FROM_DIRECTORY                                                     = "From director&y:";
 
-    protected Combo                    sourceNameField;
-    protected Button                   sourceBrowseButton;
-    protected ViewerToolBar            viewerToolBar;
-    protected YamaicaCheckedTreeViewer sourceSelectionTreeViewer;
-    protected Text                     containerNameField;
-    protected Button                   containerBrowseButton;
-    protected Button                   overwriteExistingResourcesCheckbox;
+    protected final IWorkbench           workbench;
+    protected final IStructuredSelection structuredSelection;
+    protected boolean                    restrictWizardPage                                                 = false;
 
-    protected File                     sourceDirectory                                                    = new File(
-                                                                                                                  YamaicaUIConstants.EMPTY_STRING);
-    protected IContainer               rootContainer;
-    protected IContainer               targetContainer;
-    protected String[]                 fileExtensions                                                     = new String[0];
-    protected FileExtensionFilter      extensionFilter;
+    protected Combo                      sourceNameField;
+    protected Button                     sourceBrowseButton;
+    protected ViewerToolBar              viewerToolBar;
+    protected YamaicaCheckedTreeViewer   sourceSelectionTreeViewer;
+    protected Text                       containerNameField;
+    protected Button                     containerBrowseButton;
+    protected Button                     overwriteExistingResourcesCheckbox;
+
+    protected File                       sourceDirectory                                                    = new File(
+                                                                                                                    YamaicaUIConstants.EMPTY_STRING);
+    protected IContainer                 rootContainer;
+    protected IContainer                 targetContainer;
+    protected String[]                   fileExtensions                                                     = new String[0];
+    protected FileExtensionFilter        extensionFilter;
 
     // A boolean to indicate if the user has typed anything
-    protected boolean                  entryChanged                                                       = false;
+    protected boolean                    entryChanged                                                       = false;
 
     // dialog store id constants
-    protected final static String      STORE_SOURCE_NAMES_ID                                              = "YamaicaWizardImportPage.STORE_SOURCE_NAMES_ID";                                                  //$NON-NLS-1$
-    protected final static String      STORE_OVERWRITE_EXISTING_RESOURCES_ID                              = "YamaicaWizardImportPage.STORE_OVERWRITE_EXISTING_RESOURCES_ID";                                  //$NON-NLS-1$
-    protected final static String      STORE_SHOW_ALL_FILES_ID                                            = "YamaicaWizardImportPage.STORE_SHOW_ALL_FILES_ID";                                                //$NON-NLS-1$
+    protected final static String        STORE_SOURCE_NAMES_ID                                              = "YamaicaWizardImportPage.STORE_SOURCE_NAMES_ID";                                                  //$NON-NLS-1$
+    protected final static String        STORE_OVERWRITE_EXISTING_RESOURCES_ID                              = "YamaicaWizardImportPage.STORE_OVERWRITE_EXISTING_RESOURCES_ID";                                  //$NON-NLS-1$
+    protected final static String        STORE_SHOW_ALL_FILES_ID                                            = "YamaicaWizardImportPage.STORE_SHOW_ALL_FILES_ID";                                                //$NON-NLS-1$
 
     public YamaicaWizardImportPage(IWorkbench workbench, IStructuredSelection structuredSelection, String name)
     {
@@ -786,7 +791,7 @@ public abstract class YamaicaWizardImportPage extends WizardResourceImportPage i
     {
         List<File> files = new LinkedList<File>();
 
-        if (null != sourceSelectionTreeViewer)
+        if (null != sourceSelectionTreeViewer && !sourceSelectionTreeViewer.getControl().isDisposed())
         {
             for (Object element : sourceSelectionTreeViewer.getCheckedElements())
             {
@@ -814,6 +819,7 @@ public abstract class YamaicaWizardImportPage extends WizardResourceImportPage i
         }
         catch (CoreException e)
         {
+            LOGGER.log(Level.SEVERE, "CoreException occured! Message: " + e.getMessage());
             e.printStackTrace();
         }
         finally
@@ -839,24 +845,25 @@ public abstract class YamaicaWizardImportPage extends WizardResourceImportPage i
         }
         catch (InterruptedException e)
         {
-
+            LOGGER.log(Level.SEVERE, "InterruptedException occured! Message: " + e.getMessage());
         }
         catch (InvocationTargetException e)
         {
+            LOGGER.log(Level.SEVERE, "InvocationTargetException occured! Message: " + e.getTargetException());
             displayErrorDialog(e.getTargetException());
         }
-        finally
-        {
-            // IStatus status = exporter.getStatus();
-            //
-            // if (!status.isOK())
-            // {
-            // ErrorDialog.openError(getContainer().getShell(), DataTransferMessages.DataTransfer_exportProblems,
-            // null, // no special message
-            // status);
-            // return false;
-            // }
-        }
+        // finally
+        // {
+        // IStatus status = exporter.getStatus();
+        //
+        // if (!status.isOK())
+        // {
+        // ErrorDialog.openError(getContainer().getShell(), DataTransferMessages.DataTransfer_exportProblems,
+        // null, // no special message
+        // status);
+        // return false;
+        // }
+        // }
 
         return false;
     }

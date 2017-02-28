@@ -2,7 +2,7 @@
 <feature
       id="de.bmw.yamaica.commonapi"
       label="yamaica Common API"
-      version="0.16.0.qualifier"
+      version="0.21.0.qualifier"
       provider-name="BMW Group"
       plugin="de.bmw.yamaica.commonapi.ui"
       license-feature="de.bmw.yamaica.common">
@@ -18,13 +18,13 @@ All rights reserved.
 
    <requires>
       <import plugin="com.google.guava" version="15.0.0.v201403281430" match="greaterOrEqual"/>
-      <import plugin="org.genivi.commonapi.core.ui" version="3.1.5.v201601121427" match="greaterOrEqual"/>
-      <import plugin="org.genivi.commonapi.core.validator" version="3.1.5.v201601121427" match="greaterOrEqual"/>
-      <import plugin="org.genivi.commonapi.someip.ui" version="3.1.5.v201601121433" match="greaterOrEqual"/>
-      <import plugin="org.genivi.commonapi.someip.validator" version="3.1.5.v201601121433" match="greaterOrEqual"/>
-      <import plugin="org.genivi.commonapi.dbus.ui" version="3.1.5.v201601121430" match="greaterOrEqual"/>
-      <import plugin="org.genivi.commonapi.dbus.validator" version="3.1.5.v201601121430" match="greaterOrEqual"/>
-      <import plugin="org.genivi.commonapi.someip.deployment.validator" version="3.1.5.v201601121433" match="greaterOrEqual"/>
+      <import plugin="org.genivi.commonapi.core.ui" version="3.1.10" match="greaterOrEqual"/>
+      <import plugin="org.genivi.commonapi.core.validator" version="3.1.10" match="greaterOrEqual"/>
+      <import plugin="org.genivi.commonapi.someip.ui" version="3.1.10" match="greaterOrEqual"/>
+      <import plugin="org.genivi.commonapi.someip.validator" version="3.1.10" match="greaterOrEqual"/>
+      <import plugin="org.genivi.commonapi.dbus.ui" version="3.1.10" match="greaterOrEqual"/>
+      <import plugin="org.genivi.commonapi.dbus.validator" version="3.1.10" match="greaterOrEqual"/>
+      <import plugin="org.genivi.commonapi.someip.deployment.validator" version="3.1.10" match="greaterOrEqual"/>
    </requires>
 
    <plugin

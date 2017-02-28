@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <!-- ascgit048.yamaica -->
-   <feature url="features/de.bmw.yamaica.common_0.16.0.qualifier.jar" id="de.bmw.yamaica.common" version="0.16.0.qualifier">
+   <feature url="features/de.bmw.yamaica.common_0.20.0.qualifier.jar" id="de.bmw.yamaica.common" version="0.20.0.qualifier">
       <category name="de.bmw.yamaica.category"/>
    </feature>
-   <feature url="features/de.bmw.yamaica.commonapi_0.16.0.qualifier.jar" id="de.bmw.yamaica.commonapi" version="0.16.0.qualifier">
+   <feature url="features/de.bmw.yamaica.commonapi_0.21.0.qualifier.jar" id="de.bmw.yamaica.commonapi" version="0.21.0.qualifier">
       <category name="de.bmw.yamaica.category"/>
    </feature>
-   <feature url="features/de.bmw.yamaica.franca_0.16.0.qualifier.jar" id="de.bmw.yamaica.franca" version="0.16.0.qualifier">
+   <feature url="features/de.bmw.yamaica.franca_0.21.0.qualifier.jar" id="de.bmw.yamaica.franca" version="0.21.0.qualifier">
       <category name="de.bmw.yamaica.category"/>
    </feature>
-   <feature url="features/de.bmw.yamaica.ide_0.16.0.qualifier.jar" id="de.bmw.yamaica.ide" version="0.16.0.qualifier">
+   <feature url="features/de.bmw.yamaica.ide_0.20.0.qualifier.jar" id="de.bmw.yamaica.ide" version="0.20.0.qualifier">
       <category name="de.bmw.yamaica.category"/>
    </feature>
-   <!-- ascgit048.yamaica-ea -->
-   <feature url="features/de.bmw.yamaica.ea_0.16.0.qualifier.jar" id="de.bmw.yamaica.ea" version="0.16.0.qualifier" os="win32" arch="x86">
+   <feature url="features/de.bmw.yamaica.ea_0.21.0.qualifier.jar" id="de.bmw.yamaica.ea" version="0.21.0.qualifier" os="win32" arch="x86">
       <category name="de.bmw.yamaica.category"/>
    </feature>
    <category-def name="de.bmw.yamaica.category" label="yamaica">
-      <description>Yamaica is a collection of Eclipse plugins which implement transformators between different interface decription languages, editors and code generators.</description>
+      <description>
+         Yamaica is a collection of Eclipse plugins which implement transformators between different interface decription languages, editors and code generators.
+      </description>
    </category-def>
 </site>

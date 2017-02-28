@@ -7,6 +7,8 @@
 package de.bmw.yamaica.franca.common.core;
 
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -19,6 +21,8 @@ import org.eclipse.xtext.validation.Issue;
 
 public class ValidationUtils
 {
+    private static final Logger LOGGER = Logger.getLogger(ValidationUtils.class.getName());
+
     public interface IIssueLogger
     {
         void info(String msg);
@@ -31,19 +35,19 @@ public class ValidationUtils
         @Override
         public void error(String msg)
         {
-            System.err.println(msg);
+            LOGGER.log(Level.SEVERE, stripPrefix(msg, "ERROR:"));
         }
 
         @Override
         public void warning(String msg)
         {
-            System.out.println(msg);
+            LOGGER.log(Level.WARNING, stripPrefix(msg, "WARNING:"));
         }
 
         @Override
         public void info(String msg)
         {
-            System.out.println(msg);
+            LOGGER.log(Level.INFO, stripPrefix(msg, "INFO:"));
         }
     }
 
@@ -66,7 +70,7 @@ public class ValidationUtils
     public static boolean validate(Resource resource, IIssueLogger issueLogger)
     {
         // Explicitly output the currently processed file name as some of the diagnostics may not contain a file name at all.
-        issueLogger.info("Validating " + getDisplayPath(resource.getURI()));
+        //issueLogger.info("Validating " + getDisplayPath(resource.getURI()));
 
         boolean hasValidationError = false;
         IResourceServiceProvider resourceServiceProvider = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(resource.getURI());
@@ -97,5 +101,13 @@ public class ValidationUtils
         if (displayPath == null)
             displayPath = uri.toString();
         return displayPath;
+    }
+
+    protected static String stripPrefix(String msg, String prefix)
+    {
+        if (msg.startsWith(prefix))
+            return msg.substring(prefix.length());
+        else
+            return msg;
     }
 }

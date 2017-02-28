@@ -1,4 +1,4 @@
-/* Copyright (C) 2013-2015 BMW Group
+/* Copyright (C) 2013-2016 BMW Group
  * Author: Manfred Bathelt (manfred.bathelt@bmw.de)
  * Author: Juergen Gehring (juergen.gehring@bmw.de)
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -119,7 +119,7 @@ public class LaunchConfigurationTypeSelectionPage extends WizardPage
 
                     try
                     {
-                        Set<String> modes = new HashSet<String>();
+                        Set<String> modes = new HashSet<>();
                         modes.add(YamaicaUIConstants.RUN);
 
                         ILaunchDelegate[] launchDelegates = launchConfigurationType.getDelegates(modes);
@@ -178,13 +178,17 @@ public class LaunchConfigurationTypeSelectionPage extends WizardPage
         };
     }
 
+    public static IConfigurationElement[] getRegisteredYamaicaLaunchConfigurationTypes()
+    {
+        return Platform.getExtensionRegistry().getConfigurationElementsFor(Activator.PLUGIN_ID + YAMAICA_LAUNCH_CONFIGURATION_TYPES);
+    }
+
     protected Object getViewerInput()
     {
         ILaunchManager launchManager = DebugPlugin.getDefault().getLaunchManager();
-        List<LaunchConfigurationTypeData> yamaicaLaunchConfigurationTypeData = new LinkedList<LaunchConfigurationTypeData>();
+        List<LaunchConfigurationTypeData> yamaicaLaunchConfigurationTypeData = new LinkedList<>();
 
-        for (IConfigurationElement configurationElement : Platform.getExtensionRegistry().getConfigurationElementsFor(
-                Activator.PLUGIN_ID + YAMAICA_LAUNCH_CONFIGURATION_TYPES))
+        for (IConfigurationElement configurationElement : getRegisteredYamaicaLaunchConfigurationTypes())
         {
             if (WizardSelector.isEnabledForSelection(configurationElement, selection))
             {
@@ -213,13 +217,6 @@ public class LaunchConfigurationTypeSelectionPage extends WizardPage
                 }
             }
         }
-
-        // Test code to get the IDs of all available launch configuration types
-        //
-        // for (ILaunchConfigurationType launchConfigurationType : launchManager.getLaunchConfigurationTypes())
-        // {
-        // System.out.println(launchConfigurationType.getIdentifier());
-        // }
 
         return yamaicaLaunchConfigurationTypeData;
     }

@@ -83,6 +83,7 @@ public class ConsoleStream
     private PrintStream                               printStream;
     private HashMap<IOConsole, IOConsoleOutputStream> attachedConsoles = new HashMap<IOConsole, IOConsoleOutputStream>();
     private String                                    newLine          = System.getProperty(YamaicaConstants.LINE_SEPARATOR);
+    private boolean                                   outputLogTime    = false;
 
     private ConsoleStream(String name)
     {
@@ -249,13 +250,16 @@ public class ConsoleStream
 
         if (consoleData.streamCount > 1 && stream != consoleData.lastStream)
         {
-            try
+            if (stream.getColor() == null)
             {
-                stream.write(getNewLineIndent() + "[" + name + "]" + newLine);
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
+                try
+                {
+                    stream.write(getNewLineIndent() + "[" + name + "]" + newLine);
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
             }
 
             consoleData.lastStream = stream;
@@ -271,10 +275,15 @@ public class ConsoleStream
 
     private String getLogTimeString()
     {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
+        if (outputLogTime)
+        {
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(System.currentTimeMillis());
 
-        return String.format("[%1$tT.%1$tL] ", calendar);
+            return String.format("[%1$tT.%1$tL] ", calendar);
+        }
+        else
+            return "";
     }
 
     private String addNewLineIndent(String logMessage)
@@ -298,5 +307,15 @@ public class ConsoleStream
     {
         public int                   streamCount = 0;
         public IOConsoleOutputStream lastStream  = null;
+    }
+
+    public boolean isOutputLogTime()
+    {
+        return outputLogTime;
+    }
+
+    public void setOutputLogTime(boolean outputLogTime)
+    {
+        this.outputLogTime = outputLogTime;
     }
 }

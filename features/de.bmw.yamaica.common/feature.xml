@@ -2,7 +2,7 @@
 <feature
       id="de.bmw.yamaica.common"
       label="yamaica Common"
-      version="0.16.0.qualifier"
+      version="0.20.0.qualifier"
       provider-name="BMW Group">
 
    <description>

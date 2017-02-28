@@ -2,9 +2,9 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: yamaica Common UI
 Bundle-SymbolicName: de.bmw.yamaica.common.ui;singleton:=true
-Bundle-Version: 0.15.0.qualifier
+Bundle-Version: 0.19.0.qualifier
 Bundle-Vendor: BMW Group
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.bmw.yamaica.common.ui,de.bmw.yamaica.common.ui.dial
  ogs,de.bmw.yamaica.common.ui.internal;x-friends:="de.bmw.yamaica.ide.
  ui",de.bmw.yamaica.common.ui.internal.dialogs;x-friends:="de.bmw.yama
@@ -17,6 +17,6 @@ Require-Bundle: org.eclipse.core.filebuffers;bundle-version="[3.5.0,4.0.0)";visi
  org.eclipse.ui.console;bundle-version="[3.5.0,4.0.0)";visibility:=reexport,
  org.eclipse.jface;bundle-version="[3.8.0,4.0.0)";visibility:=reexport,
  org.eclipse.debug.ui;bundle-version="[3.8.0,4.0.0)";visibility:=reexport,
- de.bmw.yamaica.common.core;bundle-version="[0.14.0,0.15.0)";visibility:=reexport
+ de.bmw.yamaica.common.core;bundle-version="[0.17.0,0.18.0)";visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: de.bmw.yamaica.common.ui.internal.Activator

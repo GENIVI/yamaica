@@ -20,6 +20,8 @@ import org.franca.core.franca.FModel
 import org.franca.core.franca.FModelElement
 import org.franca.core.franca.FrancaFactory
 import org.franca.core.utils.ExpressionEvaluator
+import org.eclipse.core.resources.ResourcesPlugin
+import org.eclipse.core.resources.IWorkspaceRoot
 
 class FrancaUtils
 {
@@ -281,7 +283,12 @@ class FrancaUtils
      */
     def static IPath getRelativeFidlPackagePath(FModel francaModel)
     {
-        val IPath path = new Path(namespace2PathString(francaModel.name))
+        return getRelativeFidlPackagePath(francaModel.name)
+    }
+
+    def static IPath getRelativeFidlPackagePath(String francaModelName)
+    {
+        val IPath path = new Path(namespace2PathString(francaModelName))
 
         return normalizeNamespacePath(path, ALL_FOR_INTERFACE_DEFINITIONS, ALL).addFileExtension(INTERFACE_DEFINITION_FILE_EXTENSION)
     }
@@ -497,5 +504,23 @@ class FrancaUtils
             withoutFileExtension = withoutFileExtension.removeLastSegments(1)
         }
         return withoutFileExtension.append(originFileName).addFileExtension(namespace.fileExtension);
+    }
+
+   /**
+     * Returns the root resource of this workspace.
+     * e.g. C:/Users/.../.yamaica
+     */
+    public static def IPath getWorkspaceRootPath()
+    {
+        try
+        {
+            val IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
+            return workspaceRoot.getLocation();
+        }
+        catch (Exception e)
+        {
+            LOGGER.log(Level.SEVERE, e.getMessage());
+            return null
+        }
     }
 }

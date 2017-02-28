@@ -2,11 +2,11 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Console
 Bundle-SymbolicName: de.bmw.yamaica.common.console;singleton:=true
-Bundle-Version: 0.13.0.qualifier
+Bundle-Version: 0.16.0.qualifier
 Bundle-Vendor: BMW Group
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.8.0,4.0.0)";visibility:=reexport,
  org.apache.commons.cli;bundle-version="[1.2.0,2.0.0)";visibility:=reexport,
  org.apache.commons.lang;bundle-version="[2.6.0,3.0.0)";visibility:=reexport
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.bmw.yamaica.common.console,
  de.bmw.yamaica.common.console.internal;x-internal:=true

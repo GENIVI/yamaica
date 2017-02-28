@@ -82,4 +82,9 @@ public class TransformWizard extends YamaicaWizard implements ILaunchWizard
 
         return false;
     }
+
+    public static boolean isRegisteredTransformationsInPlatform()
+    {
+        return LaunchConfigurationTypeSelectionPage.getRegisteredYamaicaLaunchConfigurationTypes().length > 0;
+    }
 }

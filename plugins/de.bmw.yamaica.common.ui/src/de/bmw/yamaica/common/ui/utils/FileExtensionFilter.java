@@ -24,6 +24,9 @@ public class FileExtensionFilter extends BaseExtensionFilter
 
         if (file.isDirectory())
         {
+            // Hide 'hidden' directories (e.g. ".settings").
+            if (file.getName().startsWith("."))
+                return false;
             return true;
         }
 

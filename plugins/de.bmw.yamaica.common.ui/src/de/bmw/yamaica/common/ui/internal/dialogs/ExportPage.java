@@ -1,4 +1,4 @@
-/* Copyright (C) 2013-2015 BMW Group
+/* Copyright (C) 2013-2016 BMW Group
  * Author: Manfred Bathelt (manfred.bathelt@bmw.de)
  * Author: Juergen Gehring (juergen.gehring@bmw.de)
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -32,7 +32,7 @@ public class ExportPage extends YamaicaWizardSelectionPage
 
     ExportPage(IWorkbench workbench, IStructuredSelection structuredSelection)
     {
-        super(workbench, structuredSelection, YAMAICA_EXPORT_PAGE);
+        super(workbench, structuredSelection, YAMAICA_EXPORT_PAGE, true);
 
         this.selection = structuredSelection;
         setTitle(YamaicaUIConstants.SELECT);

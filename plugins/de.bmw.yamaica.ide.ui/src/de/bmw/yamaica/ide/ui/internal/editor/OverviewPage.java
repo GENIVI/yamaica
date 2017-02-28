@@ -9,6 +9,7 @@ package de.bmw.yamaica.ide.ui.internal.editor;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -96,6 +97,7 @@ public class OverviewPage extends FormPage implements Listener
             {
                 getPartControl().getDisplay().asyncExec(new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         String propertyName = event.getPropertyName();
@@ -131,20 +133,45 @@ public class OverviewPage extends FormPage implements Listener
                 YamaicaConstants.IMPORTED_FILES_DESCRIPTION);
 
         importFilesTreeViewer = createTreeViewer(importSectionClient, 6);
+        ArrayList<Button> importPaneButtons = new ArrayList<>();
+
+        // Add "New File..." button
+        //
         importFilesNewButton = createButton(importSectionClient, YamaicaConstants.NEW, YamaicaConstants.ECLIPSE_UI_IDE_PLUGIN_ID,
                 YamaicaConstants.NEW_FILE_ICON_PATH);
         importFilesNewButton.setEnabled(true);
+
+        // Add "Edit..." button
+        //
         importFilesEditButton = createButton(importSectionClient, YamaicaConstants.EDIT, YamaicaConstants.ECLIPSE_TEXTEDITOR_PLUGIN_ID,
                 YamaicaConstants.EDIT_TEMPLATE_ICON_PATH);
+        if (importFilesEditButton != null)
+            importPaneButtons.add(importFilesEditButton);
+
+        // Add "Import..." button
+        //
         importFilesImportButton = createButton(importSectionClient, YamaicaConstants.IMPORT, YamaicaConstants.ECLIPSE_UI_IDE_PLUGIN_ID,
                 YamaicaConstants.IMPORT_ICON_PATH);
         importFilesImportButton.setEnabled(true);
+
+        // Add "Export..." button
+        //
         importFilesExportButton = createButton(importSectionClient, YamaicaConstants.EXPORT, YamaicaConstants.ECLIPSE_UI_IDE_PLUGIN_ID,
                 YamaicaConstants.EXPORT_ICON_PATH);
-        importFilesTransformButton = createButton(importSectionClient, YamaicaConstants.TRANSFORM,
-                YamaicaConstants.ECLIPSE_JDT_UI_PLUGIN_ID, YamaicaConstants.TRANSFORM_ICON_PATH);
-        importFilesTreeViewer.addSelectionChangedListener(new TreeViewerButtonEnabler(new Button[] { importFilesEditButton,
-                importFilesExportButton, importFilesTransformButton }));
+        if (importFilesExportButton != null)
+            importPaneButtons.add(importFilesExportButton);
+
+        // Add "Transform" button, only if there are any registered transformations available at all.
+        //
+        if (TransformWizard.isRegisteredTransformationsInPlatform())
+        {
+            importFilesTransformButton = createButton(importSectionClient, YamaicaConstants.TRANSFORM,
+                    YamaicaConstants.ECLIPSE_JDT_UI_PLUGIN_ID, YamaicaConstants.TRANSFORM_ICON_PATH);
+            if (importFilesTransformButton != null)
+                importPaneButtons.add(importFilesTransformButton);
+        }
+
+        importFilesTreeViewer.addSelectionChangedListener(new TreeViewerButtonEnabler(importPaneButtons.toArray(new Button[importPaneButtons.size()])));
 
         setViewerInput(importFilesTreeViewer, getPropertyValue(IResourcePropertyStore.IMPORT_FOLDER));
 
@@ -164,6 +191,7 @@ public class OverviewPage extends FormPage implements Listener
         toolkit.paintBordersFor(form.getBody());
     }
 
+    @Override
     public void setFocus()
     {
         form.setFocus();
@@ -383,7 +411,7 @@ public class OverviewPage extends FormPage implements Listener
             return;
         }
 
-        if (event.widget.equals(importFilesTransformButton))
+        if (importFilesTransformButton != null && event.widget.equals(importFilesTransformButton))
         {
             openWizard(new TransformWizard(), importFilesTreeViewer.getSelection());
 

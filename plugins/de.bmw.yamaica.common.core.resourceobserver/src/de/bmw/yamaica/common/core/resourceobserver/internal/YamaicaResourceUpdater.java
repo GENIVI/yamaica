@@ -106,90 +106,90 @@ public class YamaicaResourceUpdater implements IResourceChangeListener
             }
         }
 
-        // IResourceDelta resourceDelta = event.getDelta();
-        // IResource resource = event.getResource();
-        // int type = event.getType();
-        //
-        // String typeDescription = "";
-        //
-        // switch (type)
-        // {
-        // case IResourceChangeEvent.PRE_BUILD:
-        // typeDescription = "PRE_BUILD";
-        // break;
-        //
-        // case IResourceChangeEvent.POST_BUILD:
-        // typeDescription = "POST_BUILD";
-        // break;
-        //
-        // case IResourceChangeEvent.POST_CHANGE:
-        // typeDescription = "POST_CHANGE";
-        // break;
-        //
-        // case IResourceChangeEvent.PRE_CLOSE:
-        // typeDescription = "PRE_CLOSE";
-        // break;
-        //
-        // case IResourceChangeEvent.PRE_DELETE:
-        // typeDescription = "PRE_DELETE";
-        // break;
-        //
-        // case IResourceChangeEvent.PRE_REFRESH:
-        // typeDescription = "PRE_REFRESH";
-        // break;
-        // }
-        //
-        // System.out.println("Resource Delta: " + resourceDelta);
-        // System.out.println("Resource:       " + resource);
-        // System.out.println("Type:           " + type + " (" + typeDescription + ")");
-        //
-        // printAffectedChildren(resourceDelta);
+//        IResourceDelta resourceDelta = event.getDelta();
+//        IResource resource = event.getResource();
+//        int type = event.getType();
+//
+//        String typeDescription = "";
+//
+//        switch (type)
+//        {
+//            case IResourceChangeEvent.PRE_BUILD:
+//                typeDescription = "PRE_BUILD";
+//                break;
+//
+//            case IResourceChangeEvent.POST_BUILD:
+//                typeDescription = "POST_BUILD";
+//                break;
+//
+//            case IResourceChangeEvent.POST_CHANGE:
+//                typeDescription = "POST_CHANGE";
+//                break;
+//
+//            case IResourceChangeEvent.PRE_CLOSE:
+//                typeDescription = "PRE_CLOSE";
+//                break;
+//
+//            case IResourceChangeEvent.PRE_DELETE:
+//                typeDescription = "PRE_DELETE";
+//                break;
+//
+//            case IResourceChangeEvent.PRE_REFRESH:
+//                typeDescription = "PRE_REFRESH";
+//                break;
+//        }
+//
+//        System.out.println("Resource Delta: " + resourceDelta);
+//        System.out.println("Resource:       " + resource);
+//        System.out.println("Type:           " + type + " (" + typeDescription + ")");
+//
+//        printAffectedChildren(resourceDelta);
     }
 
-    // private void printAffectedChildren(IResourceDelta resourceDelta)
-    // {
-    // if (null == resourceDelta)
-    // {
-    // return;
-    // }
-    //
-    // for (IResourceDelta resourceDeltaChildren : resourceDelta.getAffectedChildren())
-    // {
-    // IResource resource = resourceDeltaChildren.getResource();
-    //
-    // if (null == resource)
-    // {
-    // System.err.println("error!");
-    // continue;
-    // }
-    //
-    // String resourceType = "";
-    //
-    // if (resource instanceof IFile)
-    // {
-    // resourceType = "IFile:    ";
-    // }
-    // else if (resource instanceof IFolder)
-    // {
-    // resourceType = "IFolder:  ";
-    // }
-    // else if (resource instanceof IProject)
-    // {
-    // resourceType = "IProject: ";
-    // }
-    //
-    // String linksTo = "";
-    //
-    // IPath recourceLocation = resource.getLocation();
-    //
-    // if (null != recourceLocation)
-    // {
-    // linksTo = " -> " + recourceLocation.toString();
-    // }
-    //
-    // System.out.println(resourceType + resource.getFullPath().toString() + linksTo + " - is linked: " + resource.isLinked());
-    //
-    // printAffectedChildren(resourceDeltaChildren);
-    // }
-    // }
+//    private void printAffectedChildren(IResourceDelta resourceDelta)
+//    {
+//        if (null == resourceDelta)
+//        {
+//            return;
+//        }
+//
+//        for (IResourceDelta resourceDeltaChildren : resourceDelta.getAffectedChildren())
+//        {
+//            IResource resource = resourceDeltaChildren.getResource();
+//
+//            if (null == resource)
+//            {
+//                System.err.println("error!");
+//                continue;
+//            }
+//
+//            String resourceType = "";
+//
+//            if (resource instanceof IFile)
+//            {
+//                resourceType = "IFile:    ";
+//            }
+//            else if (resource instanceof IFolder)
+//            {
+//                resourceType = "IFolder:  ";
+//            }
+//            else if (resource instanceof IProject)
+//            {
+//                resourceType = "IProject: ";
+//            }
+//
+//            String linksTo = "";
+//
+//            IPath recourceLocation = resource.getLocation();
+//
+//            if (null != recourceLocation)
+//            {
+//                linksTo = " -> " + recourceLocation.toString();
+//            }
+//
+//            System.out.println(resourceType + resource.getFullPath().toString() + linksTo + " - is linked: " + resource.isLinked());
+//
+//            printAffectedChildren(resourceDeltaChildren);
+//        }
+//    }
 }

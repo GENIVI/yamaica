@@ -36,13 +36,15 @@
    <extension
          point="de.bmw.yamaica.common.ui.yamaicaImportWizards">
       <wizard
+            fileSystem="true"
             importWizardId="org.eclipse.ui.wizards.import.FileSystem">
       </wizard>
    </extension>
    <extension
          point="de.bmw.yamaica.common.ui.yamaicaExportWizards">
       <wizard
-            exportWizardId="org.eclipse.ui.wizards.export.FileSystem">
+            exportWizardId="org.eclipse.ui.wizards.export.FileSystem"
+            fileSystem="true">
       </wizard>
    </extension>
 

@@ -12,7 +12,7 @@
             class="de.bmw.yamaica.franca.ui.ExportWizard"
             icon="platform:/plugin/org.eclipse.ui.ide/icons/full/obj16/fileType_filter.gif"
             id="de.bmw.yamaica.franca.ui.exportWizard"
-            name="Franca IDL Files">
+            name="Franca IDL files to file system">
          <description>
             Export Franca IDL files.
          </description>
@@ -22,7 +22,7 @@
             class="de.bmw.yamaica.franca.ui.HtmlExportWizard"
             icon="platform:/plugin/org.eclipse.ui.ide/icons/full/obj16/fileType_filter.gif"
             id="de.bmw.yamaica.franca.ui.htmlExportWizard"
-            name="Franca IDL Documentation (HTML)">
+            name="Franca IDL Documentation (HTML) to file system">
          <description>
             Generate Franca IDL documentation files (HTML) from fidl files.
          </description>
@@ -39,7 +39,7 @@
             class="de.bmw.yamaica.franca.ui.ImportWizard"
             icon="platform:/plugin/org.eclipse.ui.ide/icons/full/obj16/fileType_filter.gif"
             id="de.bmw.yamaica.franca.ui.importWizard"
-            name="Franca IDL Files">
+            name="Franca IDL files from file system">
          <description>
             Import Franca IDL files.
          </description>
@@ -170,7 +170,7 @@
          </enablement>
       </commonWizard>
       <commonWizard
-            menuGroupId="de.bmw.yamaica.franca.ui"
+            menuGroupId="de.bmw.yamaica.francaIDLExportGroup"
             type="export"
             wizardId="de.bmw.yamaica.franca.ui.exportWizard">
          <enablement>
@@ -203,7 +203,7 @@
          </enablement>
       </commonWizard>
       <commonWizard
-            menuGroupId="de.bmw.yamaica.franca.ui"
+            menuGroupId="de.bmw.yamaica.francaIDLExportGroup"
             type="export"
             wizardId="de.bmw.yamaica.franca.ui.htmlExportWizard">
          <enablement>
@@ -234,16 +234,19 @@
          point="de.bmw.yamaica.common.ui.yamaicaExportWizards">
       <wizard
             exportWizardId="de.bmw.yamaica.franca.ui.exportWizard"
-            extensions="fidl,fdepl">
+            extensions="fidl,fdepl"
+            fileSystem="true">
       </wizard>
       <wizard
             exportWizardId="de.bmw.yamaica.franca.ui.htmlExportWizard"
-            extensions="fidl">
+            extensions="fidl"
+            fileSystem="true">
       </wizard>
    </extension>
    <extension
          point="de.bmw.yamaica.common.ui.yamaicaImportWizards">
       <wizard
+            fileSystem="true"
             importWizardId="de.bmw.yamaica.franca.ui.importWizard">
       </wizard>
    </extension>

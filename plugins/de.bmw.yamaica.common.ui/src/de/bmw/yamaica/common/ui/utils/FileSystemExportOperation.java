@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.channels.FileChannel;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IResource;
@@ -27,6 +29,8 @@ import de.bmw.yamaica.common.ui.YamaicaUIConstants;
 
 public class FileSystemExportOperation implements IRunnableWithProgress
 {
+	private static final Logger LOGGER = Logger.getLogger(FileSystemExportOperation.class.getName());
+	
     protected IPath           directoryPath;
     protected IContainer      source;
     protected IOverwriteQuery overwriteImplementor;
@@ -110,44 +114,23 @@ public class FileSystemExportOperation implements IRunnableWithProgress
                 }
                 catch (IOException e)
                 {
+                	LOGGER.log(Level.SEVERE, e.getMessage());
                     e.printStackTrace();
                 }
             }
 
             if (writeFile)
             {
-                FileChannel inChannel = null;
-                FileChannel outChannel = null;
-
-                try
+                try(FileChannel inChannel = new FileInputStream(resourceSystemPath.toOSString()).getChannel();
+                		FileChannel outChannel = new FileOutputStream(destinationFile).getChannel())
                 {
-                    inChannel = new FileInputStream(resourceSystemPath.toOSString()).getChannel();
-                    outChannel = new FileOutputStream(destinationFile).getChannel();
 
                     inChannel.transferTo(0, inChannel.size(), outChannel);
                 }
                 catch (IOException e)
                 {
+                	LOGGER.log(Level.SEVERE, e.getMessage());
                     e.printStackTrace();
-                }
-                finally
-                {
-                    try
-                    {
-                        if (null != inChannel)
-                        {
-                            inChannel.close();
-                        }
-
-                        if (null != outChannel)
-                        {
-                            outChannel.close();
-                        }
-                    }
-                    catch (IOException e)
-                    {
-                        e.printStackTrace();
-                    }
                 }
             }
 

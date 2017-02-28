@@ -2,7 +2,7 @@
 <feature
       id="de.bmw.yamaica.franca"
       label="yamaica Franca"
-      version="0.16.0.qualifier"
+      version="0.21.0.qualifier"
       provider-name="BMW Group"
       plugin="de.bmw.yamaica.franca.ui"
       license-feature="de.bmw.yamaica.common">
@@ -17,7 +17,7 @@ All rights reserved.
    </copyright>
 
    <requires>
-      <import feature="de.bmw.yamaica.common" version="0.16.0" match="equivalent"/>
+      <import feature="de.bmw.yamaica.common" version="0.20.0" match="equivalent"/>
    </requires>
 
    <plugin

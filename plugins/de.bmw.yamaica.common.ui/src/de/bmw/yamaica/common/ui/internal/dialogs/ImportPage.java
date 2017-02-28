@@ -30,7 +30,7 @@ public class ImportPage extends YamaicaWizardSelectionPage
 
     ImportPage(IWorkbench workbench, IStructuredSelection structuredSelection)
     {
-        super(workbench, structuredSelection, YAMAICA_IMPORT_PAGE);
+        super(workbench, structuredSelection, YAMAICA_IMPORT_PAGE, true);
 
         setTitle(YamaicaUIConstants.SELECT);
         setMessage(CHOOSE_IMPORT_SOURCE);

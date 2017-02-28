@@ -9,10 +9,13 @@ package de.bmw.yamaica.common.ui.dialogs;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
+import java.nio.file.Paths;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -58,40 +61,42 @@ import de.bmw.yamaica.common.ui.utils.ViewerToolBar;
 
 public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage implements ICheckStateListener, ActionRunListener
 {
-    protected IWorkbench               workbench;
-    protected IStructuredSelection     structuredSelection;
-    protected boolean                  restrictWizardPage                = false;
-    protected boolean                  isFileExportWizard                = false;
+    private static final Logger          LOGGER                            = Logger.getLogger(YamaicaWizardExportPage.class.getName());
+
+    protected final IWorkbench           workbench;
+    protected final IStructuredSelection structuredSelection;
+    protected boolean                    restrictWizardPage                = false;
+    protected boolean                    isFileExportWizard                = false;
 
     // widgets
-    protected ViewerToolBar            viewerToolBar;
-    protected YamaicaCheckedTreeViewer resourceSelectionTreeViewer;
-    protected Composite                destinationSelectionGroup;
-    protected Combo                    destinationNameField;
-    protected Button                   destinationBrowseButton;
-    protected Button                   overwriteExistingFilesCheckbox;
+    protected ViewerToolBar              viewerToolBar;
+    protected YamaicaCheckedTreeViewer   resourceSelectionTreeViewer;
+    protected Composite                  destinationSelectionGroup;
+    protected Combo                      destinationNameField;
+    protected Button                     destinationBrowseButton;
+    protected Button                     overwriteExistingFilesCheckbox;
 
-    protected String[]                 fileExtensions                    = new String[0];
-    protected ResourceExtensionFilter  extensionFilter;
+    protected String[]                   fileExtensions                    = new String[0];
+    protected ResourceExtensionFilter    extensionFilter;
 
     // dialog store id constants
-    protected static final String      STORE_DESTINATION_NAMES_ID        = "YamaicaWizardExportPage.STORE_DESTINATION_NAMES_ID";            //$NON-NLS-1$
-    protected static final String      STORE_OVERWRITE_EXISTING_FILES_ID = "YamaicaWizardExportPage.STORE_OVERWRITE_EXISTING_FILES_ID";     //$NON-NLS-1$
-    protected static final String      STORE_SHOW_ALL_FILES_ID           = "YamaicaWizardImportPage.STORE_SHOW_ALL_FILES_ID";               //$NON-NLS-1$
+    protected static final String        STORE_DESTINATION_NAMES_ID        = "YamaicaWizardExportPage.STORE_DESTINATION_NAMES_ID";            //$NON-NLS-1$
+    protected static final String        STORE_OVERWRITE_EXISTING_FILES_ID = "YamaicaWizardExportPage.STORE_OVERWRITE_EXISTING_FILES_ID";     //$NON-NLS-1$
+    protected static final String        STORE_SHOW_ALL_FILES_ID           = "YamaicaWizardImportPage.STORE_SHOW_ALL_FILES_ID";               //$NON-NLS-1$
 
-    protected static final String      SELECT_A_FILE_TO_EXPORT_TO        = "Select a file to export to";
-    protected static final String      TO_DIRECTORY                      = "To director&y:";
-    protected static final String      DESTINATION_FILE                  = "Des&tination file:";
-    protected static final String      BROWSE                            = "Bro&wse...";
-    protected static final String      DIRECTORY_SELECTION_MESSAGE       = "Select a directory to export to.";
-    protected static final String      EXPORT_TO_DIRECTORY               = "Export to Directory";
-    protected static final String      RESOURCE_SELECTION_ERROR_MESSAGE  = "There are no resources currently selected for export.";
-    protected static final String      ENTER_DESTINATION_MESSAGE         = "Please enter a destination directory.";
-    protected static final String      COULD_NOT_CREATE_MESSAGE          = "Target directory could not be created.";
-    protected static final String      ALREADY_EXISTS_MESSAGE            = "Target directory already exists as a file.";
-    protected static final String      DIRECTORY_CREATE_QUESTION         = "Target directory does not exist.  Would you like to create it?";
-    protected static final String      LOCATION_CONFLICT_ERROR_MESSAGE   = "Destination directory conflicts with location of {0}.";
-    protected static final String      PROJECT_DAMAGED_WARNING           = "The project {0} may be damaged after this operation";
+    protected static final String        SELECT_A_FILE_TO_EXPORT_TO        = "Select a file to export to";
+    protected static final String        TO_DIRECTORY                      = "To director&y:";
+    protected static final String        DESTINATION_FILE                  = "Des&tination file:";
+    protected static final String        BROWSE                            = "Bro&wse...";
+    protected static final String        DIRECTORY_SELECTION_MESSAGE       = "Select a directory to export to.";
+    protected static final String        EXPORT_TO_DIRECTORY               = "Export to Directory";
+    protected static final String        RESOURCE_SELECTION_ERROR_MESSAGE  = "There are no resources currently selected for export.";
+    protected static final String        ENTER_DESTINATION_MESSAGE         = "Please enter a destination directory.";
+    protected static final String        COULD_NOT_CREATE_MESSAGE          = "Target directory could not be created.";
+    protected static final String        ALREADY_EXISTS_MESSAGE            = "Target directory already exists as a file.";
+    protected static final String        DIRECTORY_CREATE_QUESTION         = "Target directory does not exist.  Would you like to create it?";
+    protected static final String        LOCATION_CONFLICT_ERROR_MESSAGE   = "Destination directory conflicts with location of {0}.";
+    protected static final String        PROJECT_DAMAGED_WARNING           = "The project {0} may be damaged after this operation";
 
     public YamaicaWizardExportPage(IWorkbench workbench, IStructuredSelection structuredSelection, String name)
     {
@@ -185,10 +190,8 @@ public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage 
                 YamaicaXmlModel model = YamaicaXmlModel.acquireInstance(project, this);
                 IResourcePropertyStore store = model.getResourcePropertyStore(project);
                 // TODO
-                // String importFolder = store.getProperty(IResourcePropertyStore.IMPORT_FOLDER, Preferences.getPreferenceProvider()
-                // .getDefaultString(IResourcePropertyStore.IMPORT_FOLDER));
-                // String targetFolder = store.getProperty(IResourcePropertyStore.TARGET_FOLDER, Preferences.getPreferenceProvider()
-                // .getDefaultString(IResourcePropertyStore.TARGET_FOLDER));
+                // String importFolder = store.getProperty(IResourcePropertyStore.IMPORT_FOLDER, Preferences.getPreferenceProvider().getDefaultString(IResourcePropertyStore.IMPORT_FOLDER));
+                // String targetFolder = store.getProperty(IResourcePropertyStore.TARGET_FOLDER, Preferences.getPreferenceProvider().getDefaultString(IResourcePropertyStore.TARGET_FOLDER));
                 String importFolder = store.getProperty(IResourcePropertyStore.IMPORT_FOLDER);
                 String targetFolder = store.getProperty(IResourcePropertyStore.TARGET_FOLDER);
                 YamaicaXmlModel.releaseInstance(project, this);
@@ -328,16 +331,31 @@ public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage 
 
     public boolean finish()
     {
-        File destinationDirectory = new File(getDestinationValue());
-
-        if (!isFileExportWizard && !ensureTargetIsValid(destinationDirectory))
+        String destinationValue = getDestinationValue();
+        if (!Paths.get(destinationValue).isAbsolute())
         {
-            return false;
+            // Path is a workspace path.
+            //
+            // We may check the existence of such a path and/or create such a path here, using the
+            // dedicated workspace functions. We must not use any Java-IO functions like we are using
+            // for the external paths - because our workspace would get out of sync.
+            //
         }
-
-        if (isFileExportWizard && !ensureTargetIsValid(destinationDirectory.getParentFile()))
+        else
         {
-            return false;
+            // Path is an external full file system path (not a workspace path)
+            //
+            final File destinationDirectory = new File(destinationValue);
+
+            if (!isFileExportWizard && !ensureTargetIsValid(destinationDirectory))
+            {
+                return false;
+            }
+
+            if (isFileExportWizard && !ensureTargetIsValid(destinationDirectory.getParentFile()))
+            {
+                return false;
+            }
         }
 
         // Save dirty editors if possible but do not stop if not all are saved
@@ -360,24 +378,25 @@ public abstract class YamaicaWizardExportPage extends WizardExportResourcesPage 
         }
         catch (InterruptedException e)
         {
-
+            LOGGER.log(Level.SEVERE, "InterruptedException occured! Message: " + e.getMessage());
         }
         catch (InvocationTargetException e)
         {
+            LOGGER.log(Level.SEVERE, "InvocationTargetException occured! Message: " + e.getTargetException());
             displayErrorDialog(e.getTargetException());
         }
-        finally
-        {
-            // IStatus status = exporter.getStatus();
-            //
-            // if (!status.isOK())
-            // {
-            // ErrorDialog.openError(getContainer().getShell(), DataTransferMessages.DataTransfer_exportProblems,
-            // null, // no special message
-            // status);
-            // return false;
-            // }
-        }
+//        finally
+//        {
+//            IStatus status = exporter.getStatus();
+//
+//            if (!status.isOK())
+//            {
+//                ErrorDialog.openError(getContainer().getShell(), DataTransferMessages.DataTransfer_exportProblems,
+//                        null, // no special message
+//                        status);
+//                return false;
+//            }
+//        }
 
         return false;
     }

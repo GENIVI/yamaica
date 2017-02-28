@@ -1,4 +1,4 @@
-/* Copyright (C) 2013-2015 BMW Group
+/* Copyright (C) 2013-2016 BMW Group
  * Author: Manfred Bathelt (manfred.bathelt@bmw.de)
  * Author: Juergen Gehring (juergen.gehring@bmw.de)
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -6,6 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 package de.bmw.yamaica.common.core.launch;
 
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -78,6 +79,39 @@ public abstract class AbstractLaunchConfigurationPreparer implements ILaunchConf
         }
 
         return ResourcesPlugin.getWorkspace().getRoot().getFile(outputPath);
+    }
+
+    public IContainer getTargetContainer(IContainer importedContainer)
+    {
+        IProject project = importedContainer.getProject();
+        YamaicaXmlModel model = YamaicaXmlModel.acquireInstance(project, this);
+        IResourcePropertyStore store = model.getResourcePropertyStore(project);
+        String importFolder = store.getProperty(YamaicaConstants.IMPORT_FOLDER);
+        String targetFolder = store.getProperty(YamaicaConstants.TARGET_FOLDER);
+        YamaicaXmlModel.releaseInstance(project, this);
+
+        IPath inputPath = importedContainer.getFullPath();
+        IPath importPath = project.getFullPath();
+        IPath outputPath = project.getFullPath();
+
+        // Check if selected container is inside of "IMPORT_FOLDER". If yes, create transformed file(s) inside "TARGET_FOLDER".
+        // If not create container within same folder but do not overwrite it.
+        if (null != importFolder && null != targetFolder && null != (importPath = importPath.append(importFolder))
+                && importPath.isPrefixOf(inputPath))
+        {
+            outputPath = outputPath.append(targetFolder);
+
+            for (int i = importPath.segmentCount(); i < inputPath.segmentCount(); i++)
+            {
+                outputPath = outputPath.append(inputPath.segment(i));
+            }
+        }
+        else
+        {
+            outputPath = inputPath;
+        }
+
+        return ResourcesPlugin.getWorkspace().getRoot().getFolder(outputPath);
     }
 
     public ILaunchConfigurationWorkingCopy getNewLaunchConfiguration(String name, String launchConfigurationTypeId)

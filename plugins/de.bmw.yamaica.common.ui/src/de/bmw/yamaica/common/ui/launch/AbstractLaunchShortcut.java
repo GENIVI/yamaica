@@ -6,6 +6,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 package de.bmw.yamaica.common.ui.launch;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -28,9 +31,11 @@ import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 
 import de.bmw.yamaica.common.core.launch.AbstractLaunchConfigurationPreparer;
 import de.bmw.yamaica.common.ui.YamaicaUIConstants;
+import de.bmw.yamaica.common.ui.utils.ConsoleManager;
 
 public abstract class AbstractLaunchShortcut extends AbstractLaunchConfigurationPreparer implements ILaunchShortcut
 {
+    private static final Logger LOGGER = Logger.getLogger(AbstractLaunchShortcut.class.getName());
     private static final String SELECT = "Select ";
     private static final String SELECT_EXISTING_CONFIGURATION = "Select existing configuration:";
     protected ILaunchConfiguration selectedLaunchConfiguration = null;
@@ -109,7 +114,10 @@ public abstract class AbstractLaunchShortcut extends AbstractLaunchConfiguration
                     }
                     catch (CoreException e)
                     {
-                        e.printStackTrace();
+                        ConsoleManager.console.activate();
+                        String message = e.getMessage();
+                        if (message != null && !message.isEmpty())
+                            LOGGER.log(Level.SEVERE, message);
                     }
 
                     return Status.OK_STATUS;
